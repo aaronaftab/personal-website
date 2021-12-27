@@ -16,10 +16,10 @@ author: Aaron Aftab
 navbar-links:
   About: "/"
   Lists:
-    - Quotes: "quotes"
-    - Articles: "articles"
-  Pics: "pics"
-  Writing: "writing"
+    - Quotes: "/lists/quotes"
+    - Articles: "/lists/articles"
+  Pics: "/pics"
+  Writing: "/writing"
 
 # --- Logo --- #
 
