@@ -14,7 +14,7 @@ author: Aaron Aftab
 # --- List of links in the navigation bar --- #
 
 navbar-links:
-  About: ""
+  About: "/"
   Lists:
     - Quotes: "quotes"
     - Articles: "articles"
