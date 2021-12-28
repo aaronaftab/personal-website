@@ -18,7 +18,8 @@ navbar-links:
   Lists:
     - Quotes: "/lists/quotes"
     - Articles: "/lists/articles"
-  Pics: "/pics"
+  Music: "/music"
+  Pictures: "/pictures"
   Writing: "/writing"
 
 # --- Logo --- #
@@ -53,7 +54,7 @@ social-network-links:
 #  xing: yourname
 #  stackoverflow: "3943160/daattali"
 #  snapchat: deanat78
-  instagram: aaronaftab
+  instagram: aaron.aftab
   spotify: 6u90cbdam5c6wpaux1g2zql5v
 #  telephone: +14159998888
 #  steam: deanat78
@@ -93,7 +94,7 @@ feed_show_excerpt: true
 # feed_show_tags: true
 
 # Add a search button to the navbar
-post_search: true
+# post_search: true
 
 # The keywords to associate with your website, for SEO purposes
 #keywords: "my,list,of,keywords"
