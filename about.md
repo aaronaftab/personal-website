@@ -5,7 +5,7 @@ subtitle: Hey, I'm Aaron
 permalink: /
 ---
 
-This website is a rough compilation of things I've gathered over the years - many of them used to live in my Notes app or photo gallery, but I've decided to assemble them all here. You'll find [articles I've enjoyed reading](https://aaronaftab.com/lists/articles), [my favorite songs](https://aaronaftab.com/music), [excerpts from my camera roll](https://aaronaftab.com/pictures), and more. I also like writing, so I'll be publishing the occasional piece/story/incoherent rambling [here](https://aaronaftab.com/writing).
+This website is a rough compilation of things I've gathered over the years - many of them used to live in my Notes app or photo gallery, but I've decided to assemble them all here. You'll find [articles I've enjoyed reading](https://aaronaftab.com/lists/articles), [my favorite songs](https://aaronaftab.com/music), [snapshots from my camera roll](https://aaronaftab.com/pictures), and more. I also like writing, so I'll be publishing the occasional piece/story/incoherent rambling [here](https://aaronaftab.com/writing).
 
 Here's a bit more about me - 
 
@@ -17,5 +17,3 @@ Here's a bit more about me -
     - [<span style="color: sienna">And The Mountains Echoed</span>](https://khaledhosseini.com/books/and-the-mountains-echoed/), a novel by Khaled Hosseini
     - [<span style="color: steelblue">The Last Answer</span>](https://www.thrivenotes.com/the-last-answer/), a short story by Isaac Asimov
     - [<span style="color: darkorange">The Hammock</span>](https://poets.org/poem/hammock), a poem by Li-Young Lee
-
-ksdjfd
