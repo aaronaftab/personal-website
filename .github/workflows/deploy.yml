@@ -19,6 +19,7 @@ jobs:
       NEXT_PUBLIC_YOUTUBE_API_KEY: ${{ secrets.NEXT_PUBLIC_YOUTUBE_API_KEY }}
       NODE_ENV: production
       CI: true
+      DEBUG: "*"
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -30,14 +31,23 @@ jobs:
           rm -rf node_modules .next out
           npm install -g typescript
           npm install
+          npm list || true
+      - name: Show TypeScript version
+        working-directory: record-room
+        run: |
+          tsc --version
+          ls -la node_modules/typescript || true
       - name: Type check
         working-directory: record-room
-        run: tsc --noEmit
+        run: |
+          tsc --noEmit --pretty --extendedDiagnostics
+          echo "TypeScript check completed"
       - name: Build with Next.js
         working-directory: record-room
         run: |
-          npm run build
-          ls -la out/
+          npm run build --verbose
+          echo "Build output directory contents:"
+          ls -la out/ || true
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
