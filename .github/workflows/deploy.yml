@@ -30,12 +30,15 @@ jobs:
         working-directory: record-room
         run: |
           rm -rf node_modules .next out
+          npm install -g typescript@5.3.3
           npm install
+          npm list typescript || true
       - name: Show environment info
         working-directory: record-room
         run: |
           npm list || true
-          npx tsc --version
+          which tsc
+          tsc --version
           cat tsconfig.json
       - name: Type check and build
         working-directory: record-room
@@ -43,7 +46,7 @@ jobs:
           NEXT_TELEMETRY_DISABLED: 1
         run: |
           echo "Running type check..."
-          npx tsc --noEmit --pretty 2>&1 || (echo "Type check failed" && exit 1)
+          tsc --noEmit --pretty 2>&1 || (echo "Type check failed" && exit 1)
           echo "Type check passed, starting build..."
           NODE_OPTIONS="--trace-warnings --trace-deprecation" NEXT_DEBUG=1 npm run build
           echo "Build output directory contents:"
