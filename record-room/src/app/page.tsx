@@ -30,7 +30,6 @@ export default function RoomScene() {
           <Suspense fallback={null}>
             <Scene />
             <Player />
-            <Environment preset="city" />
           </Suspense>
         </Canvas>
 

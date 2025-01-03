@@ -29,8 +29,8 @@ export const Scene = () => {
         size={[8, 8]}
       />
       <Ceiling />
-      <ambientLight intensity={0.4} />
-      <directionalLight position={[5, 5, 5]} intensity={0.8} />
+      <ambientLight intensity={0.8} />
+      <directionalLight position={[5, 5, 5]} intensity={1.2} />
       <gridHelper args={[10, 10]} position={[0, 0.01, 0]} />
     </>
   );
