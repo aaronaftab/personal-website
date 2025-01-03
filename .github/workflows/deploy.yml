@@ -32,17 +32,11 @@ jobs:
           rm -rf node_modules .next out
           npm install -g typescript@5.3.3
           npm install
-      - name: Show TypeScript info
-        working-directory: record-room
-        run: |
-          tsc --version
-          echo "TypeScript config:"
-          cat tsconfig.json
       - name: Type check
         working-directory: record-room
         run: |
-          echo "Running type check with maximum verbosity..."
-          tsc --noEmit --pretty --extendedDiagnostics --diagnostics --traceResolution
+          echo "Running Next.js type check..."
+          npx tsc --project tsconfig.json --noEmit --listFiles --listEmittedFiles --diagnostics > typescript-output.log 2>&1 || (cat typescript-output.log && exit 1)
       - name: Build with Next.js
         working-directory: record-room
         env:
@@ -50,7 +44,7 @@ jobs:
           NODE_OPTIONS: "--trace-warnings --trace-deprecation"
         run: |
           echo "Starting Next.js build..."
-          NEXT_DEBUG=1 npm run build || (echo "Build failed with type errors:" && cat .next/types/typescript.log && exit 1)
+          NEXT_DEBUG=1 npm run build
           echo "Build output directory contents:"
           ls -la out/ || true
       - name: Deploy to GitHub Pages
