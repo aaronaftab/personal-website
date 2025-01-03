@@ -6,7 +6,11 @@ const nextConfig = {
   },
   basePath: process.env.NODE_ENV === 'production' ? '/record-room' : '',
   assetPrefix: process.env.NODE_ENV === 'production' ? '/record-room/' : '',
-  trailingSlash: true
+  trailingSlash: true,
+  typescript: {
+    ignoreBuildErrors: false,
+    tsconfigPath: './tsconfig.json'
+  }
 };
 
 export default nextConfig;

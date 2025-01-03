@@ -5,6 +5,7 @@ on:
     branches: ["main"]
     paths:
       - 'record-room/**'
+      - '.github/workflows/deploy.yml'
   workflow_dispatch:
 
 permissions:
@@ -29,26 +30,22 @@ jobs:
         working-directory: record-room
         run: |
           rm -rf node_modules .next out
-          npm install -g typescript
           npm install
       - name: Show environment info
         working-directory: record-room
         run: |
           npm list || true
-          tsc --version
-          ls -la node_modules/typescript || true
+          npx tsc --version
           cat tsconfig.json
-      - name: Type check
-        working-directory: record-room
-        run: |
-          npx tsc --noEmit --pretty --extendedDiagnostics --listFiles
-          echo "TypeScript check completed"
-      - name: Build with Next.js
+      - name: Type check and build
         working-directory: record-room
         env:
           NEXT_TELEMETRY_DISABLED: 1
         run: |
-          NODE_OPTIONS="--trace-warnings" npm run build
+          echo "Running type check..."
+          npx tsc --noEmit --pretty 2>&1 || (echo "Type check failed" && exit 1)
+          echo "Type check passed, starting build..."
+          NODE_OPTIONS="--trace-warnings --trace-deprecation" NEXT_DEBUG=1 npm run build
           echo "Build output directory contents:"
           ls -la out/ || true
       - name: Deploy to GitHub Pages
