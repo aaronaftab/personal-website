@@ -23,11 +23,11 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'npm'
-          cache-dependency-path: record-room/package-lock.json
-      - name: Install dependencies
+      - name: Clean install dependencies
         working-directory: record-room
-        run: npm ci
+        run: |
+          rm -rf node_modules
+          npm install
       - name: Build with Next.js
         working-directory: record-room
         run: npm run build
