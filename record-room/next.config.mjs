@@ -4,10 +4,9 @@ const nextConfig = {
   images: {
     unoptimized: true
   },
-  basePath: '/record-room',
-  assetPrefix: '/record-room',
-  trailingSlash: true,
-  distDir: 'out'
+  basePath: process.env.NODE_ENV === 'production' ? '/record-room' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/record-room/' : '',
+  trailingSlash: true
 };
 
 export default nextConfig;

@@ -17,6 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       NEXT_PUBLIC_YOUTUBE_API_KEY: ${{ secrets.NEXT_PUBLIC_YOUTUBE_API_KEY }}
+      NODE_ENV: production
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -36,3 +37,4 @@ jobs:
           folder: record-room/out
           branch: gh-pages
           clean: true
+          repository-name: aaronaftab/aaronaftab.github.io
