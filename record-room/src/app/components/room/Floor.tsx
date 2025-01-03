@@ -4,8 +4,8 @@ import * as THREE from 'three';
 
 export const Floor = () => {
   const textures = useTexture({
-    colorMap: '/textures/wood084/color.jpg',
-    normalMap: '/textures/wood084/normal.jpg',
+    colorMap: '/record-room/textures/wood084/color.jpg',
+    normalMap: '/record-room/textures/wood084/normal.jpg',
   });
 
   React.useEffect(() => {

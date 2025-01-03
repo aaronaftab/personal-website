@@ -12,8 +12,8 @@ interface WallProps {
 
 export const Wall = ({ position, rotation, size, hasWindow = false }: WallProps) => {
   const textures = useTexture({
-    colorMap: '/textures/wood084/color.jpg',
-    normalMap: '/textures/wood084/normal.jpg',
+    colorMap: '/record-room/textures/wood084/color.jpg',
+    normalMap: '/record-room/textures/wood084/normal.jpg',
   });
 
   React.useEffect(() => {

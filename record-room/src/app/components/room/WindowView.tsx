@@ -14,7 +14,7 @@ export const WindowView = ({ position, rotation, size }: WindowViewProps) => {
   useEffect(() => {
     const loader = new RGBELoader();
     loader.setDataType(THREE.HalfFloatType);
-    loader.load('/textures/cityscapes/shanghai_bund_8k.hdr', (texture) => {
+    loader.load('/record-room/textures/cityscapes/shanghai_bund_8k.hdr', (texture) => {
       texture.mapping = THREE.EquirectangularReflectionMapping;
       texture.minFilter = THREE.LinearFilter;
       texture.magFilter = THREE.LinearFilter;

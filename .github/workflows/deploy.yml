@@ -13,7 +13,7 @@ permissions:
   id-token: write
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     env:
       NEXT_PUBLIC_YOUTUBE_API_KEY: ${{ secrets.NEXT_PUBLIC_YOUTUBE_API_KEY }}
@@ -35,4 +35,4 @@ jobs:
         with:
           folder: record-room/out
           branch: gh-pages
-          target-folder: record-room
+          clean: true

@@ -5,8 +5,9 @@ const nextConfig = {
     unoptimized: true
   },
   basePath: '/record-room',
-  assetPrefix: '/record-room/',
-  trailingSlash: true
+  assetPrefix: '/record-room',
+  trailingSlash: true,
+  distDir: 'out'
 };
 
 export default nextConfig;
