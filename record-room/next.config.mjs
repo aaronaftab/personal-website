@@ -10,6 +10,9 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: false,
     tsconfigPath: './tsconfig.json'
+  },
+  onError: (error) => {
+    console.error('Next.js build error:', error);
   }
 };
 
