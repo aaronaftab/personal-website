@@ -4,7 +4,9 @@ const nextConfig = {
   images: {
     unoptimized: true
   },
-  basePath: '/record-room'
+  basePath: '/record-room',
+  assetPrefix: '/record-room/',
+  trailingSlash: true
 };
 
 export default nextConfig;
