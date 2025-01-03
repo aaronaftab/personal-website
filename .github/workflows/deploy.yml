@@ -18,6 +18,7 @@ jobs:
     env:
       NEXT_PUBLIC_YOUTUBE_API_KEY: ${{ secrets.NEXT_PUBLIC_YOUTUBE_API_KEY }}
       NODE_ENV: production
+      CI: true
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -26,15 +27,15 @@ jobs:
       - name: Clean install dependencies
         working-directory: record-room
         run: |
-          rm -rf node_modules
+          rm -rf node_modules .next out
           npm install
-      - name: List installed packages
+      - name: Type check
         working-directory: record-room
-        run: npm list
+        run: npx tsc --noEmit
       - name: Build with Next.js
         working-directory: record-room
         run: |
-          npm run build --verbose
+          npm run build
           ls -la out/
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
