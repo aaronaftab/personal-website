@@ -28,9 +28,14 @@ jobs:
         run: |
           rm -rf node_modules
           npm install
+      - name: List installed packages
+        working-directory: record-room
+        run: npm list
       - name: Build with Next.js
         working-directory: record-room
-        run: npm run build
+        run: |
+          npm run build --verbose
+          ls -la out/
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
