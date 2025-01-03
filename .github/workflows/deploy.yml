@@ -31,21 +31,24 @@ jobs:
           rm -rf node_modules .next out
           npm install -g typescript
           npm install
-          npm list || true
-      - name: Show TypeScript version
+      - name: Show environment info
         working-directory: record-room
         run: |
+          npm list || true
           tsc --version
           ls -la node_modules/typescript || true
+          cat tsconfig.json
       - name: Type check
         working-directory: record-room
         run: |
-          tsc --noEmit --pretty --extendedDiagnostics
+          npx tsc --noEmit --pretty --extendedDiagnostics --listFiles
           echo "TypeScript check completed"
       - name: Build with Next.js
         working-directory: record-room
+        env:
+          NEXT_TELEMETRY_DISABLED: 1
         run: |
-          npm run build --verbose
+          NODE_OPTIONS="--trace-warnings" npm run build
           echo "Build output directory contents:"
           ls -la out/ || true
       - name: Deploy to GitHub Pages
