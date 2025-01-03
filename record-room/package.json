@@ -28,6 +28,6 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.22",
     "postcss": "^8",
-    "typescript": "^5"
+    "typescript": "5.3.3"
   }
 }

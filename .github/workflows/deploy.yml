@@ -28,10 +28,11 @@ jobs:
         working-directory: record-room
         run: |
           rm -rf node_modules .next out
+          npm install -g typescript
           npm install
       - name: Type check
         working-directory: record-room
-        run: npx tsc --noEmit
+        run: tsc --noEmit
       - name: Build with Next.js
         working-directory: record-room
         run: |
