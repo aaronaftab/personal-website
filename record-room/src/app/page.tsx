@@ -2,7 +2,7 @@
 
 import React, { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { KeyboardControls, Environment } from '@react-three/drei';
+import { KeyboardControls } from '@react-three/drei';
 import { Scene } from './components/room/Scene';
 import { Player } from './components/room/Player';
 

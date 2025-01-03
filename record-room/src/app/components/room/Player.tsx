@@ -12,7 +12,7 @@ export const controlSchema = [
 ] as const;
 
 export const Player = () => {
-  const [subscribeKeys, getKeys] = useKeyboardControls();
+  const [, getKeys] = useKeyboardControls();
   const MOVEMENT_SPEED = 5;
   const JUMP_FORCE = 5;
   const GRAVITY = 9.81;
