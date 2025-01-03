@@ -8,7 +8,7 @@ interface WindowViewProps {
   rotation: [number, number, number];
   size: [number, number];
 }
-
+//test
 export const WindowView = ({ position, rotation, size }: WindowViewProps) => {
   const materialRef = useRef<THREE.ShaderMaterial>(null);
   const [hdrMap, setHdrMap] = useState<THREE.Texture | null>(null);
