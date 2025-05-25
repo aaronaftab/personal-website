@@ -1,1 +1,520 @@
-test
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aaron Aftab - My Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #f8fafc; } /* bg-slate-50 */
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; } /* slate-300 */
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; } /* slate-400 */
+        
+        .section-title { font-size: 2.25rem; font-weight: 700; margin-bottom: 1rem; letter-spacing: -0.025em; color: #4338ca; /* indigo-700 */ }
+        .section-subtitle { font-size: 1.125rem; color: #475569; /* slate-600 */ margin-bottom: 3rem; max-width: 600px; margin-left:auto; margin-right:auto; text-align: center;}
+        
+        .content-section { padding-top: 4rem; padding-bottom: 4rem; border-bottom: 1px solid #e5e7eb; /* gray-200 */ }
+        .content-section:last-of-type { border-bottom: none; }
+
+        .timeline-item { position: relative; padding-left: 2.5rem; padding-bottom: 2.5rem; }
+        .timeline-item:last-child { padding-bottom: 0; }
+        .timeline-marker { position: absolute; left: 0; top: 5px; width: 1rem; height: 1rem; background-color: #4f46e5; /* indigo-600 */ border-radius: 50%; border: 3px solid #eef2ff; /* indigo-50 */ }
+        .timeline-line { position: absolute; left: 0.4375rem; top: 1rem; bottom: -0.5rem; width: 2px; background-color: #c7d2fe; /* indigo-200 */ }
+        .timeline-item:last-child .timeline-line { display: none; }
+        
+        .chart-container { position: relative; width: 100%; max-width: 650px; margin-left: auto; margin-right: auto; height: 320px; max-height: 400px; padding: 1rem; background-color: #ffffff; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05); }
+        @media (min-width: 768px) { .chart-container { height: 380px; } }
+
+        .top-nav { transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out; }
+        .top-nav.scrolled { background-color: rgba(255,255,255,0.9); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .nav-link { padding: 0.5rem 0.75rem; margin: 0 0.25rem; border-radius: 0.375rem; transition: color 0.2s ease, background-color 0.2s ease; font-weight: 500; }
+        .nav-link:hover { color: #4f46e5; /* indigo-600 */ background-color: #eef2ff; /* indigo-50 */ }
+        .nav-link.active { color: #4f46e5; font-weight: 600; }
+
+        .card { background-color: white; border-radius: 0.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05); transition: all 0.3s ease-in-out; overflow: hidden; }
+        .card:hover { box-shadow: 0 8px 16px rgba(0,0,0,0.08); transform: translateY(-2px); }
+        .card-title { font-size: 1.125rem; font-weight: 600; color: #3730a3; /* indigo-800 */ }
+        
+        .detail-summary summary { font-weight: 500; color: #4f46e5; cursor: pointer; padding: 0.5rem 0; }
+        .detail-summary summary:hover { color: #3730a3; }
+        .link-style { color: #2563eb; /* blue-600 */ text-decoration: underline; font-weight: 500;}
+        .link-style:hover { color: #1d4ed8; /* blue-700 */ }
+
+        .proficiency-badge { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 500; }
+        .proficiency-expert { background-color: #d1fae5; color: #065f46; } /* green-100, green-700 */
+        .proficiency-advanced { background-color: #cffafe; color: #0e7490; } /* cyan-100, cyan-700 */
+        .proficiency-proficient { background-color: #e0e7ff; color: #3730a3; } /* indigo-100, indigo-800 */
+        .proficiency-developing { background-color: #ffedd5; color: #9a3412; } /* orange-100, orange-700 */
+
+        .hero-section { background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); /* indigo-500 to violet-500 */ color: white; padding: 6rem 1rem 4rem 1rem; text-align: center;}
+        .hero-title { font-size: 3rem; font-weight: 800; letter-spacing: -0.025em; margin-bottom: 1rem; }
+        .hero-subtitle { font-size: 1.25rem; font-weight: 300; max-width: 600px; margin: 0 auto 2rem auto; opacity: 0.9; }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-50 text-slate-700">
+
+    <nav id="topNav" class="top-nav sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md shadow-sm">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#" class="text-2xl font-bold text-indigo-600">Aaron Aftab</a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-1">
+                        <a href="#overview" class="nav-link text-slate-600 hover:text-indigo-600">About Me</a>
+                        <a href="#journey" class="nav-link text-slate-600 hover:text-indigo-600">My Journey</a>
+                        <a href="#skills" class="nav-link text-slate-600 hover:text-indigo-600">My Skills</a>
+                        <a href="#ventures" class="nav-link text-slate-600 hover:text-indigo-600">Projects</a>
+                        <a href="#insights" class="nav-link text-slate-600 hover:text-indigo-600">Interests</a>
+                        <a href="#roadmap" class="nav-link text-slate-600 hover:text-indigo-600">Roadmap</a>
+                    </div>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" id="mobileNavToggle" class="bg-slate-100 inline-flex items-center justify-center p-2 rounded-md text-slate-500 hover:text-indigo-600 hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                        <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="md:hidden hidden" id="mobileMenu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#overview" class="block nav-link text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 px-3 py-2 rounded-md text-base font-medium">About Me</a>
+                <a href="#journey" class="block nav-link text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 px-3 py-2 rounded-md text-base font-medium">My Journey</a>
+                <a href="#skills" class="block nav-link text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 px-3 py-2 rounded-md text-base font-medium">My Skills</a>
+                <a href="#ventures" class="block nav-link text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 px-3 py-2 rounded-md text-base font-medium">Projects</a>
+                <a href="#insights" class="block nav-link text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 px-3 py-2 rounded-md text-base font-medium">Interests</a>
+                <a href="#roadmap" class="block nav-link text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 px-3 py-2 rounded-md text-base font-medium">Roadmap</a>
+            </div>
+        </div>
+    </nav>
+
+    <header id="overview" class="hero-section content-section">
+        <h1 class="hero-title">Hi, I'm Aaron Aftab</h1>
+        <p class="hero-subtitle">I'm an intellectually driven technologist and innovator, passionate about AI, Product Management, and Software Engineering. Welcome to my corner of the web!</p>
+        <div class="mt-8">
+            <a href="#journey" class="bg-white text-indigo-600 font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-indigo-50 transition duration-300">Explore My Work</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="overview-content" class="content-section">
+            <h2 class="section-title text-center">About Me</h2>
+            <p class="section-subtitle">A bit more about my background, current focus, and what drives me.</p>
+            <div class="max-w-3xl mx-auto bg-white p-6 sm:p-8 rounded-lg shadow-lg space-y-6">
+                <p class="text-lg leading-relaxed text-slate-700">I graduated from the University of Illinois Urbana-Champaign (UIUC) with a Bachelor of Science in Computer Science and Statistics. My career has been an exciting journey focusing on Product Management, especially in Artificial Intelligence (AI) and Machine Learning (ML), backed by a solid foundation in Software Engineering.</p>
+                <p class="text-slate-600 leading-relaxed mb-3">Currently, I'm channeling my energy into Mirage AI, a venture I founded to explore innovative image stylization solutions. I also take on independent consulting projects through Battery Park Advisors. Before this, I had the opportunity to contribute to some great teams at Capital One, Bilt Rewards, Rize Education, and through internships at Microsoft, Alpaca, and DocuSign.</p>
+                <p class="text-slate-600 leading-relaxed">Beyond my professional life, I'm deeply engaged with technology, enjoy methodical personal finance and travel planning, have a keen appreciation for global cultures, and am always committed to continuous learning. This profile reflects my journey and experiences as of May 2025.</p>
+                
+                <div class="mt-6 p-6 bg-indigo-50 rounded-xl">
+                    <h3 class="text-xl font-semibold text-indigo-700 mb-3"><span class="inline-block mr-2">🌟</span>Key Highlights</h3>
+                    <ul class="list-none space-y-2 text-slate-700">
+                        <li class="flex items-center"><span class="inline-block mr-2 text-green-500">✓</span>Founder, Mirage AI</li>
+                        <li class="flex items-center"><span class="inline-block mr-2 text-green-500">✓</span>Product Manager, Machine Learning at Capital One</li>
+                        <li class="flex items-center"><span class="inline-block mr-2 text-green-500">✓</span>Independent Consultant, Battery Park Advisors</li>
+                        <li class="flex items-center"><span class="inline-block mr-2 text-green-500">✓</span>Core Expertise: AI/ML, Product Management, Software Engineering</li>
+                        <li class="flex items-center"><span class="inline-block mr-2 text-green-500">✓</span>B.S. Computer Science & Statistics, UIUC</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="journey" class="content-section">
+            <h2 class="section-title text-center">My Career Journey</h2>
+            <p class="section-subtitle">From academic foundations to entrepreneurial ventures, here's a look at key milestones.</p>
+            <div class="max-w-3xl mx-auto bg-white p-6 sm:p-8 rounded-lg shadow-lg">
+                <div class="space-y-10">
+                    <div>
+                        <h3 class="text-xl font-semibold text-indigo-600 mb-4 pb-2 border-b border-indigo-100">🎓 Education</h3>
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div><div class="timeline-line"></div>
+                            <h4 class="text-lg font-semibold text-slate-800 mb-1">University of Illinois Urbana-Champaign (UIUC)</h4>
+                            <p class="text-xs text-indigo-500 font-medium mb-1">Aug 2018 - May 2022</p>
+                            <p class="mt-1 text-sm text-slate-600 leading-relaxed">B.S. in Computer Science & Statistics. This dual focus gave me a strong quantitative and computational foundation.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <h4 class="text-lg font-semibold text-slate-800 mb-1">Neuqua Valley High School</h4>
+                            <p class="text-xs text-indigo-500 font-medium mb-1">2014 - 2018</p>
+                            <p class="mt-1 text-sm text-slate-600 leading-relaxed">Activities: Swim Team, Science Olympiad, Business Professionals of America.</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-semibold text-indigo-600 mb-4 mt-8 pb-2 border-b border-indigo-100">💼 Internships</h3>
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div><div class="timeline-line"></div>
+                            <h4 class="text-lg font-semibold text-slate-800 mb-1">Product Manager Intern, Dynamics 365 - Microsoft</h4>
+                            <p class="text-xs text-indigo-500 font-medium mb-1">May - Aug 2021</p>
+                            <p class="mt-1 text-sm text-slate-600 leading-relaxed">Introduced version management for D365 Commerce Site Builder (2M MAU).</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div><div class="timeline-line"></div>
+                            <h4 class="text-lg font-semibold text-slate-800 mb-1">Growth Intern - Alpaca</h4>
+                             <p class="text-xs text-indigo-500 font-medium mb-1">Sep - Nov 2020</p>
+                            <p class="mt-1 text-sm text-slate-600 leading-relaxed">Formed university partnerships for a developer-first stock trading API.</p>
+                        </div>
+                         <div class="timeline-item">
+                            <div class="timeline-marker"></div><div class="timeline-line"></div>
+                            <h4 class="text-lg font-semibold text-slate-800 mb-1">Product Manager Intern, Power BI - Microsoft</h4>
+                             <p class="text-xs text-indigo-500 font-medium mb-1">May - Aug 2020</p>
+                            <p class="mt-1 text-sm text-slate-600 leading-relaxed">Designed a new sharing flow for Power BI Desktop (5M MAU).</p>
+                        </div>
+                         <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <h4 class="text-lg font-semibold text-slate-800 mb-1">Software Engineer Intern - DocuSign</h4>
+                             <p class="text-xs text-indigo-500 font-medium mb-1">May - Aug 2019</p>
+                            <p class="mt-1 text-sm text-slate-600 leading-relaxed">Built document generation API for Dynamics 365 x DocuSign (C#/.NET/Azure).</p>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-semibold text-indigo-600 mb-4 mt-8 pb-2 border-b border-indigo-100">📈 Professional Roles</h3>
+                         <div class="timeline-item">
+                            <div class="timeline-marker"></div><div class="timeline-line"></div>
+                            <h4 class="text-lg font-semibold text-slate-800 mb-1">Product Manager, Machine Learning - Capital One</h4>
+                            <p class="text-xs text-indigo-500 font-medium mb-1">Jun 2024 - Present</p>
+                            <p class="mt-1 text-sm text-slate-600 leading-relaxed">Working on credit underwriting/acquisition risk models & ML infra. Launched a new risk model (proj. $300M NPV).</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div><div class="timeline-line"></div>
+                            <h4 class="text-lg font-semibold text-slate-800 mb-1">Technical Product Manager - Bilt Rewards</h4>
+                            <p class="text-xs text-indigo-500 font-medium mb-1">Dec 2023 - Feb 2024</p>
+                            <p class="mt-1 text-sm text-slate-600 leading-relaxed">Focused on CX agents, fraud, data infra. Led AI support agent implementation (70% resolution).</p>
+                        </div>
+                         <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <h4 class="text-lg font-semibold text-slate-800 mb-1">Product Lead / Growth Engineer - Rize Education</h4>
+                            <p class="text-xs text-indigo-500 font-medium mb-1">Nov 2021 - Nov 2023</p>
+                            <p class="mt-1 text-sm text-slate-600 leading-relaxed">Grew usage-based ARR ~10x (to ~$2.5M), increased product NPS. Designed CS courses for 100+ universities.</p>
+                        </div>
+                    </div>
+                     <div>
+                        <h3 class="text-xl font-semibold text-indigo-600 mb-4 mt-8 pb-2 border-b border-indigo-100">🚀 Entrepreneurial Ventures</h3>
+                         <div class="timeline-item">
+                            <div class="timeline-marker"></div><div class="timeline-line"></div>
+                            <h4 class="text-lg font-semibold text-slate-800 mb-1">Founder - Mirage AI</h4>
+                            <p class="text-xs text-indigo-500 font-medium mb-1">Feb 2025 - Present</p>
+                            <p class="mt-1 text-sm text-slate-600 leading-relaxed">Developing solutions to "Stylize any image, 10x cheaper/faster than ChatGPT."</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <h4 class="text-lg font-semibold text-slate-800 mb-1">Independent Consulting - Battery Park Advisors</h4>
+                            <p class="text-xs text-indigo-500 font-medium mb-1">Sep 2018 - Present</p>
+                            <p class="mt-1 text-sm text-slate-600 leading-relaxed">Tech and growth strategy consulting. Built AI chatbot for Thriving School Psychologist.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="content-section">
+            <h2 class="section-title text-center">My Skills & Expertise</h2>
+            <p class="section-subtitle">A snapshot of my technical and professional capabilities.</p>
+            <div class="max-w-4xl mx-auto space-y-10">
+                <div class="bg-white p-6 sm:p-8 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold text-indigo-600 mb-4 text-center">📊 Skills Proficiency Overview</h3>
+                    <p class="mb-6 text-slate-600 leading-relaxed text-center">Here's a summary of my proficiency across key skill categories.</p>
+                    <div class="chart-container">
+                        <canvas id="skillsChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 sm:p-8 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold text-indigo-600 mb-6 text-center">📋 Consolidated Skill Matrix</h3>
+                    <p class="mb-6 text-slate-600 leading-relaxed text-center">A more detailed look at specific skills. (Proficiency: D=Developing, P=Proficient, A=Advanced, E=Expert)</p>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-slate-200">
+                            <thead class="bg-slate-50">
+                                <tr>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Category</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Skill/Technology</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Proficiency</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-slate-100 text-sm">
+                                <tr class="bg-indigo-50"><td colspan="3" class="px-4 py-2 font-semibold text-indigo-700">AI/Machine Learning</td></tr>
+                                <tr><td>AI/ML</td><td>Generative AI (Stable Diffusion)</td><td><span class="proficiency-badge proficiency-advanced">Advanced (A)</span></td></tr>
+                                <tr><td>AI/ML</td><td>ML Model Development & Deployment</td><td><span class="proficiency-badge proficiency-advanced">Advanced (A)</span></td></tr>
+                                <tr><td>AI/ML</td><td>MLOps</td><td><span class="proficiency-badge proficiency-proficient">Proficient (P)</span></td></tr>
+                                <tr><td>AI/ML</td><td>NLP</td><td><span class="proficiency-badge proficiency-proficient">Proficient (P)</span></td></tr>
+                                <tr><td>AI/ML</td><td>Computer Vision</td><td><span class="proficiency-badge proficiency-proficient">Proficient (P)</span></td></tr>
+                                
+                                <tr class="bg-indigo-50"><td colspan="3" class="px-4 py-2 font-semibold text-indigo-700">Software Engineering</td></tr>
+                                <tr><td>Software Eng.</td><td>Python</td><td><span class="proficiency-badge proficiency-expert">Expert (E)</span></td></tr>
+                                <tr><td>Software Eng.</td><td>JavaScript/TypeScript</td><td><span class="proficiency-badge proficiency-advanced">Advanced (A)</span></td></tr>
+                                <tr><td>Software Eng.</td><td>Next.js / React</td><td><span class="proficiency-badge proficiency-advanced">Advanced (A)</span></td></tr>
+                                <tr><td>Software Eng.</td><td>Java</td><td><span class="proficiency-badge proficiency-proficient">Proficient (P)</span></td></tr>
+                                <tr><td>Software Eng.</td><td>C#/.NET</td><td><span class="proficiency-badge proficiency-proficient">Proficient (P)</span></td></tr>
+                                <tr><td>Software Eng.</td><td>API Design & Development</td><td><span class="proficiency-badge proficiency-advanced">Advanced (A)</span></td></tr>
+                                <tr><td>Software Eng.</td><td>Database Management (SQL, NoSQL)</td><td><span class="proficiency-badge proficiency-proficient">Proficient (P)</span></td></tr>
+                                <tr><td>Software Eng.</td><td>Cloud Platforms (GCP, Azure, AWS)</td><td><span class="proficiency-badge proficiency-proficient">Proficient (P)</span></td></tr>
+                                <tr><td>Software Eng.</td><td>Hardware Integration (Raspberry Pi)</td><td><span class="proficiency-badge proficiency-proficient">Proficient (P)</span></td></tr>
+                                <tr><td>Software Eng.</td><td>Docker, Git</td><td><span class="proficiency-badge proficiency-advanced">Advanced (A)</span></td></tr>
+
+                                <tr class="bg-indigo-50"><td colspan="3" class="px-4 py-2 font-semibold text-indigo-700">Product Management</td></tr>
+                                <tr><td>Product Mgmt.</td><td>Product Strategy & Vision</td><td><span class="proficiency-badge proficiency-advanced">Advanced (A)</span></td></tr>
+                                <tr><td>Product Mgmt.</td><td>Roadmap Development</td><td><span class="proficiency-badge proficiency-advanced">Advanced (A)</span></td></tr>
+                                <tr><td>Product Mgmt.</td><td>User Research & Analysis</td><td><span class="proficiency-badge proficiency-advanced">Advanced (A)</span></td></tr>
+                                <tr><td>Product Mgmt.</td><td>A/B Testing & Experimentation</td><td><span class="proficiency-badge proficiency-proficient">Proficient (P)</span></td></tr>
+                                <tr><td>Product Mgmt.</td><td>Data-Driven Decision Making</td><td><span class="proficiency-badge proficiency-advanced">Advanced (A)</span></td></tr>
+                                <tr><td>Product Mgmt.</td><td>Agile Methodologies</td><td><span class="proficiency-badge proficiency-advanced">Advanced (A)</span></td></tr>
+                                <tr><td>Product Mgmt.</td><td>Stakeholder Management</td><td><span class="proficiency-badge proficiency-advanced">Advanced (A)</span></td></tr>
+
+                                <tr class="bg-indigo-50"><td colspan="3" class="px-4 py-2 font-semibold text-indigo-700">Business & Leadership</td></tr>
+                                <tr><td>Business/Leadership</td><td>Entrepreneurship</td><td><span class="proficiency-badge proficiency-developing">Developing/Proficient (D/P)</span></td></tr>
+                                <tr><td>Business/Leadership</td><td>Leadership & Team Management</td><td><span class="proficiency-badge proficiency-proficient">Proficient (P)</span></td></tr>
+                                <tr><td>Business/Leadership</td><td>Client Management & Consulting</td><td><span class="proficiency-badge proficiency-proficient">Proficient (P)</span></td></tr>
+                                <tr><td>Business/Leadership</td><td>Fundraising/Sponsorship</td><td><span class="proficiency-badge proficiency-proficient">Proficient (P)</span></td></tr>
+                                <tr><td>Business/Leadership</td><td>Financial Acumen (Business)</td><td><span class="proficiency-badge proficiency-proficient">Proficient (P)</span></td></tr>
+                                <tr><td>Business/Leadership</td><td>Communication (Technical & Biz)</td><td><span class="proficiency-badge proficiency-advanced">Advanced (A)</span></td></tr>
+                                <tr><td>Business/Leadership</td><td>Strategic Thinking</td><td><span class="proficiency-badge proficiency-advanced">Advanced (A)</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 sm:p-8 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold text-indigo-600 mb-3 text-center">💻 Technical Proficiencies</h3>
+                    <ul class="list-none space-y-2 text-slate-600 columns-1 md:columns-2 text-sm">
+                        <li><strong class="text-slate-700">Languages:</strong> Python, Java, JavaScript/TypeScript, SQL, C#/.NET</li>
+                        <li><strong class="text-slate-700">Frameworks/Libraries:</strong> React, Next.js, Node.js, .NET</li>
+                        <li><strong class="text-slate-700">Tools/Platforms:</strong> Docker, Git, Kubeflow, GCP, Azure, AWS, Vercel, Webflow, HubSpot, Supabase, BigQuery, Tableau, Replicate</li>
+                        <li><strong class="text-slate-700">Hardware:</strong> Raspberry Pi, E-ink displays</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="ventures" class="content-section">
+            <h2 class="section-title text-center">Ventures & Projects</h2>
+            <p class="section-subtitle">Highlights of my entrepreneurial endeavors and key project leadership.</p>
+            <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
+                <div class="card p-6">
+                    <h3 class="card-title mb-1">💡 Mirage AI</h3>
+                    <p class="text-xs text-indigo-500 font-medium mb-2">Founder (Feb 2025 - Present)</p>
+                    <p class="text-sm text-slate-600 leading-relaxed">My current focus is on Mirage AI, where I'm building solutions to "Stylize any image, 10x cheaper/faster than ChatGPT." This includes developing a stable diffusion model (100k+ runs in its first week!) and an AI-enabled digital photo frame.</p>
+                    <p class="mt-3"><a href="https://replicate.com/aaronaftab/mirage-ghibli" target="_blank" class="link-style text-sm">🔗 View Mirage Ghibli on Replicate</a></p>
+                </div>
+                <div class="card p-6">
+                    <h3 class="card-title mb-1">🤝 Independent Consulting (Battery Park Advisors)</h3>
+                    <p class="text-xs text-indigo-500 font-medium mb-2">Consultant (Sep 2018 - Present)</p>
+                    <p class="text-sm text-slate-600 leading-relaxed">I provide technology and growth strategy consulting. Notable projects include building an AI chatbot for Thriving School Psychologist and conducting expert interviews for firms like Boston Consulting Group.</p>
+                </div>
+                <div class="card p-6 md:col-span-2">
+                    <h3 class="card-title mb-3">🏛️ Leadership in Student-Led Ventures (UIUC)</h3>
+                    <div class="grid sm:grid-cols-2 gap-4 text-sm">
+                        <div>
+                            <h4 class="font-semibold text-slate-700 mb-1">OTCR Consulting</h4>
+                            <p class="text-xs text-indigo-500 font-medium mb-1">Partner, Project Manager (Jan 2019 - Dec 2020)</p>
+                            <p class="text-slate-600 leading-relaxed">Performed user research for a major social media company and led tech strategy for edtech/agtech startups.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-slate-700 mb-1">Reflections | Projections</h4>
+                            <p class="text-xs text-indigo-500 font-medium mb-1">Director, Corporate Staff (Jan 2019 - Dec 2020)</p>
+                            <p class="text-slate-600 leading-relaxed">Led the "Largest student-run tech conference in the Midwest" ($50k budget) and raised over $100k in sponsorships.</p>
+                            <p class="mt-2"><a href="https://reflectionsprojections.org/" target="_blank" class="link-style text-xs">🔗 Visit R|P</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="insights" class="content-section">
+            <h2 class="section-title text-center">My Interests & Passions</h2>
+            <p class="section-subtitle">A glimpse into what fascinates me beyond my professional work.</p>
+            <div class="max-w-3xl mx-auto bg-white p-6 sm:p-8 rounded-lg shadow-lg space-y-6">
+                <div>
+                    <h3 class="text-xl font-semibold text-indigo-600 mb-2">🌍 Intellectual Curiosity</h3>
+                    <p class="text-slate-600 leading-relaxed">I'm driven by a desire to understand the world around me, from historical events and scientific concepts to linguistic nuances and diverse cultures.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-indigo-600 mb-3">🎨 A Spectrum of Passions</h3>
+                    <div class="space-y-2 text-sm">
+                        <details class="detail-summary"><summary>💻 Technology and Innovation</summary><p class="mt-1 pl-4 text-slate-600">AI, Software Development, Cloud Computing, and emerging tech.</p></details>
+                        <details class="detail-summary"><summary>💰 Finance and Investment</summary><p class="mt-1 pl-4 text-slate-600">Methodical personal finance, credit card rewards, retirement planning.</p></details>
+                        <details class="detail-summary"><summary>✈️ Travel and Exploration</summary><p class="mt-1 pl-4 text-slate-600">Researching and experiencing global destinations and cultures.</p></details>
+                        <details class="detail-summary"><summary>🍲 Food and Culinary Arts</summary><p class="mt-1 pl-4 text-slate-600">Exploring international cuisines and unique dining.</p></details>
+                        <details class="detail-summary"><summary>🎮 Entertainment and Pop Culture</summary><p class="mt-1 pl-4 text-slate-600">Films, TV series, and strategy games like League of Legends & Civ VI.</p></details>
+                    </div>
+                </div>
+                 <div>
+                    <h3 class="text-xl font-semibold text-indigo-600 mb-2">🧩 Behavioral Patterns</h3>
+                    <ul class="list-disc list-inside space-y-1 text-slate-600 pl-4 text-sm leading-relaxed">
+                        <li>Driven by a desire to understand.</li>
+                        <li>Deeply engaged with technology.</li>
+                        <li>Methodical planner and proactive.</li>
+                        <li>Culturally open and globally interested.</li>
+                        <li>Resourceful problem solver.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="roadmap" class="content-section">
+            <h2 class="section-title text-center">My Future Roadmap</h2>
+            <p class="section-subtitle">Strategic goals and areas I'm focusing on for continued growth.</p>
+            <div class="max-w-4xl mx-auto bg-white p-6 sm:p-8 rounded-lg shadow-lg">
+                <h3 class="text-xl font-semibold text-indigo-600 mb-4">🎯 Strategic Development Goals</h3>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-slate-200 text-sm">
+                        <thead class="bg-slate-50">
+                            <tr>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Goal Area</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Specific Goal</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-slate-500 uppercase tracking-wider hidden md:table-cell">Actionable Steps</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Timeline</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-slate-100 text-slate-600">
+                            <tr><td>Mirage AI Growth</td><td>Secure initial pilot customers/users.</td><td class="hidden md:table-cell">Targeted outreach, refine value prop.</td><td>1-2 yrs</td></tr>
+                            <tr><td>Mirage AI Growth</td><td>Achieve profitability or seed funding.</td><td class="hidden md:table-cell">Develop biz plan, network, refine pitch.</td><td>2-3 yrs</td></tr>
+                            <tr><td>Skill Dev: AI</td><td>Master an advanced AI specialization.</td><td class="hidden md:table-cell">Courses, complex project, open-source.</td><td>2-3 yrs</td></tr>
+                            <tr><td>Thought Leadership</td><td>Publish 2-3 high-quality articles.</td><td class="hidden md:table-cell">Identify platforms, develop insights.</td><td>1-2 yrs</td></tr>
+                            <tr><td>Personal Dev</td><td>Achieve conversational fluency in Thai.</td><td class="hidden md:table-cell">Lessons, immersion, practice.</td><td>3-5 yrs</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mt-8 pt-6 border-t border-indigo-100">
+                    <h3 class="text-lg font-semibold text-indigo-600 mb-3">🔑 Key Recommendations for My Growth</h3>
+                     <ul class="list-disc list-inside space-y-1.5 text-slate-600 pl-4 text-sm leading-relaxed">
+                        <li>Focus on AI-Centric Product Innovation.</li>
+                        <li>Prioritize High Autonomy & Technical Depth.</li>
+                        <li>Systematically Review Evolving Interests.</li>
+                        <li>Transition from Passive Learning to Active Contribution.</li>
+                        <li>Cultivate a "Living Document" Approach to my career.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+        
+    <footer class="text-center text-xs text-slate-500 py-10 bg-slate-100">
+        <p>&copy; <span id="currentYear"></span> Aaron Aftab. All rights reserved.</p>
+        <p class="mt-1">Built with Tailwind CSS & Chart.js.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const topNav = document.getElementById('topNav');
+            const mobileNavToggle = document.getElementById('mobileNavToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const navLinks = document.querySelectorAll('#topNav a[href^="#"], #mobileMenu a[href^="#"]');
+            const allSections = document.querySelectorAll('main section[id]');
+
+            // Sticky Nav background on scroll
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    topNav.classList.add('scrolled');
+                } else {
+                    topNav.classList.remove('scrolled');
+                }
+            });
+
+            // Mobile menu toggle
+            mobileNavToggle.addEventListener('click', () => {
+                const expanded = mobileNavToggle.getAttribute('aria-expanded') === 'true' || false;
+                mobileNavToggle.setAttribute('aria-expanded', !expanded);
+                mobileMenu.classList.toggle('hidden');
+                mobileNavToggle.querySelectorAll('svg').forEach(svg => svg.classList.toggle('hidden'));
+            });
+
+            // Smooth scroll for nav links & active state highlighting
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        
+                        // Close mobile menu on click
+                        if (!mobileMenu.classList.contains('hidden')) {
+                            mobileNavToggle.click();
+                        }
+                        // Update active link (simple click-based)
+                        navLinks.forEach(nav => nav.classList.remove('active'));
+                        this.classList.add('active'); 
+                        // If it's a mobile link, find its desktop counterpart to also activate
+                        if(this.closest('#mobileMenu')){
+                            const desktopLink = document.querySelector(`#topNav .hidden.md\\:block a[href="${targetId}"]`);
+                            if(desktopLink) desktopLink.classList.add('active');
+                        } else {
+                             const mobileLink = document.querySelector(`#mobileMenu a[href="${targetId}"]`);
+                            if(mobileLink) mobileLink.classList.add('active');
+                        }
+                    }
+                });
+            });
+            
+            // Active link highlighting on scroll (Intersection Observer)
+            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.4 }; // Adjust threshold
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const id = entry.target.getAttribute('id');
+                    const navLinkDesktop = document.querySelector(`#topNav .hidden.md\\:block a[href="#${id}"]`);
+                    const navLinkMobile = document.querySelector(`#mobileMenu a[href="#${id}"]`);
+
+                    if (entry.isIntersecting && entry.intersectionRatio >= 0.4) {
+                        navLinks.forEach(nav => nav.classList.remove('active'));
+                        if(navLinkDesktop) navLinkDesktop.classList.add('active');
+                        if(navLinkMobile) navLinkMobile.classList.add('active');
+                    }
+                });
+            }, observerOptions);
+            allSections.forEach(section => { observer.observe(section); });
+
+
+            // Skills Chart
+            const skillsCtx = document.getElementById('skillsChart')?.getContext('2d');
+            if (skillsCtx) {
+                const proficiencyCounts = { 'Expert': 1, 'Advanced': 14, 'Proficient': 13, 'Developing': 1 }; // Simplified 'Developing/Proficient' to 'Developing'
+                const chartLabels = ['Expert', 'Advanced', 'Proficient', 'Developing'];
+                const chartDataValues = [ proficiencyCounts['Expert'], proficiencyCounts['Advanced'], proficiencyCounts['Proficient'], proficiencyCounts['Developing'] ];
+
+                new Chart(skillsCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: chartLabels,
+                        datasets: [{
+                            label: 'Number of Skills',
+                            data: chartDataValues,
+                            backgroundColor: ['#34d399', '#6366f1', '#38bdf8', '#f59e0b'], // emerald-400, indigo-500, sky-400, amber-500
+                            borderColor: ['#10b981', '#4f46e5', '#0ea5e9', '#d97706'], 
+                            borderWidth: 1,
+                            borderRadius: 3,
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: { beginAtZero: true, ticks: { stepSize: 2, color: '#4b5563' }, grid: { color: '#e5e7eb'} },
+                            x: { ticks: { color: '#4b5563' }, grid: { display: false } }
+                        },
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                backgroundColor: '#1f2937', // gray-800
+                                titleColor: '#f3f4f6', 
+                                bodyColor: '#d1d5db', 
+                                displayColors: false,
+                                padding: 8,
+                                cornerRadius: 3,
+                                callbacks: { label: (context) => context.parsed.y + ' skills' }
+                            }
+                        }
+                    }
+                });
+            }
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>
