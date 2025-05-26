@@ -1,0 +1,209 @@
+{
+  "experiences": [
+    {
+      "id": "uiuc",
+      "title": "B.S. Computer Science & Statistics",
+      "company": "University of Illinois at Urbana-Champaign",
+      "year": "2018-2022",
+      "type": "education",
+      "logo": "🎓",
+      "logoUrl": "/logos/uiuc.png",
+      "metric": "200+ hours at Kams",
+      "description": "Fun fact: senior year, my roommates and I rewired a Keurig machine to dispense Jagerbombs and got featured on Barstool.",
+      "featured": false
+    },
+    {
+      "id": "otcr",
+      "title": "Partner",
+      "company": "OTCR Consulting",
+      "year": "2019-2020",
+      "type": "education",
+      "logo": "💼",
+      "logoUrl": "/logos/otcr.png",
+      "metric": "~$8k per project",
+      "description": "Performed user research study for social media giant, led client engagement with Director of UX Research and oversaw two project teams.",
+      "customButton": {
+        "text": "Learn About OTCR",
+        "url": "https://otcrconsulting.com/",
+        "type": "external"
+      },
+      "featured": false
+    },
+    {
+      "id": "reflections",
+      "title": "Co-Director // Corporate Staff",
+      "company": "Reflections|Projections",
+      "year": "2019-2020",
+      "type": "education",
+      "logo": "🎯",
+      "logoUrl": "/logos/reflections.png",
+      "metric": "2k+ Attendees",
+      "description": "Largest student-run tech conference in the Midwest, led staff of 60+ to organize 2020 event with $50k operating budget. Raised over $100k from corporate sponsors for 2019 conference.",
+      "customButton": {
+        "text": "View Conference Site",
+        "url": "https://reflectionsprojections.org",
+        "type": "external"
+      },
+      "featured": true
+    },
+    {
+      "id": "docusign",
+      "title": "Software Engineer Intern",
+      "company": "DocuSign",
+      "year": "2019",
+      "type": "work",
+      "logo": "📄",
+      "logoUrl": "/logos/docusign.png",
+      "metric": "10min -> 10sec to create contracts",
+      "description": "Built document generation API for Dynamics 365 x DocuSign integration",
+      "customButton": {
+        "text": "See Integration",
+        "url": "https://www.docusign.com/integrations/microsoft/dynamics-365",
+        "type": "external"
+      },
+      "featured": false
+    },
+    {
+      "id": "microsoft1",
+      "title": "Product Manager Intern",
+      "company": "Microsoft",
+      "year": "2020",
+      "type": "work",
+      "logo": "🪟",
+      "logoUrl": "/logos/microsoft.png",
+      "metric": "5M MAU",
+      "description": "Designed new sharing flow for Power BI Desktop",
+      "customButton": {
+        "text": "View Release Notes",
+        "url": "https://powerbi.microsoft.com/en-us/blog/new-sharing-experience-coming-soon/",
+        "type": "external"
+      },
+      "featured": true
+    },
+    {
+      "id": "alpaca",
+      "title": "Growth Intern",
+      "company": "Alpaca",
+      "year": "2020",
+      "type": "work",
+      "logo": "📈",
+      "logoUrl": "/logos/alpaca.png",
+      "metric": "100+ New Institutional Partnerships",
+      "description": "Driving adoption of Alpaca's developer-first stock trading API, ran trading competition with 1000+ participants.",
+      "customButton": {
+        "text": "Read Interview",
+        "url": "https://alpaca.markets/learn/trading-competition-interview2",
+        "type": "external"
+      },
+      "featured": false
+    },
+    {
+      "id": "microsoft2",
+      "title": "Product Manager Intern",
+      "company": "Microsoft",
+      "year": "2021",
+      "type": "work",
+      "logo": "🪟",
+      "logoUrl": "/logos/microsoft.png",
+      "metric": "2M MAU",
+      "description": "Introduced version management and reversion capabilities to Dynamics 365 Commerce Site Builder",
+      "customButton": {
+        "text": "View Documentation",
+        "url": "https://docs.microsoft.com/en-us/dynamics365/commerce/e-commerce-extensibility/site-builder-versioning",
+        "type": "external"
+      },
+      "featured": false
+    },
+    {
+      "id": "rize",
+      "title": "Product Lead // Growth Engineer",
+      "company": "Rize Education",
+      "year": "2021-2023",
+      "type": "work",
+      "logo": "🎯",
+      "logoUrl": "/logos/rize.png",
+      "metric": "~10x ARR Growth",
+      "description": "Helped grow usage-based ARR by nearly 10x (~$2.5M when I left) over two years while increasing overall product NPS from roughly -10 to +20. Also got to design a few CS courses and projects that are still being taken by students at 100+ universities :)",
+      "customButton": {
+        "text": "About Rize",
+        "url": "https://www.rize.education/",
+        "type": "external"
+      },
+      "featured": true
+    },
+    {
+      "id": "bilt",
+      "title": "Technical Product Manager, AI & Customer Solutions",
+      "company": "Bilt Rewards",
+      "year": "2023-2024",
+      "type": "work",
+      "logo": "🏠",
+      "logoUrl": "/logos/bilt.png",
+      "metric": "70% Resolution Rate",
+      "description": "CX agents, fraud, data infra",
+      "customButton": {
+        "text": "Bilt x Decagon Case Study",
+        "url": "https://decagon.ai/case-studies/bilt",
+        "type": "external"
+      },
+      "featured": false
+    },
+    {
+      "id": "capital-one",
+      "title": "Product Manager, Machine Learning",
+      "company": "Capital One",
+      "year": "2024-Present",
+      "type": "work",
+      "logo": "🏦",
+      "logoUrl": "/logos/capital-one.png",
+      "metric": "$7B+ NPV",
+      "description": "Credit underwriting/acquisition risk models + ML infra.",
+      "customButton": {
+        "text": "C1 AI/ML",
+        "url": "https://www.capitalone.com/tech/machine-learning/",
+        "type": "external"
+      },
+      "featured": true
+    },
+    {
+      "id": "mirage",
+      "title": "Founder",
+      "company": "Mirage AI",
+      "year": "2025-Present",
+      "type": "venture",
+      "logo": "🎨",
+      "logoUrl": "/logos/mirage.png",
+      "metric": "100k+ runs/$2k in first week",
+      "description": "AI photo frame + stable diffusion models.",
+      "customButton": {
+        "text": "Stylize any image, 10x cheaper/faster than ChatGPT.",
+        "url": "https://replicate.com/aaronaftab/mirage-ghibli",
+        "type": "external"
+      },
+      "featured": true
+    },
+    {
+      "id": "quetzal",
+      "title": "Co-Founder",
+      "company": "Something New",
+      "year": "2025-Present",
+      "type": "venture",
+      "logo": "🦅",
+      "logoUrl": "/logos/quetzal.png",
+      "metric": "?",
+      "description": "",
+      "featured": true
+    }
+  ],
+  "metadata": {
+    "lastUpdated": "2025-01-27",
+    "version": "1.0.0",
+    "description": "Aaron Aftab's professional experience data - shared across portfolio versions",
+    "totalExperiences": 13,
+    "experienceTypes": {
+      "education": 3,
+      "work": 8,
+      "venture": 2
+    }
+  }
+} 

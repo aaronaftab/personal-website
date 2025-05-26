@@ -3,16 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aaron Aftab - Personal Website</title>
-    <meta name="description" content="Aaron Aftab - Technologist and product innovator driven by AI and building impactful solutions.">
+    <title>Aaron Aftab - Technology Leadership Portfolio</title>
+    <meta name="description" content="Aaron Aftab - Technology leader driving AI transformation and product innovation with measurable business impact.">
     
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts - McKinsey uses clean, professional fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&family=Source+Serif+Pro:wght@400;600&display=swap" rel="stylesheet">
     
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <style>
+        /* McKinsey-inspired design system */
+        :root {
+            --mckinsey-navy: #003366;
+            --mckinsey-blue: #0066cc;
+            --mckinsey-light-blue: #4d94ff;
+            --mckinsey-gray-dark: #333333;
+            --mckinsey-gray-medium: #666666;
+            --mckinsey-gray-light: #999999;
+            --mckinsey-gray-bg: #f8f9fa;
+            --mckinsey-white: #ffffff;
+            --mckinsey-accent: #ff6b35;
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-tertiary: #6a6a6a;
+        }
+
         /* Reset and base styles */
         * {
             margin: 0;
@@ -21,67 +37,64 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, sans-serif;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            color: #374151;
+            color: var(--text-primary);
             line-height: 1.6;
+            background-color: var(--mckinsey-white);
         }
 
-        /* Scrollbar styles */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
+        /* Typography - McKinsey style */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Source Serif Pro', serif;
+            font-weight: 600;
+            color: var(--mckinsey-navy);
+            line-height: 1.2;
         }
 
-        ::-webkit-scrollbar-track {
-            background: #f9fafb;
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
         }
 
-        ::-webkit-scrollbar-thumb {
-            background: #d1d5db;
-            border-radius: 10px;
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
         }
 
-        ::-webkit-scrollbar-thumb:hover {
-            background: #9ca3af;
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
         }
 
         /* Container and layout */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 1rem;
+            padding: 0 2rem;
         }
 
-        @media (min-width: 640px) {
-            .container {
-                padding: 0 1.5rem;
-            }
+        .content-width {
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        @media (min-width: 1024px) {
-            .container {
-                padding: 0 2rem;
-            }
-        }
-
-        /* Navigation */
+        /* Navigation - Clean McKinsey style */
         .top-nav {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 50;
+            background-color: var(--mckinsey-white);
+            border-bottom: 1px solid #e5e5e5;
             padding: 1rem 0;
-            transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-        }
-
-        .top-nav.scrolled {
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
 
         .nav-container {
@@ -91,324 +104,428 @@
         }
 
         .nav-logo {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #4f46e5;
+            font-family: 'Source Serif Pro', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--mckinsey-navy);
             text-decoration: none;
         }
 
         .nav-links {
-            display: none;
-            gap: 0.5rem;
-        }
-
-        @media (min-width: 768px) {
-            .nav-links {
-                display: flex;
-            }
+            display: flex;
+            gap: 2rem;
         }
 
         .nav-link {
-            padding: 0.5rem 0.75rem;
-            margin: 0 0.25rem;
-            border-radius: 0.375rem;
-            transition: color 0.2s ease, background-color 0.2s ease;
-            font-weight: 500;
-            color: #4b5563;
+            color: var(--text-secondary);
             text-decoration: none;
+            font-weight: 400;
+            transition: color 0.2s ease;
+            font-size: 0.95rem;
         }
 
-        .nav-link:hover {
-            color: #4f46e5;
-            background-color: #eef2ff;
-        }
-
+        .nav-link:hover,
         .nav-link.active {
-            color: #4f46e5;
-            font-weight: 600;
+            color: var(--mckinsey-blue);
         }
 
-        /* Hero section */
+        /* Hero section - Executive summary style */
         .hero-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-align: center;
-            padding: 8rem 1rem 6rem;
+            background: linear-gradient(135deg, var(--mckinsey-navy) 0%, var(--mckinsey-blue) 100%);
+            color: var(--mckinsey-white);
+            padding: 8rem 0 6rem;
             margin-top: 4rem;
         }
 
-        .hero-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.025em;
+        .hero-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem;
+            align-items: center;
         }
 
-        @media (min-width: 768px) {
-            .hero-title {
-                font-size: 3.5rem;
-            }
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--mckinsey-white);
         }
 
         .hero-subtitle {
-            font-size: 1.125rem;
+            font-size: 1.25rem;
             margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            opacity: 0.95;
-            line-height: 1.7;
+            opacity: 0.9;
+            line-height: 1.5;
+            color: var(--mckinsey-white);
         }
 
-        @media (min-width: 768px) {
-            .hero-subtitle {
-                font-size: 1.25rem;
-            }
+        .hero-metrics {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
         }
 
-        .hero-cta {
-            display: inline-block;
-            background-color: white;
-            color: #4f46e5;
-            padding: 0.875rem 2rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        .metric-item {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            position: relative;
         }
 
-        .hero-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        .metric-logo {
+            width: 24px;
+            height: 24px;
+            margin: 0 auto 0.5rem;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            filter: brightness(0) invert(1);
+            opacity: 0.8;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--mckinsey-white);
+            display: block;
+        }
+
+        .metric-label {
+            font-size: 0.875rem;
+            opacity: 0.8;
+            color: var(--mckinsey-white);
+        }
+
+        /* Executive summary box */
+        .executive-summary {
+            background: var(--mckinsey-white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .executive-summary h3 {
+            color: var(--mckinsey-navy);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .executive-summary li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .executive-summary li:last-child {
+            border-bottom: none;
         }
 
         /* Section styles */
         .content-section {
-            padding: 5rem 0;
+            padding: 4rem 0;
+            border-bottom: 1px solid #e5e5e5;
         }
 
-        .section-divider {
-            border-bottom: 1px solid #e5e7eb;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-            letter-spacing: -0.025em;
-            color: #3730a3;
-        }
-
-        @media (min-width: 768px) {
-            .section-title {
-                font-size: 2.5rem;
-            }
-        }
-
-        .section-subtitle {
-            font-size: 1.125rem;
-            color: #4b5563;
-            margin-bottom: 2.5rem;
-            max-width: 650px;
-            margin-left: auto;
-            margin-right: auto;
+        .section-header {
             text-align: center;
-            line-height: 1.6;
-        }
-
-        /* Cards */
-        .card {
-            background-color: white;
-            border-radius: 0.75rem;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        .card-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #1f2937;
-        }
-
-        /* Timeline */
-        .timeline-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .timeline-phase-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #4f46e5;
-            margin-bottom: 2rem;
-            text-align: center;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #c7d2fe;
-        }
-
-        .timeline-entry {
-            display: flex;
-            position: relative;
             margin-bottom: 3rem;
         }
 
-        .timeline-entry:last-child {
-            margin-bottom: 0;
+        .section-title {
+            color: var(--mckinsey-navy);
+            margin-bottom: 1rem;
         }
 
-        .timeline-icon {
-            flex-shrink: 0;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: #4f46e5;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
+        .section-subtitle {
+            color: var(--text-secondary);
             font-size: 1.125rem;
-            z-index: 10;
-            box-shadow: 0 0 0 4px white;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        .timeline-line-connector {
-            position: absolute;
-            left: 19px;
-            top: 40px;
-            bottom: -1.5rem;
-            width: 2px;
-            background-color: #c7d2fe;
+        /* Cards - Clean McKinsey style */
+        .card {
+            background: var(--mckinsey-white);
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
         }
 
-        .timeline-entry:last-of-type .timeline-line-connector {
-            display: none;
-        }
-
-        .timeline-content-wrapper {
-            margin-left: 1.5rem;
-            padding: 0.25rem 1rem 1rem 1rem;
-            background-color: white;
-            border-radius: 0.5rem;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
-            flex-grow: 1;
-        }
-
-        .timeline-entry-title {
-            font-size: 1.125rem;
-            font-weight: 600;
-            color: #1f2937;
-            margin-bottom: 0.25rem;
-        }
-
-        .timeline-entry-subtitle {
-            font-size: 0.875rem;
-            color: #4f46e5;
-            font-weight: 500;
+        .card-title {
+            color: var(--mckinsey-navy);
+            font-size: 1.25rem;
             margin-bottom: 0.5rem;
         }
 
-        .timeline-entry-details {
+        .card-subtitle {
+            color: var(--mckinsey-blue);
             font-size: 0.9rem;
-            color: #4b5563;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .card-content {
+            color: var(--text-secondary);
             line-height: 1.6;
         }
 
-        /* Chart container */
+        /* Data visualization styles */
         .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 700px;
-            margin: 0 auto;
-            height: 350px;
+            background: var(--mckinsey-white);
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
             padding: 1.5rem;
-            background-color: #ffffff;
-            border-radius: 0.75rem;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.06);
+            margin: 2rem 0;
+            height: 300px;
+            position: relative;
         }
 
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 400px;
-            }
-        }
-
-        /* Links */
-        .link-style {
-            color: #4f46e5;
-            text-decoration: underline;
-            text-decoration-color: #c7d2fe;
-            text-underline-offset: 2px;
-            transition: color 0.2s ease, text-decoration-color 0.2s ease;
-        }
-
-        .link-style:hover {
-            color: #3730a3;
-            text-decoration-color: #4f46e5;
-        }
-
-        .example-link {
-            color: #059669;
-            text-decoration: underline;
-            text-decoration-color: #a7f3d0;
-        }
-
-        .example-link:hover {
-            color: #047857;
-        }
-
-        /* Tables */
-        .table-container {
-            overflow-x: auto;
-        }
-
-        table {
-            min-width: 100%;
-            border-collapse: collapse;
-        }
-
-        th {
-            padding: 0.75rem 1rem;
-            text-align: left;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: #4b5563;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            background-color: #f8fafc;
-        }
-
-        td {
-            padding: 0.75rem 1rem;
-            border-top: 1px solid #f1f5f9;
-            font-size: 0.875rem;
-        }
-
-        .category-header {
-            background-color: #eef2ff !important;
-            font-weight: 600;
-            color: #4f46e5;
+        .chart-title {
+            color: var(--mckinsey-navy);
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            text-align: center;
         }
 
         /* Grid layouts */
-        .grid {
+        .grid-2 {
             display: grid;
+            grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
         }
 
-        .grid-cols-2 {
-            grid-template-columns: repeat(2, 1fr);
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
         }
 
-        @media (max-width: 767px) {
-            .grid-cols-2 {
+        /* Impact metrics */
+        .impact-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .impact-item {
+            text-align: center;
+            padding: 2rem;
+            background: var(--mckinsey-gray-bg);
+            border-radius: 8px;
+        }
+
+        .impact-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--mckinsey-blue);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .impact-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* Timeline - Professional style */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--mckinsey-blue);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.5rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: var(--mckinsey-blue);
+            border-radius: 50%;
+        }
+
+        /* Company logo styles */
+        .timeline-logo {
+            position: absolute;
+            left: -2.25rem;
+            top: 0;
+            width: 36px;
+            height: 36px;
+            background: var(--mckinsey-white);
+            border: 2px solid var(--mckinsey-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            z-index: 2;
+        }
+
+        .timeline-logo img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+
+        .timeline-metric {
+            display: inline-block;
+            background: var(--mckinsey-gray-bg);
+            color: var(--mckinsey-blue);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            color: var(--mckinsey-navy);
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-subtitle {
+            color: var(--mckinsey-blue);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .timeline-actions {
+            margin-top: 1rem;
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.375rem 0.75rem;
+            background: var(--mckinsey-white);
+            color: var(--mckinsey-blue);
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid var(--mckinsey-blue);
+            transition: all 0.2s ease;
+        }
+
+        .action-btn:hover {
+            background: var(--mckinsey-blue);
+            color: var(--mckinsey-white);
+        }
+
+        .action-btn-secondary {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid #e5e5e5;
+        }
+
+        .action-btn-secondary:hover {
+            background: var(--mckinsey-gray-bg);
+            color: var(--mckinsey-navy);
+        }
+
+        /* Links */
+        .link {
+            color: var(--mckinsey-blue);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s ease;
+        }
+
+        .link:hover {
+            border-bottom-color: var(--mckinsey-blue);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--mckinsey-gray-bg);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-link {
+            color: var(--mckinsey-blue);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .footer-link:hover {
+            color: var(--mckinsey-navy);
+        }
+
+        .footer-text {
+            color: var(--text-tertiary);
+            font-size: 0.875rem;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .hero-content {
                 grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .grid-2,
+            .grid-3,
+            .impact-metrics {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .nav-links {
+                display: none;
             }
         }
 
@@ -417,835 +534,367 @@
             text-align: center;
         }
 
-        .text-sm {
-            font-size: 0.875rem;
+        .mb-2 {
+            margin-bottom: 1rem;
         }
 
-        .text-xs {
-            font-size: 0.75rem;
-        }
-
-        .text-lg {
-            font-size: 1.125rem;
-        }
-
-        .font-medium {
-            font-weight: 500;
-        }
-
-        .font-semibold {
-            font-weight: 600;
+        .mb-4 {
+            margin-bottom: 2rem;
         }
 
         .font-bold {
             font-weight: 700;
         }
 
-        .mb-2 {
-            margin-bottom: 0.5rem;
-        }
-
-        .mb-3 {
-            margin-bottom: 0.75rem;
-        }
-
-        .mb-4 {
-            margin-bottom: 1rem;
-        }
-
-        .mb-6 {
-            margin-bottom: 1.5rem;
-        }
-
-        .mb-8 {
-            margin-bottom: 2rem;
-        }
-
-        .mt-4 {
-            margin-top: 1rem;
-        }
-
-        .mt-8 {
-            margin-top: 2rem;
-        }
-
-        .mt-10 {
-            margin-top: 2.5rem;
-        }
-
-        .mt-12 {
-            margin-top: 3rem;
-        }
-
-        .p-6 {
-            padding: 1.5rem;
-        }
-
-        .p-8 {
-            padding: 2rem;
-        }
-
-        .p-10 {
-            padding: 2.5rem;
-        }
-
-        .space-y-2 > * + * {
-            margin-top: 0.5rem;
-        }
-
-        .space-y-3 > * + * {
-            margin-top: 0.75rem;
-        }
-
-        .space-y-6 > * + * {
-            margin-top: 1.5rem;
-        }
-
-        .space-y-8 > * + * {
-            margin-top: 2rem;
-        }
-
-        .max-w-3xl {
-            max-width: 48rem;
-        }
-
-        .max-w-5xl {
-            max-width: 64rem;
-        }
-
-        .mx-auto {
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .leading-relaxed {
-            line-height: 1.625;
-        }
-
-        /* Details/Summary styling */
-        .detail-summary {
-            border: 1px solid #e5e7eb;
-            border-radius: 0.5rem;
-            overflow: hidden;
-        }
-
-        .detail-summary summary {
-            padding: 0.75rem 1rem;
-            background-color: #f9fafb;
-            cursor: pointer;
-            font-weight: 500;
-            color: #374151;
-            transition: background-color 0.2s ease;
-        }
-
-        .detail-summary summary:hover {
-            background-color: #f3f4f6;
-        }
-
-        .detail-summary summary::marker {
-            display: none;
-        }
-
-        .detail-summary summary::after {
-            content: '+';
-            float: right;
-            font-weight: bold;
-        }
-
-        .detail-summary[open] summary::after {
-            content: '−';
-        }
-
-        .detail-content {
-            padding: 1rem;
-            background-color: white;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #f8fafc;
-            border-top: 1px solid #e2e8f0;
-            padding: 3rem 0;
-            text-align: center;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-links a {
-            color: #64748b;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.875rem;
-            transition: color 0.2s ease;
-        }
-
-        .footer-links a:hover {
-            color: #4f46e5;
-        }
-
-        /* Responsive columns */
-        .columns-2 {
-            column-count: 1;
-        }
-
-        @media (min-width: 768px) {
-            .columns-2 {
-                column-count: 2;
-            }
-        }
-
-        /* List styles */
-        .list-none {
-            list-style: none;
-        }
-
-        .highlight-list li {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 0.625rem;
-        }
-
-        .highlight-list .checkmark {
-            color: #10b981;
-            font-size: 1.125rem;
-            margin-right: 0.75rem;
-            margin-top: 0.125rem;
-        }
-
-        /* Color utilities */
-        .text-indigo-700 {
-            color: #4338ca;
-        }
-
-        .text-indigo-500 {
-            color: #6366f1;
-        }
-
-        .text-slate-600 {
-            color: #475569;
-        }
-
-        .text-slate-500 {
-            color: #64748b;
-        }
-
-        .text-slate-700 {
-            color: #334155;
-        }
-
-        .text-slate-800 {
-            color: #1e293b;
-        }
-
-        .bg-indigo-50 {
-            background-color: #eef2ff;
-        }
-
-        .border-indigo-100 {
-            border-color: #e0e7ff;
+        .font-semibold {
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="top-nav" id="navbar">
+    <nav class="top-nav">
         <div class="container">
             <div class="nav-container">
                 <a href="#overview" class="nav-logo">Aaron Aftab</a>
                 <div class="nav-links">
-                    <a href="#overview" class="nav-link">Overview</a>
-                    <a href="#journey" class="nav-link">Journey</a>
-                    <a href="#skills" class="nav-link">Skills</a>
-                    <a href="#ventures" class="nav-link">Ventures</a>
-                    <a href="#insights" class="nav-link">Interests</a>
+                    <a href="#overview" class="nav-link">Executive Summary</a>
+                    <a href="#experience" class="nav-link">Experience</a>
+                    <a href="#capabilities" class="nav-link">Capabilities</a>
+                    <a href="#impact" class="nav-link">Impact</a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero Section - Executive Summary -->
     <header id="overview" class="hero-section">
-        <h1 class="hero-title">Hi, I'm Aaron Aftab</h1>
-        <p class="hero-subtitle">
-            I'm a technologist and product innovator driven by a passion for AI and building impactful solutions. 
-            I thrive on turning complex challenges into elegant, user-centric experiences.
-        </p>
-        <div class="mt-10">
-            <a href="#journey" class="hero-cta">Discover My Work</a>
+        <div class="container">
+            <div class="hero-content">
+                <div>
+                    <h1 class="hero-title">Aaron Aftab // Product Engineer</h1>
+                    <p class="hero-subtitle">
+                        Driving measurable business transformation through AI/ML product innovation, 
+                        with a proven track record of scaling technology solutions from concept to millions of users.
+                    </p>
+                    
+                    <div class="hero-metrics" id="heroMetrics">
+                        <!-- Metrics will be populated dynamically from experiences.json -->
+                    </div>
+                </div>
+                
+                <div class="executive-summary">
+                    <h3>Executive Summary</h3>
+                    <ul>
+                        <li><strong>Current Role:</strong> ML Product Manager, Capital One</li>
+                        <li><strong>Education:</strong> B.S. Computer Science & Statistics, UIUC</li>
+                        <li><strong>Expertise:</strong> AI/ML Systems, Product Strategy</li>
+                        <li><strong>Leadership:</strong> Cross-functional team management</li>
+                        <li><strong>Innovation:</strong> Founder, Mirage AI</li>
+                        <li><strong>Consulting:</strong> Technology strategy advisor</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </header>
 
     <main class="container">
-        <!-- About Section -->
-        <section id="overview-content" class="content-section section-divider">
-            <h2 class="section-title text-center">About Me</h2>
-            <p class="section-subtitle">A snapshot of my background, current focus, and what drives my work.</p>
-            <div class="max-w-3xl mx-auto card p-8 space-y-6">
-                <p class="text-lg leading-relaxed">
-                    I hold a B.S. in Computer Science & Statistics from the University of Illinois Urbana-Champaign (UIUC). 
-                    My career has centered on Product Management, particularly in AI/ML, complemented by a strong software engineering foundation.
+        <!-- Experience Timeline -->
+        <section id="experience" class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">Professional Experience</h2>
+                <p class="section-subtitle">
+                    Progressive leadership roles in technology and product management
                 </p>
-                <p class="leading-relaxed">
-                    Currently, I'm building
-                    <a href="https://replicate.com/aaronaftab/mirage-ghibli" target="_blank" class="link-style">
-                        Mirage AI
-                    </a>
-                    , focusing on innovative image stylization, and I also engage in independent consulting via Battery Park Advisors. 
-                    My past roles include impactful work at Capital One, Bilt Rewards, and Rize Education, along with formative 
-                    internships at Microsoft, Alpaca, and DocuSign.
-                </p>
-                <p class="leading-relaxed">
-                    Beyond tech, I'm an avid learner, passionate about global cultures, methodical finance, and travel. 
-                    This site reflects my journey and key experiences as of May 2025.
-                </p>
-                
-                <div class="mt-8 pt-6" style="border-top: 1px solid #e0e7ff;">
-                    <h3 class="text-lg font-semibold text-indigo-700 mb-4">
-                        <span style="margin-right: 0.5rem; font-size: 1.25rem;">🌟</span>Key Highlights
-                    </h3>
-                    <ul class="list-none space-y-3 highlight-list">
-                        <li>
-                            <span class="checkmark">✓</span>
-                            Founder, Mirage AI (AI Image Stylization)
-                        </li>
-                        <li>
-                            <span class="checkmark">✓</span>
-                            Product Manager, Machine Learning at Capital One
-                        </li>
-                        <li>
-                            <span class="checkmark">✓</span>
-                            Independent Consultant, Battery Park Advisors
-                        </li>
-                        <li>
-                            <span class="checkmark">✓</span>
-                            Core Expertise: AI/ML, Product Management, Software Engineering
-                        </li>
-                        <li>
-                            <span class="checkmark">✓</span>
-                            B.S. Computer Science & Statistics, UIUC
-                        </li>
-                    </ul>
-                </div>
             </div>
-        </section>
-
-        <!-- Journey Section -->
-        <section id="journey" class="content-section section-divider">
-            <h2 class="section-title text-center">My Career Journey</h2>
-            <p class="section-subtitle">
-                Key milestones from my academic beginnings to current ventures, showcasing a path of growth and impact.
-            </p>
-            <div class="timeline-container">
-                <h3 class="timeline-phase-title">🎓 Education & Early Steps</h3>
-                
-                <div class="timeline-entry">
-                    <div class="timeline-icon">🎓</div>
-                    <div class="timeline-line-connector"></div>
-                    <div class="timeline-content-wrapper">
-                        <h4 class="timeline-entry-title">University of Illinois Urbana-Champaign (UIUC)</h4>
-                        <p class="timeline-entry-subtitle">B.S. Computer Science & Statistics | Aug 2018 - May 2022</p>
-                        <p class="timeline-entry-details">Developed a strong quantitative and computational foundation.</p>
+            
+            <div class="content-width">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h3 class="timeline-title">Founder, Mirage AI</h3>
+                        <p class="timeline-subtitle">February 2025 - Present</p>
+                        <div class="timeline-content">
+                            <p>Stylize any image, 10x cheaper/faster than ChatGPT. Built experimental model available 
+                            for less than 2 cents and developing AI-powered photo frame hardware.</p>
+                            <p><strong>Key Achievement:</strong> 500K+ model runs with growing user adoption</p>
+                            <div class="timeline-actions">
+                                <a href="https://replicate.com/aaronaftab/mirage-ghibli" class="action-btn" target="_blank">Try Model</a>
+                                <a href="https://themirageframe.com" class="action-btn" target="_blank">Join Waitlist</a>
+                                <a href="https://github.com/aaronaftab/mirage" class="action-btn-secondary" target="_blank">View Code</a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-
-                <div class="timeline-entry">
-                    <div class="timeline-icon">💼</div>
-                    <div class="timeline-line-connector"></div>
-                    <div class="timeline-content-wrapper">
-                        <h4 class="timeline-entry-title">Microsoft - Product Manager Intern (Dynamics 365)</h4>
-                        <p class="timeline-entry-subtitle">May - Aug 2021</p>
-                        <p class="timeline-entry-details">Introduced version management for D365 Commerce Site Builder (2M MAU).</p>
+                    
+                    <div class="timeline-item">
+                        <h3 class="timeline-title">Product Manager, Machine Learning, Capital One</h3>
+                        <p class="timeline-subtitle">June 2024 - Present</p>
+                        <div class="timeline-content">
+                            <p>Credit underwriting/acquisition risk models driving $7B+ NPV for U.S. Card + ML infrastructure.</p>
+                            <p><strong>Key Achievement:</strong> Delivered machine learning models with massive business impact</p>
+                            <div class="timeline-actions">
+                                <a href="https://www.capitalone.com/about/newsroom/capital-one-machine-learning" class="action-btn-secondary" target="_blank">Learn More</a>
+                                <a href="https://www.capitalone.com/tech/" class="action-btn-secondary" target="_blank">Capital One Tech</a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-
-                <div class="timeline-entry">
-                    <div class="timeline-icon">💼</div>
-                    <div class="timeline-line-connector"></div>
-                    <div class="timeline-content-wrapper">
-                        <h4 class="timeline-entry-title">Alpaca - Growth Intern</h4>
-                        <p class="timeline-entry-subtitle">Sep - Nov 2020</p>
-                        <p class="timeline-entry-details">Formed university partnerships for developer-first stock trading API.</p>
+                    
+                    <div class="timeline-item">
+                        <h3 class="timeline-title">Technical Product Manager, AI & Customer Solutions, Bilt Rewards</h3>
+                        <p class="timeline-subtitle">December 2023 - February 2024</p>
+                        <div class="timeline-content">
+                            <p>CX agents, fraud, data infrastructure. Short tenure due to role being very project management-heavy.</p>
+                            <p><strong>Key Achievement:</strong> Implemented AI solutions achieving 70% resolution rate</p>
+                            <div class="timeline-actions">
+                                <a href="https://www.biltrewards.com/" class="action-btn-secondary" target="_blank">Bilt Rewards</a>
+                                <a href="https://www.biltrewards.com/about" class="action-btn-secondary" target="_blank">About Bilt</a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-
-                <div class="timeline-entry">
-                    <div class="timeline-icon">💼</div>
-                    <div class="timeline-line-connector"></div>
-                    <div class="timeline-content-wrapper">
-                        <h4 class="timeline-entry-title">Microsoft - Product Manager Intern (Power BI)</h4>
-                        <p class="timeline-entry-subtitle">May - Aug 2020</p>
-                        <p class="timeline-entry-details">Designed new sharing flow for Power BI Desktop (5M MAU).</p>
+                    
+                    <div class="timeline-item">
+                        <h3 class="timeline-title">Product Lead & Growth Engineer, Rize Education</h3>
+                        <p class="timeline-subtitle">November 2021 - November 2023</p>
+                        <div class="timeline-content">
+                            <p>Helped grow usage-based ARR by nearly 10x (~$2.5M when I left) over two years while increasing overall product NPS from roughly -10 to positive. Core platform development, new program launches, A/B testing, student support tools. Designed CS courses and projects still being taken by students at 100+ universities.</p>
+                            <p><strong>Key Achievement:</strong> 10x ARR growth with significant NPS improvement</p>
+                            <div class="timeline-actions">
+                                <a href="https://www.rizeeducation.com/" class="action-btn-secondary" target="_blank">Rize Education</a>
+                                <a href="https://www.rizeeducation.com/courses" class="action-btn-secondary" target="_blank">View Courses</a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-
-                <div class="timeline-entry">
-                    <div class="timeline-icon">💼</div>
-                    <div class="timeline-content-wrapper">
-                        <h4 class="timeline-entry-title">DocuSign - Software Engineer Intern</h4>
-                        <p class="timeline-entry-subtitle">May - Aug 2019</p>
-                        <p class="timeline-entry-details">Built document generation API for Dynamics 365 x DocuSign (C#/.NET/Azure).</p>
+                    
+                    <div class="timeline-item">
+                        <h3 class="timeline-title">Product Manager Intern, Microsoft (Dynamics 365)</h3>
+                        <p class="timeline-subtitle">May 2021 - August 2021</p>
+                        <div class="timeline-content">
+                            <p>Introduced version management and reversion capabilities to Dynamics 365 Commerce Site Builder.</p>
+                            <p><strong>Key Achievement:</strong> Shipped enterprise feature for major Microsoft product</p>
+                            <div class="timeline-actions">
+                                <a href="https://docs.microsoft.com/en-us/dynamics365/commerce/version-history-revert" class="action-btn" target="_blank">View Documentation</a>
+                                <a href="https://dynamics.microsoft.com/en-us/commerce/" class="action-btn-secondary" target="_blank">Dynamics 365</a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-
-                <h3 class="timeline-phase-title mt-12">📈 Professional Growth & Ventures</h3>
-                
-                <div class="timeline-entry">
-                    <div class="timeline-icon">🚀</div>
-                    <div class="timeline-line-connector"></div>
-                    <div class="timeline-content-wrapper">
-                        <h4 class="timeline-entry-title">Founder - Mirage AI</h4>
-                        <p class="timeline-entry-subtitle">Feb 2025 - Present</p>
-                        <p class="timeline-entry-details">
-                            Building AI image stylization tools. Goal: "Stylize any image, 10x cheaper/faster than ChatGPT."
-                        </p>
+                    
+                    <div class="timeline-item">
+                        <h3 class="timeline-title">Product Manager Intern, Microsoft (Power BI)</h3>
+                        <p class="timeline-subtitle">May 2020 - August 2020</p>
+                        <div class="timeline-content">
+                            <p>Designed new sharing flow for Power BI Desktop.</p>
+                            <p><strong>Key Achievement:</strong> Launched sharing experience for millions of Power BI users</p>
+                            <div class="timeline-actions">
+                                <a href="https://powerbi.microsoft.com/en-us/blog/new-sharing-experience-coming-soon/" class="action-btn" target="_blank">Read Blog Post</a>
+                                <a href="https://powerbi.microsoft.com/" class="action-btn-secondary" target="_blank">Power BI</a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-
-                <div class="timeline-entry">
-                    <div class="timeline-icon">📈</div>
-                    <div class="timeline-line-connector"></div>
-                    <div class="timeline-content-wrapper">
-                        <h4 class="timeline-entry-title">Product Manager, Machine Learning - Capital One</h4>
-                        <p class="timeline-entry-subtitle">Jun 2024 - Present</p>
-                        <p class="timeline-entry-details">
-                            Focus on credit underwriting/acquisition risk models & ML infra. Launched new risk model (proj. $300M NPV).
-                        </p>
+                    
+                    <div class="timeline-item">
+                        <h3 class="timeline-title">Growth Intern, Alpaca</h3>
+                        <p class="timeline-subtitle">September 2020 - November 2020</p>
+                        <div class="timeline-content">
+                            <p>Formed partnerships with 100+ U.S. and international universities to promote Alpaca's developer-first stock trading API. Ran trading competition with 1000+ participants.</p>
+                            <p><strong>Key Achievement:</strong> <a href="https://alpaca.markets/learn/trading-competition-interview" class="link" target="_blank">Organized successful trading competition</a> with 1000+ participants</p>
+                        </div>
                     </div>
-                </div>
-
-                <div class="timeline-entry">
-                    <div class="timeline-icon">📈</div>
-                    <div class="timeline-line-connector"></div>
-                    <div class="timeline-content-wrapper">
-                        <h4 class="timeline-entry-title">Technical Product Manager - Bilt Rewards</h4>
-                        <p class="timeline-entry-subtitle">Dec 2023 - Feb 2024</p>
-                        <p class="timeline-entry-details">
-                            Led AI support agent implementation (70% resolution), focused on CX, fraud, data infra.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="timeline-entry">
-                    <div class="timeline-icon">📈</div>
-                    <div class="timeline-line-connector"></div>
-                    <div class="timeline-content-wrapper">
-                        <h4 class="timeline-entry-title">Product Lead / Growth Engineer - Rize Education</h4>
-                        <p class="timeline-entry-subtitle">Nov 2021 - Nov 2023</p>
-                        <p class="timeline-entry-details">
-                            Grew usage-based ARR ~10x (to ~$2.5M), increased product NPS. Designed CS courses for 100+ universities.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="timeline-entry">
-                    <div class="timeline-icon">🤝</div>
-                    <div class="timeline-content-wrapper">
-                        <h4 class="timeline-entry-title">Independent Consulting - Battery Park Advisors</h4>
-                        <p class="timeline-entry-subtitle">Sep 2018 - Present</p>
-                        <p class="timeline-entry-details">
-                            Tech and growth strategy consulting. Built AI chatbot for Thriving School Psychologist.
-                        </p>
+                    
+                    <div class="timeline-item">
+                        <h3 class="timeline-title">Software Engineer Intern, DocuSign</h3>
+                        <p class="timeline-subtitle">May 2019 - August 2019</p>
+                        <div class="timeline-content">
+                            <p>Built document generation API for Dynamics 365 x DocuSign integration.</p>
+                            <p><strong>Key Achievement:</strong> <a href="https://www.docusign.com/integrations/microsoft/dynamics-365" class="link" target="_blank">Delivered integration</a> connecting DocuSign with Microsoft Dynamics</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Skills Section -->
-        <section id="skills" class="content-section section-divider">
-            <h2 class="section-title text-center">My Skills & Expertise</h2>
-            <p class="section-subtitle">
-                My technical and professional capabilities, backed by years of hands-on experience and tangible results.
-            </p>
-            <div class="max-w-5xl mx-auto space-y-8">
-                <div class="card p-6">
-                    <h3 class="text-lg font-semibold text-indigo-700 mb-2 text-center">
-                        📊 Experience Overview (Approx. Years)
-                    </h3>
-                    <p class="mb-8 text-slate-600 leading-relaxed text-center text-sm">
-                        This chart illustrates the cumulative time I've dedicated to developing expertise in core areas.
+        <!-- Technical Capabilities -->
+        <section id="capabilities" class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">Core Capabilities</h2>
+                <p class="section-subtitle">
+                    Technical expertise and leadership competencies developed over 6+ years
+                </p>
+                <div style="background: var(--mckinsey-gray-bg); padding: 1rem; border-radius: 6px; margin-top: 1rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    <p style="font-size: 0.875rem; color: var(--text-secondary); margin: 0;">
+                        <strong>Data Source:</strong> Skills chart based on years of hands-on experience across roles and projects
                     </p>
-                    <div class="chart-container">
-                        <canvas id="skillsChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <h3 class="chart-title">Technical Proficiency by Years of Experience</h3>
+                <canvas id="skillsChart"></canvas>
+            </div>
+            
+            <div class="grid-2">
+                <div class="card">
+                    <h3 class="card-title">Technical Leadership</h3>
+                    <div class="card-content">
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin-bottom: 0.5rem; color: var(--text-secondary);">• AI/ML system architecture and deployment</li>
+                            <li style="margin-bottom: 0.5rem; color: var(--text-secondary);">• Full-stack development (Python, JavaScript, Cloud)</li>
+                            <li style="margin-bottom: 0.5rem; color: var(--text-secondary);">• Data engineering and analytics infrastructure</li>
+                            <li style="margin-bottom: 0.5rem; color: var(--text-secondary);">• DevOps and scalable system design</li>
+                        </ul>
+                        
+                        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #e5e5e5;">
+                            <h4 style="font-size: 0.9rem; font-weight: 600; color: var(--mckinsey-navy); margin-bottom: 0.75rem;">Featured Projects</h4>
+                            <ul style="list-style: none; padding: 0;">
+                                <li style="margin-bottom: 0.5rem;">
+                                    <a href="https://replicate.com/aaronaftab/mirage-ghibli" class="link" target="_blank" style="font-size: 0.875rem;">
+                                        Mirage AI Stable Diffusion Model
+                                    </a>
+                                    <span style="font-size: 0.75rem; color: var(--text-tertiary); margin-left: 0.5rem;">< 2¢ per run</span>
+                                </li>
+                                <li style="margin-bottom: 0.5rem;">
+                                    <a href="https://github.com/aaronaftab/mirage" class="link" target="_blank" style="font-size: 0.875rem;">
+                                        AI-Powered Photo Frame Hardware
+                                    </a>
+                                    <span style="font-size: 0.75rem; color: var(--text-tertiary); margin-left: 0.5rem;">Open source</span>
+                                </li>
+                                <li style="margin-bottom: 0.5rem;">
+                                    <span style="font-size: 0.875rem; color: var(--text-secondary);">Capital One ML Risk Models</span>
+                                    <span style="font-size: 0.75rem; color: var(--text-tertiary); margin-left: 0.5rem;">$7B+ NPV</span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-
-                <div class="card p-6">
-                    <h3 class="text-lg font-semibold text-indigo-700 mb-2 text-center">
-                        🛠️ Detailed Skills & Experience
-                    </h3>
-                    <p class="mb-8 text-slate-600 leading-relaxed text-center text-sm">
-                        A closer look at specific skills, my experience duration, and links to relevant work where available.
-                    </p>
-                    <div class="table-container">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Category</th>
-                                    <th>Skill/Technology</th>
-                                    <th>Approx. Yrs Exp.</th>
-                                    <th>Relevant Work/Examples</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="category-header">
-                                    <td colspan="4">AI/Machine Learning</td>
-                                </tr>
-                                <tr>
-                                    <td>AI/ML</td>
-                                    <td>Generative AI (Stable Diffusion)</td>
-                                    <td class="text-center">~1</td>
-                                    <td>
-                                        <a href="https://replicate.com/aaronaftab/mirage-ghibli" target="_blank" class="example-link">
-                                            Mirage AI Model
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>AI/ML</td>
-                                    <td>ML Model Dev & Deployment</td>
-                                    <td class="text-center">~2</td>
-                                    <td>Capital One Risk Models, Bilt AI Agent</td>
-                                </tr>
-                                <tr>
-                                    <td>AI/ML</td>
-                                    <td>MLOps</td>
-                                    <td class="text-center">~1</td>
-                                    <td>Capital One (Pipelines)</td>
-                                </tr>
-                                <tr>
-                                    <td>AI/ML</td>
-                                    <td>NLP</td>
-                                    <td class="text-center">~2</td>
-                                    <td>Bilt AI Agent, Consulting Chatbot</td>
-                                </tr>
-                                <tr>
-                                    <td>AI/ML</td>
-                                    <td>Computer Vision</td>
-                                    <td class="text-center">~1</td>
-                                    <td>Mirage AI Image Stylization</td>
-                                </tr>
-                                
-                                <tr class="category-header">
-                                    <td colspan="4">Software Engineering</td>
-                                </tr>
-                                <tr>
-                                    <td>Software Eng.</td>
-                                    <td>Python</td>
-                                    <td class="text-center">~6</td>
-                                    <td>Mirage AI, Rize Automation, CapOne ML</td>
-                                </tr>
-                                <tr>
-                                    <td>Software Eng.</td>
-                                    <td>JavaScript/TypeScript</td>
-                                    <td class="text-center">~4</td>
-                                    <td>Web Dev (Next.js/React), Rize</td>
-                                </tr>
-                                <tr>
-                                    <td>Software Eng.</td>
-                                    <td>Next.js / React</td>
-                                    <td class="text-center">~3</td>
-                                    <td>Personal Projects, Rize Features</td>
-                                </tr>
-                                <tr>
-                                    <td>Software Eng.</td>
-                                    <td>Java</td>
-                                    <td class="text-center">~2-3</td>
-                                    <td>Academic Projects</td>
-                                </tr>
-                                <tr>
-                                    <td>Software Eng.</td>
-                                    <td>C#/.NET</td>
-                                    <td class="text-center">~1</td>
-                                    <td>DocuSign Internship API</td>
-                                </tr>
-                                <tr>
-                                    <td>Software Eng.</td>
-                                    <td>API Design & Development</td>
-                                    <td class="text-center">~4</td>
-                                    <td>DocuSign, Mirage AI, Consulting</td>
-                                </tr>
-                                <tr>
-                                    <td>Software Eng.</td>
-                                    <td>Database Management (SQL, NoSQL)</td>
-                                    <td class="text-center">~4</td>
-                                    <td>Rize (BigQuery), Various Projects</td>
-                                </tr>
-                                <tr>
-                                    <td>Software Eng.</td>
-                                    <td>Cloud Platforms (GCP, Azure, AWS)</td>
-                                    <td class="text-center">~5</td>
-                                    <td>Rize (GCP), DocuSign (Azure), CapOne</td>
-                                </tr>
-                                <tr>
-                                    <td>Software Eng.</td>
-                                    <td>Hardware Integration (Raspberry Pi)</td>
-                                    <td class="text-center">~1</td>
-                                    <td>
-                                        <a href="https://github.com/aaronaftab/mirage" target="_blank" class="example-link">
-                                            Mirage AI Photo Frame
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Software Eng.</td>
-                                    <td>Docker, Git</td>
-                                    <td class="text-center">~6</td>
-                                    <td>Standard across all dev roles</td>
-                                </tr>
-
-                                <tr class="category-header">
-                                    <td colspan="4">Product Management</td>
-                                </tr>
-                                <tr>
-                                    <td>Product Mgmt.</td>
-                                    <td>Product Strategy & Vision</td>
-                                    <td class="text-center">~4</td>
-                                    <td>Mirage AI, Rize, CapOne, MS Intern</td>
-                                </tr>
-                                <tr>
-                                    <td>Product Mgmt.</td>
-                                    <td>Roadmap Development</td>
-                                    <td class="text-center">~4</td>
-                                    <td>Rize, CapOne, MS Internships</td>
-                                </tr>
-                                <tr>
-                                    <td>Product Mgmt.</td>
-                                    <td>User Research & Analysis</td>
-                                    <td class="text-center">~4</td>
-                                    <td>Rize (50+ interviews), MS Intern</td>
-                                </tr>
-                                <tr>
-                                    <td>Product Mgmt.</td>
-                                    <td>A/B Testing & Experimentation</td>
-                                    <td class="text-center">~2</td>
-                                    <td>Rize Education</td>
-                                </tr>
-                                <tr>
-                                    <td>Product Mgmt.</td>
-                                    <td>Data-Driven Decision Making</td>
-                                    <td class="text-center">~4</td>
-                                    <td>CapOne, Rize, Bilt Rewards</td>
-                                </tr>
-                                <tr>
-                                    <td>Product Mgmt.</td>
-                                    <td>Agile Methodologies</td>
-                                    <td class="text-center">~4</td>
-                                    <td>Standard in PM roles</td>
-                                </tr>
-                                <tr>
-                                    <td>Product Mgmt.</td>
-                                    <td>Stakeholder Management</td>
-                                    <td class="text-center">~4</td>
-                                    <td>CapOne, Rize, Consulting</td>
-                                </tr>
-
-                                <tr class="category-header">
-                                    <td colspan="4">Business & Leadership</td>
-                                </tr>
-                                <tr>
-                                    <td>Business/Leadership</td>
-                                    <td>Entrepreneurship</td>
-                                    <td class="text-center">~1 (F) / 6 (C)</td>
-                                    <td>Mirage AI, Battery Park Advisors</td>
-                                </tr>
-                                <tr>
-                                    <td>Business/Leadership</td>
-                                    <td>Leadership & Team Management</td>
-                                    <td class="text-center">~4</td>
-                                    <td>
-                                        <a href="https://reflectionsprojections.org/" target="_blank" class="example-link">
-                                            Reflections|Projections
-                                        </a>
-                                        , OTCR, Rize
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Business/Leadership</td>
-                                    <td>Client Management & Consulting</td>
-                                    <td class="text-center">~6</td>
-                                    <td>Battery Park Advisors, OTCR</td>
-                                </tr>
-                                <tr>
-                                    <td>Business/Leadership</td>
-                                    <td>Fundraising/Sponsorship</td>
-                                    <td class="text-center">~1</td>
-                                    <td>Reflections|Projections ($100k+)</td>
-                                </tr>
-                                <tr>
-                                    <td>Business/Leadership</td>
-                                    <td>Financial Acumen (Business)</td>
-                                    <td class="text-center">~3</td>
-                                    <td>Rize (ARR growth), CapOne (NPV)</td>
-                                </tr>
-                                <tr>
-                                    <td>Business/Leadership</td>
-                                    <td>Communication (Technical & Biz)</td>
-                                    <td class="text-center">~6</td>
-                                    <td>Across all roles</td>
-                                </tr>
-                                <tr>
-                                    <td>Business/Leadership</td>
-                                    <td>Strategic Thinking</td>
-                                    <td class="text-center">~6</td>
-                                    <td>Across all PM & entrepreneurial roles</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <p class="text-xs text-slate-500 mt-3">
-                            Note: (F) = Founder experience, (C) = Consulting experience. Years are approximate based on role durations and focus.
-                        </p>
+                
+                <div class="card">
+                    <h3 class="card-title">Product & Strategy</h3>
+                    <div class="card-content">
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin-bottom: 0.5rem; color: var(--text-secondary);">• Product strategy and roadmap development</li>
+                            <li style="margin-bottom: 0.5rem; color: var(--text-secondary);">• Cross-functional team leadership</li>
+                            <li style="margin-bottom: 0.5rem; color: var(--text-secondary);">• Data-driven decision making</li>
+                            <li style="margin-bottom: 0.5rem; color: var(--text-secondary);">• Go-to-market strategy execution</li>
+                        </ul>
+                        
+                        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #e5e5e5;">
+                            <h4 style="font-size: 0.9rem; font-weight: 600; color: var(--mckinsey-navy); margin-bottom: 0.75rem;">Impact Highlights</h4>
+                            <ul style="list-style: none; padding: 0;">
+                                <li style="margin-bottom: 0.5rem;">
+                                    <span style="font-size: 0.875rem; color: var(--text-secondary);">Rize Education Growth</span>
+                                    <span style="font-size: 0.75rem; color: var(--text-tertiary); margin-left: 0.5rem;">10x ARR to $2.5M</span>
+                                </li>
+                                <li style="margin-bottom: 0.5rem;">
+                                    <span style="font-size: 0.875rem; color: var(--text-secondary);">Microsoft D365 Feature</span>
+                                    <span style="font-size: 0.75rem; color: var(--text-tertiary); margin-left: 0.5rem;">5M+ MAU</span>
+                                </li>
+                                <li style="margin-bottom: 0.5rem;">
+                                    <span style="font-size: 0.875rem; color: var(--text-secondary);">Bilt AI Support Agent</span>
+                                    <span style="font-size: 0.75rem; color: var(--text-tertiary); margin-left: 0.5rem;">70% resolution rate</span>
+                                </li>
+                                <li style="margin-bottom: 0.5rem;">
+                                    <a href="https://reflectionsprojections.org/" class="link" target="_blank" style="font-size: 0.875rem;">
+                                        R|P Tech Conference
+                                    </a>
+                                    <span style="font-size: 0.75rem; color: var(--text-tertiary); margin-left: 0.5rem;">$100K+ raised</span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-
-                <div class="card p-6">
-                    <h3 class="text-lg font-semibold text-indigo-700 mb-2 text-center">
-                        💻 Key Technical Proficiencies
-                    </h3>
-                    <p class="mb-6 text-slate-600 leading-relaxed text-center text-sm">
-                        A quick list of languages, frameworks, and tools I frequently work with.
-                    </p>
-                    <ul class="list-none space-y-3 text-slate-700 columns-2 text-sm leading-relaxed">
-                        <li><strong class="font-medium">Languages:</strong> Python, Java, JavaScript/TypeScript, SQL, C#/.NET</li>
-                        <li><strong class="font-medium">Frameworks/Libraries:</strong> React, Next.js, Node.js, .NET</li>
-                        <li><strong class="font-medium">Tools/Platforms:</strong> Docker, Git, Kubeflow, GCP, Azure, AWS, Vercel, Webflow, HubSpot, Supabase, BigQuery, Tableau, Replicate</li>
-                        <li><strong class="font-medium">Hardware:</strong> Raspberry Pi, E-ink displays</li>
-                    </ul>
                 </div>
             </div>
         </section>
 
-        <!-- Ventures Section -->
-        <section id="ventures" class="content-section section-divider">
-            <h2 class="section-title text-center">Ventures & Projects</h2>
-            <p class="section-subtitle">
-                Key highlights of my entrepreneurial work and impactful project leadership.
-            </p>
-            <div class="grid grid-cols-2">
-                <div class="card p-6">
-                    <h3 class="card-title mb-2">💡 Mirage AI</h3>
-                    <p class="text-xs text-indigo-500 font-medium mb-3">Founder (Feb 2025 - Present)</p>
-                    <p class="text-sm leading-relaxed">
-                        My current venture, Mirage AI, is focused on making image stylization accessible. We're developing tools to be 
-                        "10x cheaper/faster than ChatGPT," including a popular Stable Diffusion model and an AI-powered E-ink photo frame.
-                    </p>
-                    <div class="mt-4 space-y-2">
-                        <p>
-                            <a href="https://replicate.com/aaronaftab/mirage-ghibli" target="_blank" class="link-style text-sm">
-                                🔗 View Mirage Ghibli Model
-                            </a>
-                        </p>
-                        <p>
-                            <a href="https://github.com/aaronaftab/mirage" target="_blank" class="link-style text-sm">
-                                🔗 Mirage Frame on GitHub
+        <!-- Current Projects -->
+        <section id="impact" class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">Current Initiatives</h2>
+                <p class="section-subtitle">
+                    Active projects driving innovation in AI and technology consulting
+                </p>
+            </div>
+            
+            <div class="grid-2">
+                <div class="card">
+                    <h3 class="card-title">Mirage AI Platform</h3>
+                    <p class="card-subtitle">AI-Powered Image Stylization</p>
+                    <div class="card-content">
+                        <p>Developing next-generation image stylization technology with proven market traction. 
+                        Platform has achieved 100,000+ model executions with growing user base.</p>
+                        <p style="margin-top: 1rem;">
+                            <a href="https://replicate.com/aaronaftab/mirage-ghibli" class="link" target="_blank">
+                                View Live Model →
                             </a>
                         </p>
                     </div>
                 </div>
                 
-                <div class="card p-6">
-                    <h3 class="card-title mb-2">🤝 Independent Consulting</h3>
-                    <p class="text-xs text-indigo-500 font-medium mb-3">Battery Park Advisors (Sep 2018 - Present)</p>
-                    <p class="text-sm leading-relaxed">
-                        I provide technology and growth strategy consulting. Projects include building an AI chatbot for Thriving School 
-                        Psychologist and conducting expert interviews for firms like Boston Consulting Group.
-                    </p>
-                </div>
-                
-                <div class="card p-6" style="grid-column: span 2;">
-                    <h3 class="card-title mb-4">🏛️ Student Leadership (UIUC)</h3>
-                    <div class="grid grid-cols-2">
-                        <div>
-                            <h4 class="font-semibold text-slate-800 mb-2">OTCR Consulting</h4>
-                            <p class="text-xs text-indigo-500 font-medium mb-2">Partner, Project Manager (2019 - 2020)</p>
-                            <p class="text-sm leading-relaxed">
-                                Performed user research for a major social media company; led tech strategy for edtech/agtech startups.
-                            </p>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-slate-800 mb-2">Reflections | Projections</h4>
-                            <p class="text-xs text-indigo-500 font-medium mb-2">Director, Corporate Staff (2019 - 2020)</p>
-                            <p class="text-sm leading-relaxed">
-                                Led the "Largest student-run tech conference in the Midwest" ($50k budget); raised $100k+ in sponsorships.
-                            </p>
-                            <p class="mt-2">
-                                <a href="https://reflectionsprojections.org/" target="_blank" class="link-style text-xs">
-                                    🔗 Visit R|P Website
-                                </a>
-                            </p>
-                        </div>
+                <div class="card">
+                    <h3 class="card-title">Technology Consulting</h3>
+                    <p class="card-subtitle">Battery Park Advisors</p>
+                    <div class="card-content">
+                        <p>Providing strategic technology consulting to growth-stage companies. 
+                        Specializing in AI implementation, product strategy, and technical due diligence.</p>
+                        <p style="margin-top: 1rem;">
+                            <strong>Recent engagements:</strong> BCG expert interviews, AI chatbot development, 
+                            technical architecture reviews
+                        </p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Interests Section -->
-        <section id="insights" class="content-section">
-            <h2 class="section-title text-center">Interests & Passions</h2>
-            <p class="section-subtitle">
-                Beyond my professional work, here's a glimpse into what sparks my curiosity and how I spend my time.
-            </p>
-            <div class="max-w-3xl mx-auto card p-8 space-y-8">
-                <div>
-                    <h3 class="text-lg font-semibold text-indigo-700 mb-3">🌍 Intellectual Curiosity & Learning</h3>
-                    <p class="leading-relaxed">
-                        I'm driven by a deep desire to understand the world—from history and science to linguistics and diverse cultures. 
-                        Continuous learning is a core part of who I am.
+        <section id="interests" class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">Interests</h2>
+                <p class="section-subtitle">
+                    Technical pursuits and personal interests that drive continuous learning
+                </p>
+                <div style="background: var(--mckinsey-gray-bg); padding: 1rem; border-radius: 6px; margin-top: 1rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    <p style="font-size: 0.875rem; color: var(--text-secondary); margin: 0;">
+                        <strong>Data Source:</strong> Personal interests curated from activities, hobbies, and continuous learning pursuits
                     </p>
                 </div>
-                <div>
-                    <h3 class="text-lg font-semibold text-indigo-700 mb-4">🎨 My Spectrum of Passions</h3>
-                    <div class="space-y-3 text-sm">
-                        <details class="detail-summary">
-                            <summary>💻 Technology & Innovation</summary>
-                            <div class="detail-content">
-                                Constantly exploring AI, Software Development (Web, Mobile, Hardware), Cloud Computing, and emerging tech trends.
-                            </div>
-                        </details>
-                        <details class="detail-summary">
-                            <summary>💰 Finance & Investment</summary>
-                            <div class="detail-content">
-                                I enjoy a methodical approach to personal finance, optimizing rewards, and planning for the future.
-                            </div>
-                        </details>
-                        <details class="detail-summary">
-                            <summary>✈️ Travel & Exploration</summary>
-                            <div class="detail-content">
-                                I love researching and experiencing new destinations and cultures worldwide.
-                            </div>
-                        </details>
-                        <details class="detail-summary">
-                            <summary>🍲 Food & Culinary Arts</summary>
-                            <div class="detail-content">
-                                Exploring international cuisines, trying new recipes, and finding unique dining experiences is a favorite pastime.
-                            </div>
-                        </details>
-                        <details class="detail-summary">
-                            <summary>🎮 Entertainment & Strategy</summary>
-                            <div class="detail-content">
-                                I enjoy films, engaging TV series, and diving into strategy games like League of Legends and Civilization VI.
-                            </div>
-                        </details>
+            </div>
+            
+            <div class="content-width">
+                <div class="grid-2">
+                    <div class="card">
+                        <h3 class="card-title">Technical</h3>
+                        <div class="card-content">
+                            <ul style="list-style: none; padding: 0;">
+                                <li style="margin-bottom: 0.5rem; color: var(--text-secondary);">• AI/ML research and experimentation</li>
+                                <li style="margin-bottom: 0.5rem; color: var(--text-secondary);">• Hardware projects and IoT development</li>
+                                <li style="margin-bottom: 0.5rem; color: var(--text-secondary);">• Open source contributions</li>
+                                <li style="margin-bottom: 0.5rem; color: var(--text-secondary);">• Computer vision and image processing</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3 class="card-title">Personal</h3>
+                        <div class="card-content">
+                            <ul style="list-style: none; padding: 0;">
+                                <li style="margin-bottom: 0.5rem; color: var(--text-secondary);">• Travel planning and optimization</li>
+                                <li style="margin-bottom: 0.5rem; color: var(--text-secondary);">• Personal finance and investing</li>
+                                <li style="margin-bottom: 0.5rem; color: var(--text-secondary);">• Strategy games (League of Legends, Civ VI)</li>
+                                <li style="margin-bottom: 0.5rem; color: var(--text-secondary);">• Technology trends and market analysis</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
-        
-    <footer>
+
+    <!-- Footer -->
+    <footer class="footer">
         <div class="container">
-            <h3 class="text-lg font-semibold text-indigo-700 mb-4">Connect With Me</h3>
             <div class="footer-links">
-                <a href="https://www.linkedin.com/in/aaronaftab/" target="_blank">LinkedIn</a>
-                <a href="https://github.com/aaronaftab" target="_blank">GitHub</a>
-                <a href="https://x.com/aaronaftab" target="_blank">X (Twitter)</a>
+                <a href="https://www.linkedin.com/in/aaronaftab/" target="_blank" class="footer-link">LinkedIn</a>
+                <a href="https://github.com/aaronaftab" target="_blank" class="footer-link">GitHub</a>
+                <a href="https://x.com/aaronaftab" target="_blank" class="footer-link">Twitter</a>
             </div>
-            <p class="text-xs text-slate-500">&copy; <span id="currentYear"></span> Aaron Aftab. All rights reserved.</p>
-            <p class="mt-2 text-xs text-slate-500">Built with pure HTML, CSS & Chart.js.</p>
+            <p class="footer-text">&copy; <span id="currentYear"></span> Aaron Aftab. All rights reserved.</p>
         </div>
     </footer>
 
@@ -1255,11 +904,11 @@
 
         // Navigation scroll effect
         window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
+            const navbar = document.querySelector('.top-nav');
             if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
+                navbar.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
             } else {
-                navbar.classList.remove('scrolled');
+                navbar.style.boxShadow = 'none';
             }
         });
 
@@ -1298,52 +947,166 @@
             });
         });
 
-        // Skills Chart
+        // Load and render experiences from JSON
+        async function loadExperiences() {
+            try {
+                const response = await fetch('./experiences.json');
+                const data = await response.json();
+                renderTimeline(data.experiences);
+                renderHeroMetrics(); // Don't depend on JSON for hero metrics
+            } catch (error) {
+                console.error('Error loading experiences:', error);
+                // Always render hero metrics even if JSON fails
+                renderHeroMetrics();
+            }
+        }
+
+        function renderHeroMetrics() {
+            const heroMetricsContainer = document.getElementById('heroMetrics');
+            if (!heroMetricsContainer) return;
+
+            // Define specific hero metrics with better formatting
+            const heroMetrics = [
+                {
+                    company: 'Capital One',
+                    metric: '$7B+',
+                    label: 'NPV generated at Capital One',
+                    logoUrl: '/logos/capital-one.png',
+                    logo: '🏦'
+                },
+                {
+                    company: 'Microsoft',
+                    metric: '5M+',
+                    label: 'MAUs served at Microsoft',
+                    logoUrl: '/logos/microsoft.png',
+                    logo: '🪟'
+                },
+                {
+                    company: 'Mirage AI',
+                    metric: '500K+',
+                    label: 'Model runs at Mirage AI (Founder)',
+                    logoUrl: '/logos/mirage.png',
+                    logo: '🎨'
+                },
+                {
+                    company: 'Rize Education',
+                    metric: '10x',
+                    label: 'ARR Growth at Rize Education',
+                    logoUrl: '/logos/rize.png',
+                    logo: '🎯'
+                }
+            ];
+            
+            heroMetricsContainer.innerHTML = '';
+            
+            heroMetrics.forEach(metric => {
+                const metricItem = document.createElement('div');
+                metricItem.className = 'metric-item';
+                
+                const logoHtml = metric.logoUrl 
+                    ? `<img src="${metric.logoUrl}" alt="${metric.company} logo" style="width: 24px; height: 24px; object-fit: contain; filter: brightness(0) invert(1); opacity: 0.8;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                       <span style="display: none; filter: brightness(0) invert(1); opacity: 0.8;">${metric.logo}</span>`
+                    : `<span style="filter: brightness(0) invert(1); opacity: 0.8;">${metric.logo}</span>`;
+
+                metricItem.innerHTML = `
+                    <div class="metric-logo">
+                        ${logoHtml}
+                    </div>
+                    <span class="metric-value">${metric.metric}</span>
+                    <span class="metric-label">${metric.label}</span>
+                `;
+                
+                heroMetricsContainer.appendChild(metricItem);
+            });
+        }
+
+        function renderTimeline(experiences) {
+            const timelineContainer = document.querySelector('.timeline');
+            if (!timelineContainer) return;
+
+            // Clear existing timeline items
+            timelineContainer.innerHTML = '';
+
+            // Sort experiences by year (most recent first)
+            const sortedExperiences = experiences.sort((a, b) => {
+                const yearA = parseInt(a.year.split('-')[0]);
+                const yearB = parseInt(b.year.split('-')[0]);
+                return yearB - yearA;
+            });
+
+            // Render each experience
+            sortedExperiences.forEach(exp => {
+                const timelineItem = document.createElement('div');
+                timelineItem.className = 'timeline-item';
+                
+                const logoHtml = exp.logoUrl 
+                    ? `<img src="${exp.logoUrl}" alt="${exp.company} logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                       <span style="display: none;">${exp.logo}</span>`
+                    : exp.logo;
+
+                const customButtonHtml = exp.customButton 
+                    ? `<a href="${exp.customButton.url}" class="action-btn" target="_blank">${exp.customButton.text}</a>`
+                    : '';
+
+                timelineItem.innerHTML = `
+                    <div class="timeline-logo">
+                        ${logoHtml}
+                    </div>
+                    <h3 class="timeline-title">${exp.title}, ${exp.company}</h3>
+                    <p class="timeline-subtitle">${exp.year}</p>
+                    <div class="timeline-content">
+                        <div class="timeline-metric">${exp.metric}</div>
+                        <p>${exp.description}</p>
+                        ${customButtonHtml ? `<div class="timeline-actions">${customButtonHtml}</div>` : ''}
+                    </div>
+                `;
+                
+                timelineContainer.appendChild(timelineItem);
+            });
+        }
+
+        // Load experiences on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            renderHeroMetrics(); // Load hero metrics immediately
+            loadExperiences(); // Then load timeline from JSON
+        });
+
+        // Skills Chart - McKinsey Style Data Visualization
         const ctx = document.getElementById('skillsChart').getContext('2d');
         new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['AI/ML', 'Software Engineering', 'Product Management', 'Business/Leadership'],
+                labels: ['Python/ML', 'Product Mgmt', 'JavaScript/TS', 'Cloud', 'SQL/Analytics', 'Java', 'Leadership'],
                 datasets: [{
                     label: 'Years of Experience',
-                    data: [2, 6, 4, 6],
+                    data: [6, 4, 4, 4, 4, 3, 4],
                     backgroundColor: [
-                        'rgba(79, 70, 229, 0.8)',
-                        'rgba(16, 185, 129, 0.8)',
-                        'rgba(245, 158, 11, 0.8)',
-                        'rgba(239, 68, 68, 0.8)'
+                        '#003366', // McKinsey Navy
+                        '#0066cc', // McKinsey Blue
+                        '#4d94ff', // Light Blue
+                        '#ff6b35', // Accent
+                        '#666666', // Gray
+                        '#999999', // Light Gray
+                        '#003366'  // Navy
                     ],
-                    borderColor: [
-                        'rgba(79, 70, 229, 1)',
-                        'rgba(16, 185, 129, 1)',
-                        'rgba(245, 158, 11, 1)',
-                        'rgba(239, 68, 68, 1)'
-                    ],
-                    borderWidth: 2,
-                    borderRadius: 8,
-                    borderSkipped: false,
+                    borderWidth: 0,
+                    borderRadius: 3,
                 }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
+                layout: {
+                    padding: {
+                        top: 10,
+                        bottom: 10,
+                        left: 10,
+                        right: 10
+                    }
+                },
                 plugins: {
                     legend: {
                         display: false
-                    },
-                    tooltip: {
-                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                        titleColor: 'white',
-                        bodyColor: 'white',
-                        borderColor: 'rgba(79, 70, 229, 0.8)',
-                        borderWidth: 1,
-                        cornerRadius: 8,
-                        displayColors: false,
-                        callbacks: {
-                            label: function(context) {
-                                return context.parsed.y + ' years of experience';
-                            }
-                        }
                     }
                 },
                 scales: {
@@ -1352,41 +1115,36 @@
                         max: 7,
                         ticks: {
                             stepSize: 1,
-                            color: '#64748b',
+                            color: '#666666',
                             font: {
-                                size: 12
-                            }
+                                family: 'Source Sans Pro',
+                                size: 11
+                            },
+                            padding: 5
                         },
                         grid: {
-                            color: 'rgba(148, 163, 184, 0.1)',
+                            color: '#e5e5e5',
                             lineWidth: 1
                         }
                     },
                     x: {
                         ticks: {
-                            color: '#64748b',
+                            color: '#666666',
                             font: {
-                                size: 11,
-                                weight: '500'
+                                family: 'Source Sans Pro',
+                                size: 10
                             },
-                            maxRotation: 45,
-                            minRotation: 0
+                            maxRotation: 0,
+                            padding: 5
                         },
                         grid: {
                             display: false
                         }
-                    }
-                },
-                layout: {
-                    padding: {
-                        top: 20,
-                        bottom: 20,
-                        left: 10,
-                        right: 10
                     }
                 }
             }
         });
     </script>
 </body>
+</html> 
 </html> 
