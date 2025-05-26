@@ -7,7 +7,7 @@
       "year": "2018-2022",
       "type": "education",
       "logo": "🎓",
-      "logoUrl": "/logos/uiuc.png",
+      "logoUrl": "./logos/uiuc.png",
       "metric": "200+ hours at Kams",
       "description": "Fun fact: senior year, my roommates and I rewired a Keurig machine to dispense Jagerbombs and got featured on Barstool.",
       "featured": false
@@ -19,7 +19,7 @@
       "year": "2019-2020",
       "type": "education",
       "logo": "💼",
-      "logoUrl": "/logos/otcr.png",
+      "logoUrl": "./logos/otcr.png",
       "metric": "~$8k per project",
       "description": "Performed user research study for social media giant, led client engagement with Director of UX Research and oversaw two project teams.",
       "customButton": {
@@ -36,7 +36,7 @@
       "year": "2019-2020",
       "type": "education",
       "logo": "🎯",
-      "logoUrl": "/logos/reflections.png",
+      "logoUrl": "./logos/reflections.png",
       "metric": "2k+ Attendees",
       "description": "Largest student-run tech conference in the Midwest, led staff of 60+ to organize 2020 event with $50k operating budget. Raised over $100k from corporate sponsors for 2019 conference.",
       "customButton": {
@@ -53,7 +53,7 @@
       "year": "2019",
       "type": "work",
       "logo": "📄",
-      "logoUrl": "/logos/docusign.png",
+      "logoUrl": "./logos/docusign.png",
       "metric": "10min -> 10sec to create contracts",
       "description": "Built document generation API for Dynamics 365 x DocuSign integration",
       "customButton": {
@@ -70,7 +70,7 @@
       "year": "2020",
       "type": "work",
       "logo": "🪟",
-      "logoUrl": "/logos/microsoft.png",
+      "logoUrl": "./logos/microsoft.png",
       "metric": "5M MAU",
       "description": "Designed new sharing flow for Power BI Desktop",
       "customButton": {
@@ -87,7 +87,7 @@
       "year": "2020",
       "type": "work",
       "logo": "📈",
-      "logoUrl": "/logos/alpaca.png",
+      "logoUrl": "./logos/alpaca.png",
       "metric": "100+ New Institutional Partnerships",
       "description": "Driving adoption of Alpaca's developer-first stock trading API, ran trading competition with 1000+ participants.",
       "customButton": {
@@ -104,7 +104,7 @@
       "year": "2021",
       "type": "work",
       "logo": "🪟",
-      "logoUrl": "/logos/microsoft.png",
+      "logoUrl": "./logos/microsoft.png",
       "metric": "2M MAU",
       "description": "Introduced version management and reversion capabilities to Dynamics 365 Commerce Site Builder",
       "customButton": {
@@ -121,7 +121,7 @@
       "year": "2021-2023",
       "type": "work",
       "logo": "🎯",
-      "logoUrl": "/logos/rize.png",
+      "logoUrl": "./logos/rize.png",
       "metric": "~10x ARR Growth",
       "description": "Helped grow usage-based ARR by nearly 10x (~$2.5M when I left) over two years while increasing overall product NPS from roughly -10 to +20. Also got to design a few CS courses and projects that are still being taken by students at 100+ universities :)",
       "customButton": {
@@ -138,7 +138,7 @@
       "year": "2023-2024",
       "type": "work",
       "logo": "🏠",
-      "logoUrl": "/logos/bilt.png",
+      "logoUrl": "./logos/bilt.png",
       "metric": "70% Resolution Rate",
       "description": "CX agents, fraud, data infra",
       "customButton": {
@@ -155,7 +155,7 @@
       "year": "2024-Present",
       "type": "work",
       "logo": "🏦",
-      "logoUrl": "/logos/capital-one.png",
+      "logoUrl": "./logos/capital-one.png",
       "metric": "$7B+ NPV",
       "description": "Credit underwriting/acquisition risk models + ML infra.",
       "customButton": {
@@ -172,7 +172,7 @@
       "year": "2025-Present",
       "type": "venture",
       "logo": "🎨",
-      "logoUrl": "/logos/mirage.png",
+      "logoUrl": "./logos/mirage.png",
       "metric": "100k+ runs/$2k in first week",
       "description": "AI photo frame + stable diffusion models.",
       "customButton": {
@@ -189,7 +189,7 @@
       "year": "2025-Present",
       "type": "venture",
       "logo": "🦅",
-      "logoUrl": "/logos/quetzal.png",
+      "logoUrl": "./logos/quetzal.png",
       "metric": "?",
       "description": "",
       "featured": true

@@ -9,9 +9,6 @@
     <!-- Google Fonts - McKinsey uses clean, professional fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&family=Source+Serif+Pro:wght@400;600&display=swap" rel="stylesheet">
     
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
     <style>
         /* McKinsey-inspired design system */
         :root {
@@ -127,28 +124,63 @@
         .nav-link:hover,
         .nav-link.active {
             color: var(--mckinsey-blue);
+            transform: translateY(-1px);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--mckinsey-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
         }
 
         /* Hero section - Executive summary style */
         .hero-section {
             background: linear-gradient(135deg, var(--mckinsey-navy) 0%, var(--mckinsey-blue) 100%);
             color: var(--mckinsey-white);
-            padding: 8rem 0 6rem;
+            padding: 3rem 0 4rem;
             margin-top: 4rem;
         }
 
         .hero-content {
             display: grid;
             grid-template-columns: 2fr 1fr;
-            gap: 4rem;
-            align-items: center;
+            gap: 3rem;
+            align-items: stretch;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2.5rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 100%;
         }
 
         .hero-title {
             font-size: 3rem;
             font-weight: 700;
-            margin-bottom: 1rem;
+            margin: 0;
             color: var(--mckinsey-white);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .hero-subtitle {
@@ -163,7 +195,7 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
-            margin-bottom: 2rem;
+            margin: 0;
         }
 
         .metric-item {
@@ -172,6 +204,14 @@
             background: rgba(255, 255, 255, 0.1);
             border-radius: 8px;
             position: relative;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .metric-item:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         }
 
         .metric-logo {
@@ -203,12 +243,15 @@
             background: var(--mckinsey-white);
             padding: 2rem;
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .executive-summary h3 {
             color: var(--mckinsey-navy);
-            margin-bottom: 1rem;
+            margin: 0 0 1rem 0;
             font-size: 1.25rem;
         }
 
@@ -230,13 +273,13 @@
 
         /* Section styles */
         .content-section {
-            padding: 4rem 0;
+            padding: 2rem 0;
             border-bottom: 1px solid #e5e5e5;
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 1.5rem;
         }
 
         .section-title {
@@ -251,13 +294,37 @@
             margin: 0 auto;
         }
 
-        /* Cards - Clean McKinsey style */
+        /* Cards - Clean McKinsey style with living effects */
         .card {
             background: var(--mckinsey-white);
             border: 1px solid #e5e5e5;
             border-radius: 8px;
             padding: 2rem;
             margin-bottom: 2rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--mckinsey-blue), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 51, 102, 0.1);
+            border-color: rgba(0, 102, 204, 0.3);
         }
 
         .card-title {
@@ -278,22 +345,123 @@
             line-height: 1.6;
         }
 
-        /* Data visualization styles */
-        .chart-container {
+        /* Modern Skills Visualization */
+        .skills-container {
             background: var(--mckinsey-white);
             border: 1px solid #e5e5e5;
-            border-radius: 8px;
-            padding: 1.5rem;
+            border-radius: 12px;
+            padding: 2rem;
             margin: 2rem 0;
-            height: 300px;
             position: relative;
         }
 
-        .chart-title {
+        .skills-title {
             color: var(--mckinsey-navy);
             font-size: 1.25rem;
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
             text-align: center;
+            font-weight: 600;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .skill-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--mckinsey-gray-bg) 0%, rgba(248, 249, 250, 0.5) 100%);
+            border-radius: 12px;
+            border: 1px solid rgba(0, 51, 102, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 51, 102, 0.15);
+            border-color: var(--mckinsey-blue);
+        }
+
+        .skill-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--mckinsey-blue), var(--mckinsey-light-blue));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-item:hover::before {
+            transform: scaleX(1);
+        }
+
+        .skill-circle {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            margin-bottom: 1rem;
+        }
+
+        .skill-circle svg {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+
+        .skill-circle-bg {
+            fill: none;
+            stroke: #e5e5e5;
+            stroke-width: 6;
+        }
+
+        .skill-circle-progress {
+            fill: none;
+            stroke-width: 6;
+            stroke-linecap: round;
+            transition: stroke-dasharray 1.5s ease-in-out;
+        }
+
+        .skill-percentage {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: var(--mckinsey-navy);
+        }
+
+        .skill-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--mckinsey-navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-years {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .skill-level {
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+            margin-top: 0.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         /* Grid layouts */
@@ -338,10 +506,10 @@
             font-weight: 600;
         }
 
-        /* Timeline - Professional style */
+        /* Timeline - Clean minimal style */
         .timeline {
             position: relative;
-            padding-left: 2rem;
+            padding-left: 2.5rem;
         }
 
         .timeline::before {
@@ -350,37 +518,29 @@
             left: 0;
             top: 0;
             bottom: 0;
-            width: 2px;
-            background: var(--mckinsey-blue);
+            width: 1px;
+            background: linear-gradient(to bottom, var(--mckinsey-blue), rgba(0, 102, 204, 0.3));
         }
 
         .timeline-item {
             position: relative;
-            margin-bottom: 3rem;
-            padding-left: 2rem;
+            margin-bottom: 2.5rem;
+            padding-left: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #f0f0f0;
         }
 
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -1.5rem;
-            top: 0.5rem;
-            width: 12px;
-            height: 12px;
-            background: var(--mckinsey-blue);
-            border-radius: 50%;
+        .timeline-item:last-child {
+            border-bottom: none;
         }
 
-        /* Company logo styles */
+        /* Company logo styles - no dots, just logos */
         .timeline-logo {
             position: absolute;
-            left: -2.25rem;
-            top: 0;
-            width: 36px;
-            height: 36px;
-            background: var(--mckinsey-white);
-            border: 2px solid var(--mckinsey-blue);
-            border-radius: 50%;
+            left: -1.125rem;
+            top: 0.5rem;
+            width: 28px;
+            height: 28px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -389,10 +549,17 @@
         }
 
         .timeline-logo img {
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
             object-fit: contain;
-            border-radius: 4px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0, 51, 102, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover .timeline-logo img {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(0, 51, 102, 0.25);
         }
 
         .timeline-metric {
@@ -435,20 +602,27 @@
         .action-btn {
             display: inline-flex;
             align-items: center;
-            padding: 0.375rem 0.75rem;
-            background: var(--mckinsey-white);
-            color: var(--mckinsey-blue);
+            padding: 0.5rem 1rem;
+            background: var(--mckinsey-blue);
+            color: var(--mckinsey-white);
             text-decoration: none;
-            border-radius: 4px;
-            font-size: 0.8rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
             font-weight: 500;
-            border: 1px solid var(--mckinsey-blue);
+            border: none;
             transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0, 102, 204, 0.2);
         }
 
         .action-btn:hover {
-            background: var(--mckinsey-blue);
-            color: var(--mckinsey-white);
+            background: var(--mckinsey-navy);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 6px 15px rgba(0, 51, 102, 0.4);
+        }
+
+        .action-btn:active {
+            transform: translateY(0) scale(0.98);
+            transition: transform 0.1s ease;
         }
 
         .action-btn-secondary {
@@ -529,6 +703,147 @@
             }
         }
 
+        /* Data Source Boxes - Living/Interactive Design */
+        .data-source-box {
+            background: linear-gradient(135deg, var(--mckinsey-gray-bg) 0%, rgba(248, 249, 250, 0.8) 100%);
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            border: 2px solid transparent;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .data-source-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 102, 204, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .data-source-box:hover::before {
+            left: 100%;
+        }
+
+        .data-source-box:hover {
+            transform: translateY(-2px);
+            border-color: var(--mckinsey-blue);
+            box-shadow: 
+                0 8px 25px rgba(0, 102, 204, 0.15),
+                0 0 20px rgba(0, 102, 204, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            background: linear-gradient(135deg, rgba(0, 102, 204, 0.05) 0%, rgba(248, 249, 250, 0.95) 100%);
+        }
+
+        .data-source-box::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 6px;
+            padding: 2px;
+            background: linear-gradient(45deg, transparent, var(--mckinsey-blue), transparent);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .data-source-box:hover::after {
+            opacity: 0.6;
+        }
+
+        .data-source-box p {
+            position: relative;
+            z-index: 1;
+            margin: 0;
+            transition: color 0.3s ease;
+        }
+
+        .data-source-box:hover p {
+            color: var(--mckinsey-navy);
+        }
+
+        .data-source-box:hover strong {
+            color: var(--mckinsey-blue);
+        }
+
+        /* Hero Data Source Box - Special styling for hero section */
+        .hero-data-source-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            padding: 1rem 2rem;
+            margin: 0 auto 3rem auto;
+            max-width: fit-content;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .hero-data-source-box:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-data-label {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.875rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .hero-data-logos {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .hero-data-logo {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            filter: brightness(0) saturate(0) invert(1);
+            opacity: 0.8;
+        }
+
+        .hero-data-logo:hover {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+
+        .hero-data-emoji {
+            font-size: 1rem;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .hero-data-emoji:hover {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+
         /* Utility classes */
         .text-center {
             text-align: center;
@@ -558,10 +873,11 @@
             <div class="nav-container">
                 <a href="#overview" class="nav-logo">Aaron Aftab</a>
                 <div class="nav-links">
-                    <a href="#overview" class="nav-link">Executive Summary</a>
+                    <a href="#overview" class="nav-link">Summary</a>
                     <a href="#experience" class="nav-link">Experience</a>
-                    <a href="#capabilities" class="nav-link">Capabilities</a>
-                    <a href="#impact" class="nav-link">Impact</a>
+                    <a href="#capabilities" class="nav-link">Skills</a>
+                    <a href="#impact" class="nav-link">Projects</a>
+                    <a href="#interests" class="nav-link">Interests</a>
                 </div>
             </div>
         </div>
@@ -570,13 +886,43 @@
     <!-- Hero Section - Executive Summary -->
     <header id="overview" class="hero-section">
         <div class="container">
+            <div class="hero-data-source-box">
+                <span class="hero-data-label">Data Sources:</span>
+                <div class="hero-data-logos">
+                    <img src="./logos/linkedin.png" alt="LinkedIn" class="hero-data-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                    <span class="hero-data-emoji" style="display: none;">💼</span>
+                    
+                    <img src="./logos/github.png" alt="GitHub" class="hero-data-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                    <span class="hero-data-emoji" style="display: none;">💻</span>
+                    
+                    <img src="./logos/google.png" alt="Google" class="hero-data-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                    <span class="hero-data-emoji" style="display: none;">🔍</span>
+                    
+                    <img src="./logos/spotify.png" alt="Spotify" class="hero-data-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                    <span class="hero-data-emoji" style="display: none;">🎵</span>
+                    
+                    <img src="./logos/goodreads.png" alt="Goodreads" class="hero-data-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                    <span class="hero-data-emoji" style="display: none;">📚</span>
+                    
+                    <img src="./logos/strava.png" alt="Strava" class="hero-data-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                    <span class="hero-data-emoji" style="display: none;">🏃</span>
+                    
+                    <img src="./logos/apple-health.png" alt="Apple Health" class="hero-data-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                    <span class="hero-data-emoji" style="display: none;">❤️</span>
+                    
+                    <img src="./logos/notion.png" alt="Notion" class="hero-data-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                    <span class="hero-data-emoji" style="display: none;">📝</span>
+                    
+                    <img src="./logos/calendar.png" alt="Calendar" class="hero-data-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                    <span class="hero-data-emoji" style="display: none;">📅</span>
+                    
+                    <img src="./logos/bank.png" alt="Financial Data" class="hero-data-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                    <span class="hero-data-emoji" style="display: none;">💳</span>
+                </div>
+            </div>
             <div class="hero-content">
-                <div>
+                <div class="hero-left">
                     <h1 class="hero-title">Aaron Aftab // Product Engineer</h1>
-                    <p class="hero-subtitle">
-                        Driving measurable business transformation through AI/ML product innovation, 
-                        with a proven track record of scaling technology solutions from concept to millions of users.
-                    </p>
                     
                     <div class="hero-metrics" id="heroMetrics">
                         <!-- Metrics will be populated dynamically from experiences.json -->
@@ -586,12 +932,10 @@
                 <div class="executive-summary">
                     <h3>Executive Summary</h3>
                     <ul>
-                        <li><strong>Current Role:</strong> ML Product Manager, Capital One</li>
-                        <li><strong>Education:</strong> B.S. Computer Science & Statistics, UIUC</li>
-                        <li><strong>Expertise:</strong> AI/ML Systems, Product Strategy</li>
-                        <li><strong>Leadership:</strong> Cross-functional team management</li>
-                        <li><strong>Innovation:</strong> Founder, Mirage AI</li>
-                        <li><strong>Consulting:</strong> Technology strategy advisor</li>
+                        <li><strong>Education:</strong> B.S. Computer Science & Statistics, University of Illinois at Urbana-Champaign</li>
+                        <li><strong>Skills:</strong> 6+ years eng/product</li>
+                        <li><strong>Companies:</strong> DocuSign, Microsoft, Alpaca, Rize Education, Bilt Rewards, Capital One</li>
+                        <li><strong>Founded:</strong> Mirage AI (500K+ model runs)</li>
                     </ul>
                 </div>
             </div>
@@ -603,131 +947,36 @@
         <section id="experience" class="content-section">
             <div class="section-header">
                 <h2 class="section-title">Professional Experience</h2>
-                <p class="section-subtitle">
-                    Progressive leadership roles in technology and product management
-                </p>
-            </div>
-            
-            <div class="content-width">
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <h3 class="timeline-title">Founder, Mirage AI</h3>
-                        <p class="timeline-subtitle">February 2025 - Present</p>
-                        <div class="timeline-content">
-                            <p>Stylize any image, 10x cheaper/faster than ChatGPT. Built experimental model available 
-                            for less than 2 cents and developing AI-powered photo frame hardware.</p>
-                            <p><strong>Key Achievement:</strong> 500K+ model runs with growing user adoption</p>
-                            <div class="timeline-actions">
-                                <a href="https://replicate.com/aaronaftab/mirage-ghibli" class="action-btn" target="_blank">Try Model</a>
-                                <a href="https://themirageframe.com" class="action-btn" target="_blank">Join Waitlist</a>
-                                <a href="https://github.com/aaronaftab/mirage" class="action-btn-secondary" target="_blank">View Code</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <h3 class="timeline-title">Product Manager, Machine Learning, Capital One</h3>
-                        <p class="timeline-subtitle">June 2024 - Present</p>
-                        <div class="timeline-content">
-                            <p>Credit underwriting/acquisition risk models driving $7B+ NPV for U.S. Card + ML infrastructure.</p>
-                            <p><strong>Key Achievement:</strong> Delivered machine learning models with massive business impact</p>
-                            <div class="timeline-actions">
-                                <a href="https://www.capitalone.com/about/newsroom/capital-one-machine-learning" class="action-btn-secondary" target="_blank">Learn More</a>
-                                <a href="https://www.capitalone.com/tech/" class="action-btn-secondary" target="_blank">Capital One Tech</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <h3 class="timeline-title">Technical Product Manager, AI & Customer Solutions, Bilt Rewards</h3>
-                        <p class="timeline-subtitle">December 2023 - February 2024</p>
-                        <div class="timeline-content">
-                            <p>CX agents, fraud, data infrastructure. Short tenure due to role being very project management-heavy.</p>
-                            <p><strong>Key Achievement:</strong> Implemented AI solutions achieving 70% resolution rate</p>
-                            <div class="timeline-actions">
-                                <a href="https://www.biltrewards.com/" class="action-btn-secondary" target="_blank">Bilt Rewards</a>
-                                <a href="https://www.biltrewards.com/about" class="action-btn-secondary" target="_blank">About Bilt</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <h3 class="timeline-title">Product Lead & Growth Engineer, Rize Education</h3>
-                        <p class="timeline-subtitle">November 2021 - November 2023</p>
-                        <div class="timeline-content">
-                            <p>Helped grow usage-based ARR by nearly 10x (~$2.5M when I left) over two years while increasing overall product NPS from roughly -10 to positive. Core platform development, new program launches, A/B testing, student support tools. Designed CS courses and projects still being taken by students at 100+ universities.</p>
-                            <p><strong>Key Achievement:</strong> 10x ARR growth with significant NPS improvement</p>
-                            <div class="timeline-actions">
-                                <a href="https://www.rizeeducation.com/" class="action-btn-secondary" target="_blank">Rize Education</a>
-                                <a href="https://www.rizeeducation.com/courses" class="action-btn-secondary" target="_blank">View Courses</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <h3 class="timeline-title">Product Manager Intern, Microsoft (Dynamics 365)</h3>
-                        <p class="timeline-subtitle">May 2021 - August 2021</p>
-                        <div class="timeline-content">
-                            <p>Introduced version management and reversion capabilities to Dynamics 365 Commerce Site Builder.</p>
-                            <p><strong>Key Achievement:</strong> Shipped enterprise feature for major Microsoft product</p>
-                            <div class="timeline-actions">
-                                <a href="https://docs.microsoft.com/en-us/dynamics365/commerce/version-history-revert" class="action-btn" target="_blank">View Documentation</a>
-                                <a href="https://dynamics.microsoft.com/en-us/commerce/" class="action-btn-secondary" target="_blank">Dynamics 365</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <h3 class="timeline-title">Product Manager Intern, Microsoft (Power BI)</h3>
-                        <p class="timeline-subtitle">May 2020 - August 2020</p>
-                        <div class="timeline-content">
-                            <p>Designed new sharing flow for Power BI Desktop.</p>
-                            <p><strong>Key Achievement:</strong> Launched sharing experience for millions of Power BI users</p>
-                            <div class="timeline-actions">
-                                <a href="https://powerbi.microsoft.com/en-us/blog/new-sharing-experience-coming-soon/" class="action-btn" target="_blank">Read Blog Post</a>
-                                <a href="https://powerbi.microsoft.com/" class="action-btn-secondary" target="_blank">Power BI</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <h3 class="timeline-title">Growth Intern, Alpaca</h3>
-                        <p class="timeline-subtitle">September 2020 - November 2020</p>
-                        <div class="timeline-content">
-                            <p>Formed partnerships with 100+ U.S. and international universities to promote Alpaca's developer-first stock trading API. Ran trading competition with 1000+ participants.</p>
-                            <p><strong>Key Achievement:</strong> <a href="https://alpaca.markets/learn/trading-competition-interview" class="link" target="_blank">Organized successful trading competition</a> with 1000+ participants</p>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <h3 class="timeline-title">Software Engineer Intern, DocuSign</h3>
-                        <p class="timeline-subtitle">May 2019 - August 2019</p>
-                        <div class="timeline-content">
-                            <p>Built document generation API for Dynamics 365 x DocuSign integration.</p>
-                            <p><strong>Key Achievement:</strong> <a href="https://www.docusign.com/integrations/microsoft/dynamics-365" class="link" target="_blank">Delivered integration</a> connecting DocuSign with Microsoft Dynamics</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Technical Capabilities -->
-        <section id="capabilities" class="content-section">
-            <div class="section-header">
-                <h2 class="section-title">Core Capabilities</h2>
-                <p class="section-subtitle">
-                    Technical expertise and leadership competencies developed over 6+ years
-                </p>
-                <div style="background: var(--mckinsey-gray-bg); padding: 1rem; border-radius: 6px; margin-top: 1rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                <div class="data-source-box">
                     <p style="font-size: 0.875rem; color: var(--text-secondary); margin: 0;">
-                        <strong>Data Source:</strong> Skills chart based on years of hands-on experience across roles and projects
+                        <strong>Data Sources:</strong> LinkedIn, company records, and verified employment history
                     </p>
                 </div>
             </div>
             
-            <div class="chart-container">
-                <h3 class="chart-title">Technical Proficiency by Years of Experience</h3>
-                <canvas id="skillsChart"></canvas>
+            <div class="content-width">
+                <div class="timeline">
+                    <!-- Timeline items will be populated dynamically from experiences.json -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills -->
+        <section id="capabilities" class="content-section">
+            <div class="section-header">
+                <h2 class="section-title">Skills</h2>
+                <div class="data-source-box">
+                    <p style="font-size: 0.875rem; color: var(--text-secondary); margin: 0;">
+                        <strong>Data Sources:</strong> LinkedIn, company records, and verified employment history
+                    </p>
+                </div>
+            </div>
+            
+            <div class="skills-container">
+                <h3 class="skills-title">Technical Proficiency by Years of Experience</h3>
+                <div class="skills-grid" id="skillsGrid">
+                    <!-- Skills will be populated dynamically -->
+                </div>
             </div>
             
             <div class="grid-2">
@@ -806,22 +1055,23 @@
         <!-- Current Projects -->
         <section id="impact" class="content-section">
             <div class="section-header">
-                <h2 class="section-title">Current Initiatives</h2>
-                <p class="section-subtitle">
-                    Active projects driving innovation in AI and technology consulting
-                </p>
+                <h2 class="section-title">Projects</h2>
+                <div class="data-source-box">
+                    <p style="font-size: 0.875rem; color: var(--text-secondary); margin: 0;">
+                        <strong>Data Sources:</strong> GitHub, HuggingFace, LinkedIn
+                    </p>
+                </div>
             </div>
             
             <div class="grid-2">
                 <div class="card">
-                    <h3 class="card-title">Mirage AI Platform</h3>
-                    <p class="card-subtitle">AI-Powered Image Stylization</p>
+                    <h3 class="card-title">Mirage</h3>
+                    <p class="card-subtitle">The AI Photo Frame</p>
                     <div class="card-content">
-                        <p>Developing next-generation image stylization technology with proven market traction. 
-                        Platform has achieved 100,000+ model executions with growing user base.</p>
+                        <p>Check out the demo and DIY guide here:</p>
                         <p style="margin-top: 1rem;">
-                            <a href="https://replicate.com/aaronaftab/mirage-ghibli" class="link" target="_blank">
-                                View Live Model →
+                            <a href="https://github.com/aaronaftab/mirage" class="link" target="_blank">
+                                GitHub →
                             </a>
                         </p>
                     </div>
@@ -846,12 +1096,9 @@
         <section id="interests" class="content-section">
             <div class="section-header">
                 <h2 class="section-title">Interests</h2>
-                <p class="section-subtitle">
-                    Technical pursuits and personal interests that drive continuous learning
-                </p>
-                <div style="background: var(--mckinsey-gray-bg); padding: 1rem; border-radius: 6px; margin-top: 1rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                <div class="data-source-box">
                     <p style="font-size: 0.875rem; color: var(--text-secondary); margin: 0;">
-                        <strong>Data Source:</strong> Personal interests curated from activities, hobbies, and continuous learning pursuits
+                        <strong>Data Sources:</strong> Google Search History, Github, Goodreads
                     </p>
                 </div>
             </div>
@@ -892,7 +1139,9 @@
             <div class="footer-links">
                 <a href="https://www.linkedin.com/in/aaronaftab/" target="_blank" class="footer-link">LinkedIn</a>
                 <a href="https://github.com/aaronaftab" target="_blank" class="footer-link">GitHub</a>
-                <a href="https://x.com/aaronaftab" target="_blank" class="footer-link">Twitter</a>
+                <a href="https://x.com/calvinballuptop" target="_blank" class="footer-link">Twitter</a>
+                <a href="https://aaronaftab.substack.com" target="_blank" class="footer-link">Substack</a>
+                <a href="mailto:aftab.aaron@gmail.com" class="footer-link">Email</a>
             </div>
             <p class="footer-text">&copy; <span id="currentYear"></span> Aaron Aftab. All rights reserved.</p>
         </div>
@@ -950,15 +1199,180 @@
         // Load and render experiences from JSON
         async function loadExperiences() {
             try {
+                console.log('Attempting to fetch experiences.json...');
                 const response = await fetch('./experiences.json');
+                console.log('Response status:', response.status);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
                 const data = await response.json();
+                console.log('Loaded experiences data:', data);
                 renderTimeline(data.experiences);
                 renderHeroMetrics(); // Don't depend on JSON for hero metrics
             } catch (error) {
                 console.error('Error loading experiences:', error);
-                // Always render hero metrics even if JSON fails
+                // Fallback: render with hardcoded data if JSON fails
+                renderTimelineWithFallback();
                 renderHeroMetrics();
             }
+        }
+
+        function renderTimelineWithFallback() {
+            console.log('Using fallback timeline data...');
+            // Embed the full experiences data directly to avoid CORS issues
+            const fallbackExperiences = [
+                {
+                    title: "Founder",
+                    company: "Mirage AI",
+                    year: "2025-Present",
+                    logoUrl: "./logos/mirage.png",
+                    logo: "🎨",
+                    metric: "100k+ runs/$2k in first week",
+                    description: "AI photo frame + stable diffusion models.",
+                    customButton: {
+                        text: "Stylize any image, 10x cheaper/faster than ChatGPT.",
+                        url: "https://replicate.com/aaronaftab/mirage-ghibli"
+                    }
+                },
+                {
+                    title: "Co-Founder",
+                    company: "Something New",
+                    year: "2025-Present",
+                    logoUrl: "./logos/quetzal.png",
+                    logo: "🦅",
+                    metric: "?",
+                    description: ""
+                },
+                {
+                    title: "Product Manager, Machine Learning",
+                    company: "Capital One",
+                    year: "2024-Present",
+                    logoUrl: "./logos/capital-one.png",
+                    logo: "🏦",
+                    metric: "$7B+ NPV",
+                    description: "Credit underwriting/acquisition risk models + ML infra.",
+                    customButton: {
+                        text: "C1 AI/ML",
+                        url: "https://www.capitalone.com/tech/machine-learning/"
+                    }
+                },
+                {
+                    title: "Technical Product Manager, AI & Customer Solutions",
+                    company: "Bilt Rewards",
+                    year: "2023-2024",
+                    logoUrl: "./logos/bilt.png",
+                    logo: "🏠",
+                    metric: "70% Resolution Rate",
+                    description: "CX agents, fraud, data infra",
+                    customButton: {
+                        text: "Bilt x Decagon Case Study",
+                        url: "https://decagon.ai/case-studies/bilt"
+                    }
+                },
+                {
+                    title: "Product Lead // Growth Engineer",
+                    company: "Rize Education",
+                    year: "2021-2023",
+                    logoUrl: "./logos/rize.png",
+                    logo: "🎯",
+                    metric: "~10x ARR Growth",
+                    description: "Helped grow usage-based ARR by nearly 10x (~$2.5M when I left) over two years while increasing overall product NPS from roughly -10 to +20. Also got to design a few CS courses and projects that are still being taken by students at 100+ universities :)",
+                    customButton: {
+                        text: "About Rize",
+                        url: "https://www.rize.education/"
+                    }
+                },
+                {
+                    title: "Product Manager Intern",
+                    company: "Microsoft",
+                    year: "2021",
+                    logoUrl: "./logos/microsoft.png",
+                    logo: "🪟",
+                    metric: "2M MAU",
+                    description: "Introduced version management and reversion capabilities to Dynamics 365 Commerce Site Builder",
+                    customButton: {
+                        text: "View Documentation",
+                        url: "https://docs.microsoft.com/en-us/dynamics365/commerce/e-commerce-extensibility/site-builder-versioning"
+                    }
+                },
+                {
+                    title: "Product Manager Intern",
+                    company: "Microsoft",
+                    year: "2020",
+                    logoUrl: "./logos/microsoft.png",
+                    logo: "🪟",
+                    metric: "5M MAU",
+                    description: "Designed new sharing flow for Power BI Desktop",
+                    customButton: {
+                        text: "View Release Notes",
+                        url: "https://powerbi.microsoft.com/en-us/blog/new-sharing-experience-coming-soon/"
+                    }
+                },
+                {
+                    title: "Growth Intern",
+                    company: "Alpaca",
+                    year: "2020",
+                    logoUrl: "./logos/alpaca.png",
+                    logo: "📈",
+                    metric: "100+ New Institutional Partnerships",
+                    description: "Driving adoption of Alpaca's developer-first stock trading API, ran trading competition with 1000+ participants.",
+                    customButton: {
+                        text: "Read Interview",
+                        url: "https://alpaca.markets/learn/trading-competition-interview2"
+                    }
+                },
+                {
+                    title: "Co-Director // Corporate Staff",
+                    company: "Reflections|Projections",
+                    year: "2019-2020",
+                    logoUrl: "./logos/reflections.png",
+                    logo: "🎯",
+                    metric: "2k+ Attendees",
+                    description: "Largest student-run tech conference in the Midwest, led staff of 60+ to organize 2020 event with $50k operating budget. Raised over $100k from corporate sponsors for 2019 conference.",
+                    customButton: {
+                        text: "View Conference Site",
+                        url: "https://reflectionsprojections.org"
+                    }
+                },
+                {
+                    title: "Partner",
+                    company: "OTCR Consulting",
+                    year: "2019-2020",
+                    logoUrl: "./logos/otcr.png",
+                    logo: "💼",
+                    metric: "~$8k per project",
+                    description: "Performed user research study for social media giant, led client engagement with Director of UX Research and oversaw two project teams.",
+                    customButton: {
+                        text: "Learn About OTCR",
+                        url: "https://otcrconsulting.com/"
+                    }
+                },
+                {
+                    title: "Software Engineer Intern",
+                    company: "DocuSign",
+                    year: "2019",
+                    logoUrl: "./logos/docusign.png",
+                    logo: "📄",
+                    metric: "10min -> 10sec to create contracts",
+                    description: "Built document generation API for Dynamics 365 x DocuSign integration",
+                    customButton: {
+                        text: "See Integration",
+                        url: "https://www.docusign.com/integrations/microsoft/dynamics-365"
+                    }
+                },
+                {
+                    title: "B.S. Computer Science & Statistics",
+                    company: "University of Illinois at Urbana-Champaign",
+                    year: "2018-2022",
+                    logoUrl: "./logos/uiuc.png",
+                    logo: "🎓",
+                    metric: "200+ hours at Kams",
+                    description: "Fun fact: senior year, my roommates and I rewired a Keurig machine to dispense Jagerbombs and got featured on Barstool."
+                }
+            ];
+            renderTimeline(fallbackExperiences);
         }
 
         function renderHeroMetrics() {
@@ -971,28 +1385,28 @@
                     company: 'Capital One',
                     metric: '$7B+',
                     label: 'NPV generated at Capital One',
-                    logoUrl: '/logos/capital-one.png',
+                    logoUrl: './logos/capital-one.png',
                     logo: '🏦'
                 },
                 {
                     company: 'Microsoft',
                     metric: '5M+',
                     label: 'MAUs served at Microsoft',
-                    logoUrl: '/logos/microsoft.png',
+                    logoUrl: './logos/microsoft.png',
                     logo: '🪟'
                 },
                 {
                     company: 'Mirage AI',
                     metric: '500K+',
                     label: 'Model runs at Mirage AI (Founder)',
-                    logoUrl: '/logos/mirage.png',
+                    logoUrl: './logos/mirage.png',
                     logo: '🎨'
                 },
                 {
                     company: 'Rize Education',
                     metric: '10x',
-                    label: 'ARR Growth at Rize Education',
-                    logoUrl: '/logos/rize.png',
+                    label: 'ARR Growth at Rize',
+                    logoUrl: './logos/rize.png',
                     logo: '🎯'
                 }
             ];
@@ -1004,9 +1418,9 @@
                 metricItem.className = 'metric-item';
                 
                 const logoHtml = metric.logoUrl 
-                    ? `<img src="${metric.logoUrl}" alt="${metric.company} logo" style="width: 24px; height: 24px; object-fit: contain; filter: brightness(0) invert(1); opacity: 0.8;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                       <span style="display: none; filter: brightness(0) invert(1); opacity: 0.8;">${metric.logo}</span>`
-                    : `<span style="filter: brightness(0) invert(1); opacity: 0.8;">${metric.logo}</span>`;
+                    ? `<img src="${metric.logoUrl}" alt="${metric.company} logo" style="width: 24px; height: 24px; object-fit: contain; filter: brightness(0) saturate(0) invert(1); opacity: 0.9;" onerror="console.log('Failed to load hero metric logo:', this.src); this.style.display='none'; this.nextElementSibling.style.display='block';">
+                       <span style="display: none; filter: brightness(0) invert(1); opacity: 0.8; font-size: 1.2rem;">${metric.logo}</span>`
+                    : `<span style="filter: brightness(0) invert(1); opacity: 0.8; font-size: 1.2rem;">${metric.logo}</span>`;
 
                 metricItem.innerHTML = `
                     <div class="metric-logo">
@@ -1021,11 +1435,18 @@
         }
 
         function renderTimeline(experiences) {
+            console.log('renderTimeline called with:', experiences);
             const timelineContainer = document.querySelector('.timeline');
-            if (!timelineContainer) return;
+            console.log('Timeline container found:', timelineContainer);
+            
+            if (!timelineContainer) {
+                console.error('Timeline container not found!');
+                return;
+            }
 
             // Clear existing timeline items
             timelineContainer.innerHTML = '';
+            console.log('Timeline container cleared, rendering', experiences.length, 'experiences');
 
             // Sort experiences by year (most recent first)
             const sortedExperiences = experiences.sort((a, b) => {
@@ -1040,9 +1461,9 @@
                 timelineItem.className = 'timeline-item';
                 
                 const logoHtml = exp.logoUrl 
-                    ? `<img src="${exp.logoUrl}" alt="${exp.company} logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                       <span style="display: none;">${exp.logo}</span>`
-                    : exp.logo;
+                    ? `<img src="${exp.logoUrl}" alt="${exp.company} logo" style="width: 24px; height: 24px; object-fit: contain; filter: brightness(0) saturate(0) invert(0.2) sepia(1) saturate(5) hue-rotate(200deg);" onerror="console.log('Failed to load:', this.src); this.style.display='none'; this.nextElementSibling.style.display='block';">
+                       <span style="display: none; color: var(--mckinsey-blue); font-size: 1rem;">${exp.logo}</span>`
+                    : `<span style="color: var(--mckinsey-blue); font-size: 1rem;">${exp.logo}</span>`;
 
                 const customButtonHtml = exp.customButton 
                     ? `<a href="${exp.customButton.url}" class="action-btn" target="_blank">${exp.customButton.text}</a>`
@@ -1069,82 +1490,86 @@
         document.addEventListener('DOMContentLoaded', function() {
             renderHeroMetrics(); // Load hero metrics immediately
             loadExperiences(); // Then load timeline from JSON
+            observeSkills(); // Initialize skills animation observer
         });
 
-        // Skills Chart - McKinsey Style Data Visualization
-        const ctx = document.getElementById('skillsChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Python/ML', 'Product Mgmt', 'JavaScript/TS', 'Cloud', 'SQL/Analytics', 'Java', 'Leadership'],
-                datasets: [{
-                    label: 'Years of Experience',
-                    data: [6, 4, 4, 4, 4, 3, 4],
-                    backgroundColor: [
-                        '#003366', // McKinsey Navy
-                        '#0066cc', // McKinsey Blue
-                        '#4d94ff', // Light Blue
-                        '#ff6b35', // Accent
-                        '#666666', // Gray
-                        '#999999', // Light Gray
-                        '#003366'  // Navy
-                    ],
-                    borderWidth: 0,
-                    borderRadius: 3,
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                layout: {
-                    padding: {
-                        top: 10,
-                        bottom: 10,
-                        left: 10,
-                        right: 10
+        // Modern Skills Visualization
+        function renderSkills() {
+            const skillsData = [
+                { name: 'Python/ML', years: 6, color: '#003366', level: 'Expert' },
+                { name: 'Product Mgmt', years: 4, color: '#0066cc', level: 'Advanced' },
+                { name: 'JavaScript/TS', years: 4, color: '#4d94ff', level: 'Advanced' },
+                { name: 'Cloud/AWS', years: 4, color: '#ff6b35', level: 'Advanced' },
+                { name: 'SQL/Analytics', years: 4, color: '#666666', level: 'Advanced' },
+                { name: 'Java', years: 3, color: '#999999', level: 'Intermediate' },
+                { name: 'Leadership', years: 4, color: '#003366', level: 'Advanced' }
+            ];
+
+            const skillsGrid = document.getElementById('skillsGrid');
+            if (!skillsGrid) return;
+
+            skillsGrid.innerHTML = '';
+
+            skillsData.forEach((skill, index) => {
+                const maxYears = 7;
+                const percentage = Math.min((skill.years / maxYears) * 100, 100);
+                const circumference = 2 * Math.PI * 35; // radius = 35
+                const strokeDasharray = `${(percentage / 100) * circumference} ${circumference}`;
+
+                const skillItem = document.createElement('div');
+                skillItem.className = 'skill-item';
+                skillItem.style.animationDelay = `${index * 0.1}s`;
+
+                skillItem.innerHTML = `
+                    <div class="skill-circle">
+                        <svg viewBox="0 0 80 80">
+                            <circle class="skill-circle-bg" cx="40" cy="40" r="35"></circle>
+                            <circle 
+                                class="skill-circle-progress" 
+                                cx="40" 
+                                cy="40" 
+                                r="35"
+                                stroke="${skill.color}"
+                                stroke-dasharray="0 ${circumference}"
+                                data-target="${strokeDasharray}"
+                            ></circle>
+                        </svg>
+                        <div class="skill-percentage">${skill.years}y</div>
+                    </div>
+                    <div class="skill-name">${skill.name}</div>
+                    <div class="skill-years">${skill.years} years experience</div>
+                    <div class="skill-level">${skill.level}</div>
+                `;
+
+                skillsGrid.appendChild(skillItem);
+            });
+
+            // Animate circles on load
+            setTimeout(() => {
+                const progressCircles = document.querySelectorAll('.skill-circle-progress');
+                progressCircles.forEach(circle => {
+                    const targetDasharray = circle.getAttribute('data-target');
+                    circle.style.strokeDasharray = targetDasharray;
+                });
+            }, 500);
+        }
+
+        // Intersection Observer for skills animation
+        function observeSkills() {
+            const skillsContainer = document.querySelector('.skills-container');
+            if (!skillsContainer) return;
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        renderSkills();
+                        observer.unobserve(entry.target);
                     }
-                },
-                plugins: {
-                    legend: {
-                        display: false
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: 7,
-                        ticks: {
-                            stepSize: 1,
-                            color: '#666666',
-                            font: {
-                                family: 'Source Sans Pro',
-                                size: 11
-                            },
-                            padding: 5
-                        },
-                        grid: {
-                            color: '#e5e5e5',
-                            lineWidth: 1
-                        }
-                    },
-                    x: {
-                        ticks: {
-                            color: '#666666',
-                            font: {
-                                family: 'Source Sans Pro',
-                                size: 10
-                            },
-                            maxRotation: 0,
-                            padding: 5
-                        },
-                        grid: {
-                            display: false
-                        }
-                    }
-                }
-            }
-        });
+                });
+            }, { threshold: 0.3 });
+
+            observer.observe(skillsContainer);
+        }
     </script>
 </body>
-</html> 
-</html> 
+</html>
