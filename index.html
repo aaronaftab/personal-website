@@ -6,1079 +6,15 @@
     <title>Aaron Aftab</title>
     <meta name="description" content="Aaron Aftab">
     
-    <!-- Google Fonts - McKinsey uses clean, professional fonts -->
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="icon.svg">
+    <link rel="icon" type="image/png" href="icon.svg">
+    
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&family=Source+Serif+Pro:wght@400;600&display=swap" rel="stylesheet">
     
-    <style>
-        /* McKinsey-inspired design system */
-        :root {
-            --mckinsey-navy: #003366;
-            --mckinsey-blue: #0066cc;
-            --mckinsey-light-blue: #4d94ff;
-            --mckinsey-gray-dark: #333333;
-            --mckinsey-gray-medium: #666666;
-            --mckinsey-gray-light: #999999;
-            --mckinsey-gray-bg: #f8f9fa;
-            --mckinsey-white: #ffffff;
-            --mckinsey-accent: #ff6b35;
-            --text-primary: #1a1a1a;
-            --text-secondary: #4a4a4a;
-            --text-tertiary: #6a6a6a;
-        }
-
-        /* Reset and base styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            color: var(--text-primary);
-            line-height: 1.6;
-            background-color: var(--mckinsey-white);
-        }
-
-        /* Typography - McKinsey style */
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Source Serif Pro', serif;
-            font-weight: 600;
-            color: var(--mckinsey-navy);
-            line-height: 1.2;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-        }
-
-        h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.75rem;
-        }
-
-        p {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-        }
-
-        /* Container and layout */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .content-width {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        /* Navigation - Clean McKinsey style */
-        .top-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 50;
-            background-color: var(--mckinsey-white);
-            border-bottom: 1px solid #e5e5e5;
-            padding: 1rem 0;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-logo {
-            font-family: 'Source Serif Pro', serif;
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--mckinsey-navy);
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 400;
-            transition: color 0.2s ease;
-            font-size: 0.95rem;
-        }
-
-        .nav-link:hover,
-        .nav-link.active {
-            color: var(--mckinsey-blue);
-            transform: translateY(-1px);
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--mckinsey-blue);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link {
-            position: relative;
-        }
-
-        .nav-link:hover::after,
-        .nav-link.active::after {
-            width: 100%;
-        }
-
-        /* Hero section - Executive summary style */
-        .hero-section {
-            background: linear-gradient(135deg, var(--mckinsey-navy) 0%, var(--mckinsey-blue) 100%);
-            color: var(--mckinsey-white);
-            padding: 3rem 0 4rem;
-            margin-top: 4rem;
-        }
-
-        .hero-content {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 3rem;
-            align-items: stretch;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 2.5rem;
-            border-radius: 12px;
-            backdrop-filter: blur(10px);
-        }
-
-        .hero-left {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 100%;
-        }
-
-        .hero-title {
-            font-size: 3rem;
-            font-weight: 700;
-            margin: 0;
-            color: var(--mckinsey-white);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .hero-subtitle {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            line-height: 1.5;
-            color: var(--mckinsey-white);
-        }
-
-        .hero-metrics {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin: 0;
-        }
-
-        .metric-item {
-            text-align: center;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            position: relative;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .metric-item:hover {
-            transform: scale(1.05);
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .metric-logo {
-            width: 24px;
-            height: 24px;
-            margin: 0 auto 0.5rem;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            filter: brightness(0) invert(1);
-            opacity: 0.8;
-        }
-
-        .metric-value {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--mckinsey-white);
-            display: block;
-        }
-
-        .metric-label {
-            font-size: 0.875rem;
-            opacity: 0.8;
-            color: var(--mckinsey-white);
-        }
-
-        /* Executive summary box */
-        .executive-summary {
-            background: var(--mckinsey-white);
-            padding: 2rem;
-            border-radius: 8px;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .executive-summary h3 {
-            color: var(--mckinsey-navy);
-            margin: 0 0 1rem 0;
-            font-size: 1.25rem;
-        }
-
-        .executive-summary ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .executive-summary li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #f0f0f0;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .executive-summary li:last-child {
-            border-bottom: none;
-        }
-
-        /* Section styles */
-        .content-section {
-            padding: 2rem 0;
-            border-bottom: 1px solid #e5e5e5;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .section-title {
-            color: var(--mckinsey-navy);
-            margin-bottom: 1rem;
-        }
-
-        .section-subtitle {
-            color: var(--text-secondary);
-            font-size: 1.125rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Cards - Clean McKinsey style with living effects */
-        .card {
-            background: var(--mckinsey-white);
-            border: 1px solid #e5e5e5;
-            border-radius: 8px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--mckinsey-blue), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .card:hover::before {
-            left: 100%;
-        }
-
-        .card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 51, 102, 0.1);
-            border-color: rgba(0, 102, 204, 0.3);
-        }
-
-        .card-title {
-            color: var(--mckinsey-navy);
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .card-subtitle {
-            color: var(--mckinsey-blue);
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .card-content {
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        /* Modern Skills Visualization */
-        .skills-container {
-            background: var(--mckinsey-white);
-            border: 1px solid #e5e5e5;
-            border-radius: 12px;
-            padding: 2rem;
-            margin: 2rem 0;
-            position: relative;
-        }
-
-        .skills-title {
-            color: var(--mckinsey-navy);
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-            text-align: center;
-            font-weight: 600;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .skill-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 1.5rem;
-            background: linear-gradient(135deg, var(--mckinsey-gray-bg) 0%, rgba(248, 249, 250, 0.5) 100%);
-            border-radius: 12px;
-            border: 1px solid rgba(0, 51, 102, 0.1);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .skill-item:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 25px rgba(0, 51, 102, 0.15);
-            border-color: var(--mckinsey-blue);
-        }
-
-        .skill-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--mckinsey-blue), var(--mckinsey-light-blue));
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .skill-item:hover::before {
-            transform: scaleX(1);
-        }
-
-        .skill-circle {
-            position: relative;
-            width: 80px;
-            height: 80px;
-            margin-bottom: 1rem;
-        }
-
-        .skill-circle svg {
-            width: 100%;
-            height: 100%;
-            transform: rotate(-90deg);
-        }
-
-        .skill-circle-bg {
-            fill: none;
-            stroke: #e5e5e5;
-            stroke-width: 6;
-        }
-
-        .skill-circle-progress {
-            fill: none;
-            stroke-width: 6;
-            stroke-linecap: round;
-            transition: stroke-dasharray 1.5s ease-in-out;
-        }
-
-        .skill-percentage {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 0.875rem;
-            font-weight: 700;
-            color: var(--mckinsey-navy);
-        }
-
-        .skill-name {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--mckinsey-navy);
-            margin-bottom: 0.5rem;
-        }
-
-        .skill-years {
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-
-        .skill-level {
-            font-size: 0.75rem;
-            color: var(--text-tertiary);
-            margin-top: 0.25rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* Grid layouts */
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-        }
-
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        /* Impact metrics */
-        .impact-metrics {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .impact-item {
-            text-align: center;
-            padding: 2rem;
-            background: var(--mckinsey-gray-bg);
-            border-radius: 8px;
-        }
-
-        .impact-value {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--mckinsey-blue);
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .impact-label {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        /* Timeline - Clean minimal style */
-        .timeline {
-            position: relative;
-            padding-left: 2.5rem;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 1px;
-            background: linear-gradient(to bottom, var(--mckinsey-blue), rgba(0, 102, 204, 0.3));
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 2.5rem;
-            padding-left: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .timeline-item:last-child {
-            border-bottom: none;
-        }
-
-        /* Company logo styles - no dots, just logos */
-        .timeline-logo {
-            position: absolute;
-            left: -1.125rem;
-            top: 0.5rem;
-            width: 28px;
-            height: 28px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            z-index: 2;
-        }
-
-        .timeline-logo img {
-            width: 28px;
-            height: 28px;
-            object-fit: contain;
-            border-radius: 6px;
-            box-shadow: 0 2px 8px rgba(0, 51, 102, 0.15);
-            transition: all 0.3s ease;
-        }
-
-        .timeline-item:hover .timeline-logo img {
-            transform: scale(1.1);
-            box-shadow: 0 4px 15px rgba(0, 51, 102, 0.25);
-        }
-
-        .timeline-metric {
-            display: inline-block;
-            background: var(--mckinsey-gray-bg);
-            color: var(--mckinsey-blue);
-            font-size: 0.75rem;
-            font-weight: 600;
-            padding: 0.25rem 0.5rem;
-            border-radius: 12px;
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-header {
-            display: flex;
-            align-items: baseline;
-            gap: 0.5rem;
-            margin-bottom: 0.25rem;
-            flex-wrap: wrap;
-        }
-
-        .timeline-title {
-            color: var(--mckinsey-navy);
-            font-size: 1.125rem;
-            font-weight: 600;
-            margin: 0;
-        }
-
-        .timeline-company {
-            color: var(--text-secondary);
-            font-size: 1.125rem;
-            font-weight: 400;
-            margin: 0;
-            position: relative;
-        }
-
-        .timeline-company::before {
-            content: "•";
-            color: var(--text-tertiary);
-            margin-right: 0.5rem;
-            font-weight: 400;
-        }
-
-
-
-        .timeline-subtitle {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-content {
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        .timeline-actions {
-            margin-top: 1rem;
-            display: flex;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-        }
-
-        .action-btn {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.5rem 1rem;
-            background: var(--mckinsey-blue);
-            color: var(--mckinsey-white);
-            text-decoration: none;
-            border-radius: 6px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            border: none;
-            transition: all 0.2s ease;
-            box-shadow: 0 2px 4px rgba(0, 102, 204, 0.2);
-        }
-
-        .action-btn:hover {
-            background: var(--mckinsey-navy);
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 6px 15px rgba(0, 51, 102, 0.4);
-        }
-
-        .action-btn:active {
-            transform: translateY(0) scale(0.98);
-            transition: transform 0.1s ease;
-        }
-
-        .action-btn-secondary {
-            background: transparent;
-            color: var(--text-secondary);
-            border: 1px solid #e5e5e5;
-        }
-
-        .action-btn-secondary:hover {
-            background: var(--mckinsey-gray-bg);
-            color: var(--mckinsey-navy);
-        }
-
-        /* Links */
-        .link {
-            color: var(--mckinsey-blue);
-            text-decoration: none;
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.2s ease;
-        }
-
-        .link:hover {
-            border-bottom-color: var(--mckinsey-blue);
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--mckinsey-gray-bg);
-            padding: 3rem 0;
-            text-align: center;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-link {
-            color: var(--mckinsey-blue);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .footer-link:hover {
-            color: var(--mckinsey-navy);
-        }
-
-        .footer-text {
-            color: var(--text-tertiary);
-            font-size: 0.875rem;
-        }
-
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .hero-section {
-                padding: 2rem 0 3rem;
-                margin-top: 3.5rem;
-            }
-
-            .hero-content {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-                padding: 1.5rem;
-                margin: 0 1rem;
-            }
-
-            .hero-title {
-                font-size: 1.5rem;
-                white-space: normal;
-                line-height: 1.2;
-                text-align: center;
-            }
-
-            .hero-subtitle {
-                font-size: 1.125rem;
-                margin-bottom: 1.5rem;
-            }
-
-            .hero-metrics {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-
-            .metric-item {
-                padding: 0.75rem;
-            }
-
-            .metric-value {
-                font-size: 1.5rem;
-            }
-
-            .metric-label {
-                font-size: 0.75rem;
-                line-height: 1.3;
-            }
-
-            .executive-summary {
-                padding: 1.5rem;
-            }
-
-            .executive-summary h3 {
-                font-size: 1.125rem;
-            }
-
-            .executive-summary li {
-                font-size: 0.85rem;
-                padding: 0.4rem 0;
-            }
-
-            .hero-data-source-box {
-                gap: 0.5rem;
-                margin: 0 auto 2rem auto;
-                max-width: calc(100vw - 2rem);
-                padding: 0.75rem 1.5rem;
-            }
-
-            .hero-data-label {
-                font-size: 0.7rem;
-                white-space: nowrap;
-                flex-shrink: 0;
-            }
-
-            .hero-data-logos {
-                gap: 0.4rem;
-                flex-wrap: nowrap;
-                justify-content: center;
-            }
-
-            .hero-data-logo {
-                width: 16px;
-                height: 16px;
-            }
-
-            .grid-2,
-            .grid-3,
-            .impact-metrics {
-                grid-template-columns: 1fr;
-            }
-
-            .container {
-                padding: 0 1rem;
-            }
-
-            .content-section {
-                padding: 1.5rem 0;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .timeline-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.25rem;
-            }
-
-            .timeline-company::before {
-                content: "";
-                margin-right: 0;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-section {
-                padding: 1.5rem 0 2.5rem;
-            }
-
-            .hero-title {
-                font-size: 1.125rem;
-                text-align: center;
-            }
-
-            .hero-content {
-                padding: 1rem;
-                margin: 0 0.5rem;
-            }
-
-            .hero-data-source-box {
-                margin: 0 auto 1.5rem auto;
-                gap: 0.4rem;
-                max-width: calc(100vw - 1rem);
-                padding: 0.6rem 1.2rem;
-            }
-
-            .hero-data-label {
-                font-size: 0.65rem;
-                flex-shrink: 0;
-            }
-
-            .hero-data-logos {
-                gap: 0.3rem;
-                justify-content: center;
-            }
-
-            .hero-data-logo {
-                width: 14px;
-                height: 14px;
-            }
-
-            .container {
-                padding: 0 0.5rem;
-            }
-
-            .content-section {
-                padding: 1.25rem 0;
-            }
-        }
-
-        @media (max-width: 360px) {
-            .hero-section {
-                padding: 1.25rem 0 2rem;
-            }
-
-            .hero-title {
-                font-size: 1rem;
-                text-align: center;
-            }
-
-            .hero-content {
-                padding: 0.75rem;
-            }
-
-            .hero-data-source-box {
-                gap: 0.3rem;
-                margin: 0 auto 1.5rem auto;
-                max-width: calc(100vw - 0.5rem);
-                padding: 0.5rem 1rem;
-            }
-
-            .hero-data-label {
-                font-size: 0.6rem;
-                flex-shrink: 0;
-            }
-
-            .hero-data-logos {
-                gap: 0.25rem;
-                justify-content: center;
-            }
-
-            .hero-data-logo {
-                width: 12px;
-                height: 12px;
-            }
-
-            .metric-item {
-                padding: 0.6rem;
-            }
-
-            .metric-value {
-                font-size: 1.25rem;
-            }
-
-            .metric-label {
-                font-size: 0.7rem;
-            }
-        }
-
-        /* Data Source Boxes - Living/Interactive Design */
-        .data-source-box {
-            background: linear-gradient(135deg, var(--mckinsey-gray-bg) 0%, rgba(248, 249, 250, 0.8) 100%);
-            padding: 1.25rem;
-            border-radius: 8px;
-            margin-top: 1.5rem;
-            max-width: 650px;
-            margin-left: auto;
-            margin-right: auto;
-            border: 2px solid transparent;
-            position: relative;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            overflow: hidden;
-        }
-
-        .data-source-box::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 102, 204, 0.1), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .data-source-box:hover::before {
-            left: 100%;
-        }
-
-        .data-source-box:hover {
-            transform: translateY(-2px);
-            border-color: var(--mckinsey-blue);
-            box-shadow: 
-                0 8px 25px rgba(0, 102, 204, 0.15),
-                0 0 20px rgba(0, 102, 204, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.6);
-            background: linear-gradient(135deg, rgba(0, 102, 204, 0.05) 0%, rgba(248, 249, 250, 0.95) 100%);
-        }
-
-        .data-source-box::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: 6px;
-            padding: 2px;
-            background: linear-gradient(45deg, transparent, var(--mckinsey-blue), transparent);
-            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            mask-composite: exclude;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .data-source-box:hover::after {
-            opacity: 0.6;
-        }
-
-        .data-source-box p {
-            position: relative;
-            z-index: 1;
-            margin: 0;
-            transition: color 0.3s ease;
-        }
-
-        .data-source-box:hover p {
-            color: var(--mckinsey-navy);
-        }
-
-        .data-source-box:hover strong {
-            color: var(--mckinsey-blue);
-        }
-
-        /* Hero Data Source Box - Special styling for hero section */
-        .hero-data-source-box {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1.5rem;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50px;
-            padding: 0.75rem 2rem;
-            margin: 0 auto 3rem auto;
-            max-width: fit-content;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            min-height: 44px;
-            box-sizing: border-box;
-            width: auto;
-            flex-shrink: 0;
-        }
-
-        .hero-data-source-box:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.4);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        .hero-data-label {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 0.875rem;
-            font-weight: 600;
-            white-space: nowrap;
-            line-height: 1;
-            display: flex;
-            align-items: center;
-        }
-
-        .hero-data-logos {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-            justify-content: center;
-            flex: 1;
-            min-width: 0;
-        }
-
-        .hero-data-logo {
-            width: 22px;
-            height: 22px;
-            object-fit: contain;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-            filter: brightness(0) saturate(0) invert(1);
-            opacity: 0.8;
-        }
-
-        .hero-data-logo:hover {
-            transform: scale(1.1);
-            opacity: 1;
-        }
-
-        .hero-data-emoji {
-            font-size: 1rem;
-            opacity: 0.8;
-            transition: all 0.3s ease;
-        }
-
-        .hero-data-emoji:hover {
-            transform: scale(1.1);
-            opacity: 1;
-        }
-
-        /* Utility classes */
-        .text-center {
-            text-align: center;
-        }
-
-        .mb-2 {
-            margin-bottom: 1rem;
-        }
-
-        .mb-4 {
-            margin-bottom: 2rem;
-        }
-
-        .font-bold {
-            font-weight: 700;
-        }
-
-        .font-semibold {
-            font-weight: 600;
-        }
-    </style>
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -1097,7 +33,7 @@
         </div>
     </nav>
 
-    <!-- Hero Section - Executive Summary -->
+    <!-- Hero Section -->
     <header id="overview" class="hero-section">
         <div class="container">
             <div class="hero-data-source-box">
@@ -1127,7 +63,7 @@
                     <h1 class="hero-title">Aaron Aftab // Product Engineer</h1>
                     
                     <div class="hero-metrics" id="heroMetrics">
-                        <!-- Metrics will be populated dynamically from experiences.json -->
+                        <!-- Metrics will be populated dynamically -->
                     </div>
                 </div>
                 
@@ -1149,16 +85,23 @@
         <section id="experience" class="content-section">
             <div class="section-header">
                 <h2 class="section-title">Professional Experience</h2>
-                <div class="data-source-box">
-                    <p style="font-size: 0.875rem; color: var(--text-secondary); margin: 0;">
-                        <strong>Data Sources:</strong> LinkedIn, company records, verified employment history
-                    </p>
+                <div class="section-data-source-box experience-data-source-box">
+                    <span style="font-size: 0.875rem; color: var(--text-secondary); font-weight: 600;">Data Sources:</span>
+                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                        <img src="./logos/linkedin.png" alt="LinkedIn" style="width: 18px; height: 18px; object-fit: contain;" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                        <span style="display: none;">💼</span>
+                        
+                        <span style="font-size: 0.8rem; color: var(--text-tertiary);">Public Records</span>
+                        <span style="font-size: 0.8rem; color: var(--text-tertiary);">Employment History</span>
+                    </div>
                 </div>
             </div>
             
             <div class="content-width">
-                <div class="timeline">
-                    <!-- Timeline items will be populated dynamically from experiences.json -->
+                <div class="section-content-container experience-content">
+                    <div class="timeline">
+                        <!-- Timeline items will be populated dynamically -->
+                    </div>
                 </div>
             </div>
         </section>
@@ -1167,48 +110,59 @@
         <section id="capabilities" class="content-section">
             <div class="section-header">
                 <h2 class="section-title">Skills</h2>
-                <div class="data-source-box">
-                    <p style="font-size: 0.875rem; color: var(--text-secondary); margin: 0;">
-                        <strong>Data Sources:</strong> LinkedIn, company records, verified employment history
-                    </p>
+                <div class="section-data-source-box skills-data-source-box">
+                    <span style="font-size: 0.875rem; color: var(--text-secondary); font-weight: 600;">Data Sources:</span>
+                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                        <img src="./logos/github.png" alt="GitHub" style="width: 18px; height: 18px; object-fit: contain;" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                        <span style="display: none;">💻</span>
+                        
+                        <img src="./logos/linkedin.png" alt="LinkedIn" style="width: 18px; height: 18px; object-fit: contain;" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                        <span style="display: none;">💼</span>
+                        
+                        <img src="./logos/google.png" alt="Google" style="width: 18px; height: 18px; object-fit: contain;" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                        <span style="display: none;">🔍</span>
+                    </div>
                 </div>
             </div>
             
-            <div class="skills-container">
-                <h3 class="skills-title">Technical Proficiency by Years of Experience</h3>
-                <div class="skills-grid" id="skillsGrid">
-                    <!-- Skills will be populated dynamically -->
+            <div class="section-content-container skills-content">
+                <div class="skills-container">
+                    <h3 class="skills-title">By Years of Experience</h3>
+                    <div class="skills-grid" id="skillsGrid">
+                        <!-- Skills will be populated dynamically -->
+                    </div>
                 </div>
-            </div>
-            
-            <div class="grid-2">
+                
+                <div class="grid-2">
                 <div class="card">
-                    <h3 class="card-title">Technical Leadership</h3>
+                    <h3 class="card-title">Technical Work</h3>
                     <div class="card-content">
                         <ul style="list-style: none; padding: 0;">
                             <li style="margin-bottom: 0.5rem; color: var(--text-secondary);">• AI/ML system architecture and deployment</li>
-                            <li style="margin-bottom: 0.5rem; color: var(--text-secondary);">• Full-stack development (Python, JavaScript, Cloud)</li>
+                            <li style="margin-bottom: 0.5rem; color: var(--text-secondary);">• Fullstack development</li>
                             <li style="margin-bottom: 0.5rem; color: var(--text-secondary);">• Data engineering and analytics infrastructure</li>
                         </ul>
                         
                         <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #e5e5e5;">
-                            <h4 style="font-size: 0.9rem; font-weight: 600; color: var(--mckinsey-navy); margin-bottom: 0.75rem;">Featured Projects</h4>
+                            <h4 style="font-size: 0.9rem; font-weight: 600; color: var(--mckinsey-navy); margin-bottom: 0.75rem;">Links</h4>
                             <ul style="list-style: none; padding: 0;">
                                 <li style="margin-bottom: 0.5rem;">
                                     <a href="https://replicate.com/aaronaftab/mirage-ghibli" class="link" target="_blank" style="font-size: 0.875rem;">
-                                        Mirage AI Stable Diffusion Model
+                                        Diffusion model mirage-ghibli
                                     </a>
-                                    <span style="font-size: 0.75rem; color: var(--text-tertiary); margin-left: 0.5rem;">< 2¢ per run</span>
+                                    <span style="font-size: 0.75rem; color: var(--text-tertiary); margin-left: 0.5rem;">100k+ runs in first week</span>
                                 </li>
                                 <li style="margin-bottom: 0.5rem;">
                                     <a href="https://github.com/aaronaftab/mirage" class="link" target="_blank" style="font-size: 0.875rem;">
-                                        AI-Powered Photo Frame Hardware
+                                        AI photo frame (E-ink display + Raspberry Pi)
                                     </a>
-                                    <span style="font-size: 0.75rem; color: var(--text-tertiary); margin-left: 0.5rem;">Open source</span>
+                                    <span style="font-size: 0.75rem; color: var(--text-tertiary); margin-left: 0.5rem;">100+ waitlist signups</span>
                                 </li>
                                 <li style="margin-bottom: 0.5rem;">
-                                    <span style="font-size: 0.875rem; color: var(--text-secondary);">Capital One ML Risk Models</span>
-                                    <span style="font-size: 0.75rem; color: var(--text-tertiary); margin-left: 0.5rem;">$7B+ NPV</span>
+                                    <a href="https://devpost.com/software/osm-building-detector" class="link" target="_blank" style="font-size: 0.875rem;">
+                                        OpenStreetMap building detector
+                                    </a>
+                                    <span style="font-size: 0.75rem; color: var(--text-tertiary); margin-left: 0.5rem;">3rd place winner @ HackIllinois</span>
                                 </li>
                             </ul>
                         </div>
@@ -1216,7 +170,7 @@
                 </div>
                 
                 <div class="card">
-                    <h3 class="card-title">Product & Strategy</h3>
+                    <h3 class="card-title">Product, Design & Strategy</h3>
                     <div class="card-content">
                         <ul style="list-style: none; padding: 0;">
                             <li style="margin-bottom: 0.5rem; color: var(--text-secondary);">• Product strategy and roadmap development</li>
@@ -1225,7 +179,7 @@
                         </ul>
                         
                         <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #e5e5e5;">
-                            <h4 style="font-size: 0.9rem; font-weight: 600; color: var(--mckinsey-navy); margin-bottom: 0.75rem;">Impact Highlights</h4>
+                            <h4 style="font-size: 0.9rem; font-weight: 600; color: var(--mckinsey-navy); margin-bottom: 0.75rem;">Highlights</h4>
                             <ul style="list-style: none; padding: 0;">
                                 <li style="margin-bottom: 0.5rem;">
                                     <span style="font-size: 0.875rem; color: var(--text-secondary);">Rize Education Growth</span>
@@ -1234,10 +188,6 @@
                                 <li style="margin-bottom: 0.5rem;">
                                     <span style="font-size: 0.875rem; color: var(--text-secondary);">Microsoft D365 Feature</span>
                                     <span style="font-size: 0.75rem; color: var(--text-tertiary); margin-left: 0.5rem;">5M+ MAU</span>
-                                </li>
-                                <li style="margin-bottom: 0.5rem;">
-                                    <span style="font-size: 0.875rem; color: var(--text-secondary);">Bilt AI Support Agent</span>
-                                    <span style="font-size: 0.75rem; color: var(--text-tertiary); margin-left: 0.5rem;">70% resolution rate</span>
                                 </li>
                                 <li style="margin-bottom: 0.5rem;">
                                     <a href="https://reflectionsprojections.org/" class="link" target="_blank" style="font-size: 0.875rem;">
@@ -1252,56 +202,73 @@
             </div>
         </section>
 
-        <!-- Current Projects -->
+        <!-- Projects -->
         <section id="impact" class="content-section">
             <div class="section-header">
                 <h2 class="section-title">Projects</h2>
-                <div class="data-source-box">
-                    <p style="font-size: 0.875rem; color: var(--text-secondary); margin: 0;">
-                        <strong>Data Sources:</strong> GitHub, HuggingFace, LinkedIn
-                    </p>
+                <div class="section-data-source-box projects-data-source-box">
+                    <span style="font-size: 0.875rem; color: var(--text-secondary); font-weight: 600;">Data Sources:</span>
+                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                        <img src="./logos/github.png" alt="GitHub" style="width: 18px; height: 18px; object-fit: contain;" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                        <span style="display: none;">💻</span>
+                        
+                        <span style="font-size: 0.8rem; color: var(--text-tertiary);">HuggingFace</span>
+                        
+                        <img src="./logos/linkedin.png" alt="LinkedIn" style="width: 18px; height: 18px; object-fit: contain;" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                        <span style="display: none;">💼</span>
+                    </div>
                 </div>
             </div>
             
-            <div class="grid-2">
-                <div class="card">
-                    <h3 class="card-title">Mirage</h3>
-                    <p class="card-subtitle">The AI Photo Frame (Raspbery Pi, E-ink Display)</p>
-                    <div class="card-content">
-                        <p>Check out the demo and DIY guide:</p>
-                        <p style="margin-top: 1rem;">
-                            <a href="https://github.com/aaronaftab/mirage" class="link" target="_blank">
+            <div class="section-content-container projects-content">
+                <div class="grid-2">
+                    <div class="card">
+                        <h3 class="card-title">Mirage</h3>
+                        <p class="card-subtitle">The AI Photo Frame (Raspbery Pi, E-ink Display)</p>
+                        <div class="card-content">
+                            <p>Check out the demo and DIY guide:</p>
+                            <p style="margin-top: 1rem;">
+                                <a href="https://github.com/aaronaftab/mirage" class="link" target="_blank">
+                                    GitHub →
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3 class="card-title">Pandora</h3>
+                        <p class="card-subtitle">A free, open-source alternative to paid cheating tools like Chegg and Cluely</p>
+                        <div class="card-content">
+                            <p>Doubles as a testing framework for online assessments:</p>
+                            <a href="https://github.com/aaronaftab/pandora" class="link" target="_blank">
                                 GitHub →
                             </a>
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <h3 class="card-title">Pandora</h3>
-                    <p class="card-subtitle">A free, open-source alternative to paid cheating tools like Chegg and Cluely</p>
-                    <div class="card-content">
-                        <p>Doubles as a testing framework for online assessments:</p>
-                        <a href="https://github.com/aaronaftab/pandora" class="link" target="_blank">
-                            GitHub →
-                        </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Interests Section -->
+        <!-- Interests -->
         <section id="interests" class="content-section">
             <div class="section-header">
                 <h2 class="section-title">Interests</h2>
-                <div class="data-source-box">
-                    <p style="font-size: 0.875rem; color: var(--text-secondary); margin: 0;">
-                        <strong>Data Sources:</strong> Google Search History, Github, Goodreads
-                    </p>
+                <div class="section-data-source-box interests-data-source-box">
+                    <span style="font-size: 0.875rem; color: var(--text-secondary); font-weight: 600;">Data Sources:</span>
+                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                        <img src="./logos/google.png" alt="Google" style="width: 18px; height: 18px; object-fit: contain;" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                        <span style="display: none;">🔍</span>
+                        
+                        <img src="./logos/github.png" alt="GitHub" style="width: 18px; height: 18px; object-fit: contain;" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                        <span style="display: none;">💻</span>
+                        
+                        <img src="./logos/goodreads.png" alt="Goodreads" style="width: 18px; height: 18px; object-fit: contain;" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                        <span style="display: none;">📚</span>
+                    </div>
                 </div>
             </div>
             
-            <div class="content-width">
+            <div class="section-content-container interests-content">
                 <div class="grid-2">
                     <div class="card">
                         <h3 class="card-title">Technical</h3>
@@ -1343,426 +310,7 @@
         </div>
     </footer>
 
-    <script>
-        // Set current year
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-        // Navigation scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.top-nav');
-            if (window.scrollY > 50) {
-                navbar.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
-            } else {
-                navbar.style.boxShadow = 'none';
-            }
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Active navigation link highlighting
-        window.addEventListener('scroll', function() {
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('.nav-link');
-            
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
-                if (window.scrollY >= sectionTop) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === '#' + current) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Load and render experiences from JSON
-        async function loadExperiences() {
-            try {
-                console.log('Attempting to fetch experiences.json...');
-                const response = await fetch('./experiences.json');
-                console.log('Response status:', response.status);
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                
-                const data = await response.json();
-                console.log('Loaded experiences data:', data);
-                renderTimeline(data.experiences);
-                renderHeroMetrics(); // Don't depend on JSON for hero metrics
-            } catch (error) {
-                console.error('Error loading experiences:', error);
-                // Fallback: render with hardcoded data if JSON fails
-                renderTimelineWithFallback();
-                renderHeroMetrics();
-            }
-        }
-
-        function renderTimelineWithFallback() {
-            console.log('Using fallback timeline data...');
-            // Embed the full experiences data directly to avoid CORS issues
-            const fallbackExperiences = [
-                {
-                    title: "B.S. Computer Science & Statistics",
-                    company: "University of Illinois at Urbana-Champaign",
-                    year: "2018-2022",
-                    logoUrl: "./logos/uiuc.png",
-                    logo: "🎓",
-                    metric: "200+ hours at Kams",
-                    description: "Fun fact: senior year, my roommates and I rewired a Keurig machine to dispense Jagerbombs and got featured on Barstool."
-                },
-                {
-                    title: "Partner",
-                    company: "OTCR Consulting",
-                    year: "2019-2020",
-                    logoUrl: "./logos/otcr.png",
-                    logo: "💼",
-                    metric: "~$8k per project",
-                    description: "Performed user research study for social media giant, led client engagement with Director of UX Research and oversaw two project teams.",
-                    customButton: {
-                        text: "Learn About OTCR",
-                        url: "https://otcrconsulting.com/"
-                    }
-                },
-                {
-                    title: "Co-Director // Corporate Staff",
-                    company: "Reflections|Projections",
-                    year: "2019-2020",
-                    logoUrl: "./logos/reflections.png",
-                    logo: "🎯",
-                    metric: "2k+ Attendees",
-                    description: "Largest student-run tech conference in the Midwest, led staff of 60+ to organize 2020 event with $50k operating budget. Raised over $100k from corporate sponsors for 2019 conference.",
-                    customButton: {
-                        text: "View Conference Site",
-                        url: "https://reflectionsprojections.org"
-                    }
-                },
-                {
-                    title: "Software Engineer Intern",
-                    company: "DocuSign",
-                    year: "2019",
-                    logoUrl: "./logos/docusign.png",
-                    logo: "📄",
-                    metric: "10min -> 10sec to create contracts",
-                    description: "Built document generation API for Dynamics 365 x DocuSign integration",
-                    customButton: {
-                        text: "See Integration",
-                        url: "https://www.docusign.com/integrations/microsoft/dynamics-365"
-                    }
-                },
-                {
-                    title: "Product Manager Intern",
-                    company: "Microsoft",
-                    year: "2020",
-                    logoUrl: "./logos/microsoft.png",
-                    logo: "🪟",
-                    metric: "5M MAU",
-                    description: "Designed new sharing flow for Power BI Desktop",
-                    customButton: {
-                        text: "View Release Notes",
-                        url: "https://powerbi.microsoft.com/en-us/blog/new-sharing-experience-coming-soon/"
-                    }
-                },
-                {
-                    title: "Growth Intern",
-                    company: "Alpaca",
-                    year: "2020",
-                    logoUrl: "./logos/alpaca.png",
-                    logo: "📈",
-                    metric: "100+ New Institutional Partnerships",
-                    description: "Driving adoption of Alpaca's developer-first stock trading API, ran trading competition with 1000+ participants.",
-                    customButton: {
-                        text: "Read Interview",
-                        url: "https://alpaca.markets/learn/trading-competition-interview2"
-                    }
-                },
-                {
-                    title: "Product Manager Intern",
-                    company: "Microsoft",
-                    year: "2021",
-                    logoUrl: "./logos/microsoft.png",
-                    logo: "🪟",
-                    metric: "2M MAU",
-                    description: "Introduced version management and reversion capabilities to Dynamics 365 Commerce Site Builder",
-                    customButton: {
-                        text: "View Documentation",
-                        url: "https://docs.microsoft.com/en-us/dynamics365/commerce/e-commerce-extensibility/site-builder-versioning"
-                    }
-                },
-                {
-                    title: "Product Lead // Growth Engineer",
-                    company: "Rize Education",
-                    year: "2021-2023",
-                    logoUrl: "./logos/rize.png",
-                    logo: "🎯",
-                    metric: "~10x ARR Growth",
-                    description: "Helped grow usage-based ARR by nearly 10x (~$2.5M when I left) over two years while increasing overall product NPS from roughly -10 to +20. Also got to design a few CS courses and projects that are still being taken by students at 100+ universities :)",
-                    customButton: {
-                        text: "About Rize",
-                        url: "https://www.rize.education/"
-                    }
-                },
-                {
-                    title: "Technical Product Manager, AI & Customer Solutions",
-                    company: "Bilt Rewards",
-                    year: "2023-2024",
-                    logoUrl: "./logos/bilt.png",
-                    logo: "🏠",
-                    metric: "70% Resolution Rate",
-                    description: "CX agents, fraud, data infra",
-                    customButton: {
-                        text: "Bilt x Decagon Case Study",
-                        url: "https://decagon.ai/case-studies/bilt"
-                    }
-                },
-                {
-                    title: "Product Manager, Machine Learning",
-                    company: "Capital One",
-                    year: "2024-Present",
-                    logoUrl: "./logos/capital-one.png",
-                    logo: "🏦",
-                    metric: "$7B+ NPV",
-                    description: "Credit underwriting/acquisition risk models + ML infra.",
-                    customButton: {
-                        text: "C1 AI/ML",
-                        url: "https://www.capitalone.com/tech/machine-learning/"
-                    }
-                },
-                {
-                    title: "Founder",
-                    company: "Mirage AI",
-                    year: "2025-Present",
-                    logoUrl: "./logos/mirage.png",
-                    logo: "🎨",
-                    metric: "100k+ runs/$2k in first week",
-                    description: "AI photo frame + stable diffusion models.",
-                    customButton: {
-                        text: "Stylize any image, 10x cheaper/faster than ChatGPT.",
-                        url: "https://replicate.com/aaronaftab/mirage-ghibli"
-                    }
-                },
-                {
-                    title: "Co-Founder",
-                    company: "Something New",
-                    year: "2025-Present",
-                    logoUrl: "./logos/quetzal.png",
-                    logo: "🦅",
-                    metric: "?",
-                    description: ""
-                }
-            ];
-            renderTimeline(fallbackExperiences);
-        }
-
-        function renderHeroMetrics() {
-            const heroMetricsContainer = document.getElementById('heroMetrics');
-            if (!heroMetricsContainer) return;
-
-            // Define specific hero metrics with better formatting
-            const heroMetrics = [
-                {
-                    company: 'Capital One',
-                    metric: '$7B+',
-                    label: 'NPV generated at Capital One',
-                    logoUrl: './logos/capital-one.png',
-                    logo: '🏦'
-                },
-                {
-                    company: 'Microsoft',
-                    metric: '5M+',
-                    label: 'MAUs served at Microsoft',
-                    logoUrl: './logos/microsoft.png',
-                    logo: '🪟'
-                },
-                {
-                    company: 'Mirage AI',
-                    metric: '500K+',
-                    label: 'Model runs at Mirage AI (Founder)',
-                    logoUrl: './logos/mirage.png',
-                    logo: '🎨'
-                },
-                {
-                    company: 'Rize Education',
-                    metric: '10x',
-                    label: 'ARR Growth at Rize',
-                    logoUrl: './logos/rize.png',
-                    logo: '🎯'
-                }
-            ];
-            
-            heroMetricsContainer.innerHTML = '';
-            
-            heroMetrics.forEach(metric => {
-                const metricItem = document.createElement('div');
-                metricItem.className = 'metric-item';
-                
-                const logoHtml = metric.logoUrl 
-                    ? `<img src="${metric.logoUrl}" alt="${metric.company} logo" style="width: 24px; height: 24px; object-fit: contain; filter: brightness(0) saturate(0) invert(1); opacity: 0.9;" onerror="console.log('Failed to load hero metric logo:', this.src); this.style.display='none'; this.nextElementSibling.style.display='block';">
-                       <span style="display: none; filter: brightness(0) invert(1); opacity: 0.8; font-size: 1.2rem;">${metric.logo}</span>`
-                    : `<span style="filter: brightness(0) invert(1); opacity: 0.8; font-size: 1.2rem;">${metric.logo}</span>`;
-
-                metricItem.innerHTML = `
-                    <div class="metric-logo">
-                        ${logoHtml}
-                    </div>
-                    <span class="metric-value">${metric.metric}</span>
-                    <span class="metric-label">${metric.label}</span>
-                `;
-                
-                heroMetricsContainer.appendChild(metricItem);
-            });
-        }
-
-        function renderTimeline(experiences) {
-            console.log('renderTimeline called with:', experiences);
-            const timelineContainer = document.querySelector('.timeline');
-            console.log('Timeline container found:', timelineContainer);
-            
-            if (!timelineContainer) {
-                console.error('Timeline container not found!');
-                return;
-            }
-
-            // Clear existing timeline items
-            timelineContainer.innerHTML = '';
-            console.log('Timeline container cleared, rendering', experiences.length, 'experiences');
-
-            // Use experiences in the exact order they appear in the JSON array
-            // Render each experience
-            experiences.forEach(exp => {
-                const timelineItem = document.createElement('div');
-                timelineItem.className = 'timeline-item';
-                
-                const logoHtml = exp.logoUrl 
-                    ? `<img src="${exp.logoUrl}" alt="${exp.company} logo" style="width: 24px; height: 24px; object-fit: contain; filter: brightness(0) saturate(0) invert(0.2) sepia(1) saturate(5) hue-rotate(200deg);" onerror="console.log('Failed to load:', this.src); this.style.display='none'; this.nextElementSibling.style.display='block';">
-                       <span style="display: none; color: var(--mckinsey-blue); font-size: 1rem;">${exp.logo}</span>`
-                    : `<span style="color: var(--mckinsey-blue); font-size: 1rem;">${exp.logo}</span>`;
-
-                const customButtonHtml = exp.customButton 
-                    ? `<a href="${exp.customButton.url}" class="action-btn" target="_blank">${exp.customButton.text}</a>`
-                    : '';
-
-                timelineItem.innerHTML = `
-                    <div class="timeline-logo">
-                        ${logoHtml}
-                    </div>
-                    <div class="timeline-header">
-                        <h3 class="timeline-title">${exp.title}</h3>
-                        <span class="timeline-company">${exp.company}</span>
-                    </div>
-                    <p class="timeline-subtitle">${exp.year}</p>
-                    <div class="timeline-content">
-                        <div class="timeline-metric">${exp.metric}</div>
-                        <p>${exp.description}</p>
-                        ${customButtonHtml ? `<div class="timeline-actions">${customButtonHtml}</div>` : ''}
-                    </div>
-                `;
-                
-                timelineContainer.appendChild(timelineItem);
-            });
-        }
-
-        // Load experiences on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            renderHeroMetrics(); // Load hero metrics immediately
-            loadExperiences(); // Then load timeline from JSON
-            observeSkills(); // Initialize skills animation observer
-        });
-
-        // Modern Skills Visualization
-        function renderSkills() {
-            const skillsData = [
-                { name: 'Python/ML', years: 6, color: '#003366', level: 'Expert' },
-                { name: 'Product Mgmt', years: 4, color: '#0066cc', level: 'Advanced' },
-                { name: 'JavaScript/TS', years: 4, color: '#4d94ff', level: 'Advanced' },
-                { name: 'Cloud/AWS', years: 4, color: '#ff6b35', level: 'Advanced' },
-                { name: 'SQL/Analytics', years: 4, color: '#666666', level: 'Advanced' },
-                { name: 'Java', years: 3, color: '#999999', level: 'Intermediate' },
-                { name: 'Leadership', years: 4, color: '#003366', level: 'Advanced' }
-            ];
-
-            const skillsGrid = document.getElementById('skillsGrid');
-            if (!skillsGrid) return;
-
-            skillsGrid.innerHTML = '';
-
-            skillsData.forEach((skill, index) => {
-                const maxYears = 7;
-                const percentage = Math.min((skill.years / maxYears) * 100, 100);
-                const circumference = 2 * Math.PI * 35; // radius = 35
-                const strokeDasharray = `${(percentage / 100) * circumference} ${circumference}`;
-
-                const skillItem = document.createElement('div');
-                skillItem.className = 'skill-item';
-                skillItem.style.animationDelay = `${index * 0.1}s`;
-
-                skillItem.innerHTML = `
-                    <div class="skill-circle">
-                        <svg viewBox="0 0 80 80">
-                            <circle class="skill-circle-bg" cx="40" cy="40" r="35"></circle>
-                            <circle 
-                                class="skill-circle-progress" 
-                                cx="40" 
-                                cy="40" 
-                                r="35"
-                                stroke="${skill.color}"
-                                stroke-dasharray="0 ${circumference}"
-                                data-target="${strokeDasharray}"
-                            ></circle>
-                        </svg>
-                        <div class="skill-percentage">${skill.years}y</div>
-                    </div>
-                    <div class="skill-name">${skill.name}</div>
-                    <div class="skill-years">${skill.years} years experience</div>
-                    <div class="skill-level">${skill.level}</div>
-                `;
-
-                skillsGrid.appendChild(skillItem);
-            });
-
-            // Animate circles on load
-            setTimeout(() => {
-                const progressCircles = document.querySelectorAll('.skill-circle-progress');
-                progressCircles.forEach(circle => {
-                    const targetDasharray = circle.getAttribute('data-target');
-                    circle.style.strokeDasharray = targetDasharray;
-                });
-            }, 500);
-        }
-
-        // Intersection Observer for skills animation
-        function observeSkills() {
-            const skillsContainer = document.querySelector('.skills-container');
-            if (!skillsContainer) return;
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        renderSkills();
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.3 });
-
-            observer.observe(skillsContainer);
-        }
-    </script>
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
 </body>
-</html>
+</html> 
