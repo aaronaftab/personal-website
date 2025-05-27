@@ -535,53 +535,7 @@ p {
     transition: width 1.2s ease-out;
 }
 
-.skill-circle {
-    position: relative;
-    width: 80px;
-    height: 80px;
-    margin-bottom: 1rem;
-}
 
-.skill-circle svg {
-    width: 100%;
-    height: 100%;
-    transform: rotate(-90deg);
-}
-
-.skill-circle-bg {
-    fill: none;
-    stroke: #e5e5e5;
-    stroke-width: 6;
-}
-
-.skill-circle-progress {
-    fill: none;
-    stroke-width: 6;
-    stroke-linecap: round;
-    transition: stroke-dasharray 1.5s ease-in-out;
-}
-
-.skill-percentage {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 0.875rem;
-    font-weight: 700;
-    color: var(--primary-dark);
-}
-
-.skill-name {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--primary-dark);
-}
-
-.skill-value {
-    font-size: 0.875rem;
-    color: var(--text-secondary);
-    font-weight: 500;
-}
 
 /* Grid layouts */
 .grid-2 {
@@ -596,34 +550,7 @@ p {
     gap: 2rem;
 }
 
-/* Impact metrics */
-.impact-metrics {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin: 3rem 0;
-}
 
-.impact-item {
-    text-align: center;
-    padding: 2rem;
-    background: var(--background-light);
-    border-radius: 8px;
-}
-
-.impact-value {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--primary-blue);
-    display: block;
-    margin-bottom: 0.5rem;
-}
-
-.impact-label {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    font-weight: 600;
-}
 
 /* Timeline - Clean minimal style */
 .timeline {
@@ -1002,8 +929,7 @@ p {
     }
 
     .grid-2,
-    .grid-3,
-    .impact-metrics {
+    .grid-3 {
         grid-template-columns: 1fr;
     }
 

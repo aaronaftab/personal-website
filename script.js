@@ -17,6 +17,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
+            // Track navigation clicks
+            if (typeof umami !== 'undefined') {
+                umami.track('navigation-click', { section: this.getAttribute('href').substring(1) });
+            }
             target.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
@@ -25,7 +29,19 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+// Track external link clicks
+document.querySelectorAll('a[href^="http"]').forEach(link => {
+    link.addEventListener('click', function() {
+        if (typeof umami !== 'undefined') {
+            const url = this.getAttribute('href');
+            const linkText = this.textContent.trim() || this.getAttribute('aria-label') || 'external-link';
+            umami.track('external-link-click', { url: url, text: linkText });
+        }
+    });
+});
+
 // Active navigation link highlighting
+let lastTrackedSection = '';
 window.addEventListener('scroll', function() {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
@@ -37,6 +53,12 @@ window.addEventListener('scroll', function() {
             current = section.getAttribute('id');
         }
     });
+
+    // Track section views
+    if (current && current !== lastTrackedSection && typeof umami !== 'undefined') {
+        umami.track('section-view', { section: current });
+        lastTrackedSection = current;
+    }
 
     navLinks.forEach(link => {
         link.classList.remove('active');
